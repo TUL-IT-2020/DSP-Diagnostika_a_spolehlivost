@@ -41,18 +41,7 @@ Testování na různé úrovni:
 - hradla,
 - tranzistory.
 
-### IDDQ
-- IDD - napájecí proud
-- Q - trvalá změna napájecího proudu při určitém vstupu
-Odhalování poruch měřením spotřeby obvodu, zejména u unipolárních tranzistorů.
-
-### Intuitivní zcitlivění cesty
-> [!tip] Intuitivní zcitlivění cesty
-Nastavíme obvod (vstupním vektorem hodnot) tak aby se chyba (t1, t0) projevila až na výstupu.
-
-Musíme znát strukturu obvodu.
-
-## Návrh testů:
+### Návrh testů:
 - Chování
 - struktura
 - fyzikální jevy
@@ -65,7 +54,7 @@ Musíme znát strukturu obvodu.
 | **Logic**   | Boolean Functions      | Logic Gates    | Standard Cells |
 | **Circuit** | Differential Equations | Transistors    | Masks          |
 
-## Design pro snadnou testovatelnost
+### Design pro snadnou testovatelnost
 Přidáme: 
 - Testovací body do obvodu (sledovací).
 - Nastavovací body (pro nastavení citlivé cesty)
@@ -80,3 +69,42 @@ Přidání generátoru testů přímo do čipu.
 
 BIST -> Build-in Self-Test
 LSFR nám vygeneruje náhodné vstupu pro otestování.
+
+## Metody testování
+
+### IDDQ
+- IDD - napájecí proud
+- Q - trvalá změna napájecího proudu při určitém vstupu
+Odhalování poruch měřením spotřeby obvodu, zejména u unipolárních tranzistorů.
+
+### Intuitivní zcitlivění cesty
+> [!tip] Intuitivní zcitlivění cesty
+Nastavíme obvod (vstupním vektorem hodnot) tak aby se chyba (t1, t0) projevila až na výstupu.
+
+Musíme znát strukturu obvodu.
+
+### D-algoritmus
+Hledáme jaké vstupy má mít obvod aby při dané poruše došlo ke změně výstupu. 
+
+> [!note]
+Formální tvoření citlivé cesty bez intuice.
+
+1. Vytvoříme D-krychle obvodu.
+2. Zvolíme si poruchu.
+3. Vytvoříme primitivní D-krychle poruchy.
+4. Propagace D na výstup (citlivá cesta)
+5. Konzistence vektorů (zpětný průchod)
+6. Pokračuji krokem 2 a zvolím si jinou poruchu.
+
+D-krychle základních logických hradel
+
+### Boolovská diference
+Nemusíme znát strukturu obvodu.
+Hledá pouze chybu na vstupu obvodu.
+
+> [!tip]
+Hledáme vektor vstupů takový, že při změně hodnoty na jednom vstupu a projeví se jako změna výstupu.
+
+Vektory určíme z pravdivostní tabulky. 
+Nebo odvodíme z funkce. 
+

@@ -2,11 +2,15 @@
 
 ## Literatura
 - ČVUT Jan Hlavička Diagnostika a Spolehlivost
+- [[Diagnostika a spolehlivost - cvičení.pdf]]
 
 ## Cvičení
 
 Doma, projít si skripta.
-- [ ] Kapitola 2. do vypracovat úlohy 
+- [x] Kapitola 2. do vypracovat úlohy 
+- [ ] 2.2
+	- [ ] D-krychle přes XOR
+	- [ ] Boolovská diference
 ## Poznámky:
 
 ### Zkratky
@@ -32,7 +36,11 @@ Online vs Offline
 Pokud máme redundantní návrh, tak můžeme za běhu validovat zařízení že pracuje správně.  
 
 ## Další 
-### Boolovská diference
-Nemusíme znát strukturu obvodu.
+
+### SSBDD
+BDD - binární rozhodovací strom (diagram)
+SS - strukturně syntetizovaný
+
+
 
 ![[s_AMD_80386DX_die.jpg]]
