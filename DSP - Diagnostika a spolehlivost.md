@@ -42,5 +42,4 @@ BDD - binární rozhodovací strom (diagram)
 SS - strukturně syntetizovaný
 
 
-
 ![[s_AMD_80386DX_die.jpg]]

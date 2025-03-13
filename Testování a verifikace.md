@@ -84,26 +84,16 @@ Nastavíme obvod (vstupním vektorem hodnot) tak aby se chyba (t1, t0) projevila
 Musíme znát strukturu obvodu.
 
 ### D-algoritmus
-Hledáme jaké vstupy má mít obvod aby při dané poruše došlo ke změně výstupu. 
+![[D-algoritmus]]
 
-> [!note]
-Formální tvoření citlivé cesty bez intuice.
 
-1. Vytvoříme D-krychle obvodu.
-2. Zvolíme si poruchu.
-3. Vytvoříme primitivní D-krychle poruchy.
-4. Propagace D na výstup (citlivá cesta)
-5. Konzistence vektorů (zpětný průchod)
-6. Pokračuji krokem 2 a zvolím si jinou poruchu.
-
-D-krychle základních logických hradel
 
 ### Boolovská diference
 Nemusíme znát strukturu obvodu.
 Hledá pouze chybu na vstupu obvodu.
 
 > [!tip]
-Hledáme vektor vstupů takový, že při změně hodnoty na jednom vstupu a projeví se jako změna výstupu.
+Hledáme pár vektorů vstupů takový, že při změně jedné hodnoty vstupu se projeví i změna na výstupu.
 
 Vektory určíme z pravdivostní tabulky. 
 Nebo odvodíme z funkce. 
