@@ -11,7 +11,6 @@ Formální tvoření citlivé cesty bez intuice.
 5. Konzistence vektorů (zpětný průchod)
 6. Pokračuji krokem 2 a zvolím si jinou poruchu.
 
-
 ## Singulární pokrytí
 Zhuštěný tvar pravdivostní tabulky, v němž jsou sdruženy sousední vrcholy, které mají stejnou hodnotu výstupu (symbol X).
 ### g(AND)
@@ -45,8 +44,6 @@ Zhuštěný tvar pravdivostní tabulky, v němž jsou sdruženy sousední vrchol
 | 1   | X   | 0   |
 | X   | 1   | 0   |
 | 0   | 0   | 1   |
-
-
 ## D-krychle základních logických hradel
 Formálně popisuje podmínky existence citlivé cesty. Vytvoříme ji jako průnik řádků (krychlí) singulárního pokrytí.
 
@@ -57,7 +54,11 @@ Pro průnik platí tato pravidla:
 - $1 \cap 0 = D$
 - $0 \cap 1 = D´$
 
+D = 1-> 0
+D'= 0 -> 1
+
 ### Přenosové D-krychle
+Přenosová má D i na vstupu.
 
 AND:
 

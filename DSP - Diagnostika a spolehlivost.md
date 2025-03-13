@@ -6,12 +6,18 @@
 
 ## Cvičení
 
-Doma, projít si skripta.
+Doma, projít si skripta:
 - [x] Kapitola 2. do vypracovat úlohy 
 - [ ] 2.2
 	- [ ] D-krychle přes XOR
-	- [ ] Boolovská diference
+	- [ ] Boolovská diference (vyzkoušet si)
+		- [ ] Z definice
+		- [ ] F, F' tabulku (důležitější)
+- [ ] 3
+	- [ ] Minimalizace testů
 ## Poznámky:
+
+- [ ] Dopsat poznámky k automatům
 
 ### Zkratky
 - VLSI - very large system integration
@@ -20,20 +26,10 @@ Doma, projít si skripta.
 - SAT solvers - Satisfiability solvers
 - ATPG - Automatic test pattern generator
 
-### Defekty a poruchy
-![[Defekty a poruchy]]
-
-### Testování a verifikace
-![[Testování a verifikace]]
-
-### Redundance
-Všechny redundantní obvody musí mít možnost otestování!
-Pokud sami jednu chybu opravím, tak základním testem nelze odhalit!
-
-TMR - triple module redundanci
-
-Online vs Offline
-Pokud máme redundantní návrh, tak můžeme za běhu validovat zařízení že pracuje správně.  
+- [[Defekty a poruchy]]
+- [[Testování a verifikace]]
+	- [[D-algoritmus]]
+	- [[Testování sekvenčních obvodů]]
 
 ## Další 
 

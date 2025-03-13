@@ -70,31 +70,39 @@ Přidání generátoru testů přímo do čipu.
 BIST -> Build-in Self-Test
 LSFR nám vygeneruje náhodné vstupu pro otestování.
 
-## Metody testování
+### Redundance
+Všechny redundantní obvody musí mít možnost otestování!
+Pokud sami jednu chybu opravím, tak základním testem nelze odhalit!
 
+TMR - triple module redundanci
+
+Online vs Offline
+Pokud máme redundantní návrh, tak můžeme za běhu validovat zařízení že pracuje správně.  
+## Metody testování
 ### IDDQ
-- IDD - napájecí proud
-- Q - trvalá změna napájecího proudu při určitém vstupu
-Odhalování poruch měřením spotřeby obvodu, zejména u unipolárních tranzistorů.
+![[IDDQ]]
 
 ### Intuitivní zcitlivění cesty
-> [!tip] Intuitivní zcitlivění cesty
-Nastavíme obvod (vstupním vektorem hodnot) tak aby se chyba (t1, t0) projevila až na výstupu.
-
-Musíme znát strukturu obvodu.
+![[Intuitivní zcitlivění cesty]]
 
 ### D-algoritmus
 ![[D-algoritmus]]
 
-
-
 ### Boolovská diference
-Nemusíme znát strukturu obvodu.
-Hledá pouze chybu na vstupu obvodu.
+![[Boolovská diference]]
 
-> [!tip]
-Hledáme pár vektorů vstupů takový, že při změně jedné hodnoty vstupu se projeví i změna na výstupu.
+## Tabulky úplných testů
 
-Vektory určíme z pravdivostní tabulky. 
-Nebo odvodíme z funkce. 
+Jak otestovat zřetězené zapojení obvodů?
 
+- **Stimul** nastavuje testovací vektory na dalším bloku.
+- **Transformace** testovacích vektorů.
+- **Citlivá cesta** vedoucí ven z obvodu.
+
+> [!warning] Problém:
+> - těžko minimalizovatelné testy, duplicitní nastavovací vektory.
+> - nemusí být možné mezi bloky nastavit libovolný vektor hodnot.
+> - Stavové automaty zvyšují náročnost testovaní o řád.
+
+## Sekvenční obvody
+![[Testování sekvenčních obvodů]]
