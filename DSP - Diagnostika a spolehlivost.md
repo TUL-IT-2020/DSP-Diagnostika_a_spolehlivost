@@ -8,8 +8,9 @@
 
 Doma, projít si skripta:
 - [x] Kapitola 2. do vypracovat úlohy 
-- [ ] 2.2
-	- [ ] D-krychle přes XOR
+- [x] 2.2
+	- [x] D-krychle přes XOR
+- [ ] 2.3
 	- [ ] Boolovská diference (vyzkoušet si)
 		- [ ] Z definice
 		- [ ] F, F' tabulku (důležitější)
