@@ -79,9 +79,6 @@ TMR - triple module redundanci
 Online vs Offline
 Pokud máme redundantní návrh, tak můžeme za běhu validovat zařízení že pracuje správně.  
 ## Metody testování
-### IDDQ
-![[IDDQ]]
-
 ### Intuitivní zcitlivění cesty
 ![[Intuitivní zcitlivění cesty]]
 
@@ -90,6 +87,9 @@ Pokud máme redundantní návrh, tak můžeme za běhu validovat zařízení že
 
 ### Boolovská diference
 ![[Boolovská diference]]
+
+### IDDQ
+![[IDDQ]]
 
 ## Tabulky úplných testů
 
