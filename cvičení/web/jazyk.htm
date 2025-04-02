@@ -1,0 +1,305 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250">  
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+<P align="justify"><BIG>Úvod</BIG><BR>
+Strukturu i funkci   testovaného obvodu lze popsat jednoduchým jazykem. Překladač z tohoto jazyka do vnitřní reprezentace obvodu ve formě dynamické struktury je součástí programů HILDO a TEST. Jazkykem lze popisovat libovolné obvody, které se  mohou připojit k posuvnému registru, v případě programu HILDO anebo pro ně lze vygenerovat testovací vektory úplného testu. Je samozřejmě možné vytvořit vnitřní (zvenčí "neviditelné") vodiče, tedy signály, které nebudou připojovány k vstupům ani výstupům posuvného registru, ale na kterých lze simulovat přítomnost poruchy a které odpovídají vnitřní struktuře obvodu. 
+</P>
+<P align="justify"><BIG>Gramatika</BIG><BR>
+
+<PRE><B>Lexikální elementy jazyka</B>
+&lt;VelkePismeno&gt; ::= ´A´..´Z´
+&lt;MalePismeno&gt; ::= ´a´..´z´
+&lt;Cislice&gt; ::= ´0´..´9´
+&lt;Signal&gt; ::= &lt;VelkePismeno&gt; &lt;MalePismeno&gt;* &lt;Cislice&gt;*
+&lt;Negace&gt; ::=  ´ / ´ | ´ - ´
+&lt;Plus&gt; ::= ´+ ´
+&lt;Rovno&gt; ::= ´ = ´ 
+&lt;Decko&gt; ::= ´ #´
+&lt;Zavorkal&gt; ::= ´ ( ´
+&lt;Zavorkap&gt; ::= ´ ) ´
+&lt;Enter&gt; ::= chr(13)
+&lt;komentar&gt; ::= ´;´ &lt;LibovolnýZnak&gt;* &lt;Enter&gt; 
+
+<b>Gramatika</b>
+T = (signal, rovno, komentar, enter, negace, zavorkap, zavorkal, plus, decko) 
+N = (POPIS, RADEK, VYRAZ, A, B, D, N)  ; G = (N, T, P, S) 
+
+S <IMG src="sip.gif" align="middle"> RADEK S | <IMG src="eps.gif" align="top">
+RADEK <IMG src="sip.gif" align="middle"> signal rovno VYRAZ K | K
+K <IMG src="sip.gif" align="middle"> enter | komentar
+VYRAZ <IMG src="sip.gif" align="middle"> A D
+A <IMG src="sip.gif" align="middle"> signal B | zavorkal VYRAZ zavorkap B | negace N B | decko signal  B 
+B <IMG src="sip.gif" align="middle"> signal B | zavorkal VYRAZ zavorkap B | negace N B | decko signal  B |<IMG src="eps.gif" align="top">
+D <IMG src="sip.gif" align="middle"> plus VYRAZ | <IMG src="eps.gif" align="top">
+N <IMG src="sip.gif" align="middle"> signal | zavorkal VYRAZ zavorkap
+Mezery mezi jednotlivými lexikálními elementy jsou ignorovány
+</PRE>
+<P align="justify"><BIG>Základní rysy</BIG><BR>
+Každý řádek popisu obvodu vyjadřuje přiřazení výrazu jednomu signálu. Řádek tedy vždy obsahuje na levé straně jméno signálu, následuje rovnítko a na pravé stráně logický výraz.  Řádek není ukončen žádným speciálním znakem, jako např. středníkem nebo tečkou, ale běžným ukončením (enter). Pořadí řádků může být zcela libovolné a nemá sebemenší vliv na výsledek analýzy a funkci obvodu. Přehozením několika řádků je tedy vždy popsán jeden a tentýž stejný obvod.  
+Jméno signálu musí začínat velkým písmenem. Následovat  mohou malá písmena a číslice. Přípustná pojmenovaní jsou tedy například tato: A, B, A1, B125, Bit, Qin. Naopak chybné je SUMA,PRENOS, 1A, 12B, AbC. Řetězec "SUMA" je při analýze vyhodnocen jako výraz "S and U and M and A".  Řetězec "AbC" by byl potom vyhodnocen jako "Ab and C". Naopak řetězec "Suma" je brán jako pojmenování signálu názvem "Suma".<BR> 
+Názvy signálů se nemusí nijak předem deklarovat. Jakmile se při analýze popisu obvodu narazí na nové neznámé jméno signálu, je pro něj automaticky vytvořen nový volný uzel ve vnitřní reprezentaci obvodu. To platí jak pro signály na levé, tak na pravé straně rovnic. Na konec každého řádku nebo na samostatný řádek lze vkládat komentář, za který je považován řetězec začínající středníkem a pokračující až na konec řádku.<BR>
+Po ukončení analýzy proběhne fáze, ve které jsou nalezeny vstupy a výstupy obvodu. Za vstupy jsou považovány ty signály, které se vyskytují pouze na pravé straně všech rovnic. Jsou to tedy signály, kterým není přiřazena žádná rovnice pro získání jejich hodnoty a očekává se, že budou např. připojeny na výstupy posuvného registru. <BR>
+Za výstupy obvodu jsou považovány ty signály, které se nevyskytují v žádné rovnici na pravé straně. Jde tedy o signály, které nejsou nikam dále připojeny a není z nich odvozen žádný další signál. (U těchto signálů se předpokládá, že budou např. připojeny ke vstupům posuvného registru v případě programu HILDO) 
+ 
+<UL>
+<LI>
+Příklad:<BR>
+A=B +  /(C D)<BR>
+C= X + /B<BR>
+Vstupy obvodu jsou B, D, X a výstupem je signál A.<BR>
+</UL> 
+V případě, že popis obvodu obsahuje chyby, je analýza neúspěšná a popsaný obvod nelze použít k simulaci jeho chování v zapojení s LZPR nebo pro něj generovat test programem TEST . O chybě je uživatel informován ve výsledkovém okénku spolu s výpisem řádku, na kterém došlo k chybě.  Mohou nastat dva druhy chyb: 
+<OL type="a">
+<LI> Chyba způsobená nedodržením gramatiky jazyka při popisu obvodu (syntaktická chyba)  
+<LI> Chyba způsobená opětovným přiřazením výrazu signálu (sémantická). Nastane v případě, že signál se nachází na více než jedom řádku popisu na levé straně, tzn. jsou mu současně přiřazeny dva různé výrazy.
+</OL>
+<UL>
+<LI>Příklad:<BR>
+A=B+C<BR>
+D=BE<BR>
+A=F /G<BR>
+Chyba - Signálu A je přiřazen výraz "B+C"  a  "F /G" současně.<BR>
+</UL>
+</P>
+<P align="justify"><BIG>Popis synchronních sekvenčních obvodů</BIG><BR>
+Jazykem pro popis obvodů je možné popsat i sekvenční obvody, tedy obvody, kde hodnota výstupu nezáleží
+ pouze na okamžitém stavu vstupních signálů, ale i na předchozích stavech. Aby k takovému chování obvodu mohlo dojít,
+ musí nutně obsahovat zpětné vazby anebo zpožďovací členy (obvody D) na přímé cestě od vstupů k výstupům.
+ Po analýze popsaného obvodu, když už je přeložen do vnitřní reprezentace ve formě orientovaného grafu,  
+je nutné zjistit, zda tento graf obsahuje cykly a popsaný obvod  tím pádem obsahuje zpětné vazby. 
+Zpětnovazební signály jsou automaticky nalezeny a do místa jejich připojení je programem vložen  obvod D. 
+Kdyby zpětné vazby nebyly tímto D obvodem přerušeny, nebylo by možné vyhodnotit rovnice výstupních signálů, 
+protože výpočet by se zacyklil. Jediným řešením by pak bylo provést vyhodnocení způsobem, který se používá  v 
+simulačních programech a je založen na sledování ustálení všech hodnot během simulačního cyklu, v kterém se 
+pohybuje v tzv. mikročase s přírustky delta.  Důsledkem mého přístupu je, že nelze popsat asynchronní sekvenční obvody.
+Všechny popsané sekvenční obvody se tedy budou chovat jako synchronní a při každém taktu získá zpětnovazební 
+signál hodnotu přiřazeného výrazu vyhodnoceného v taktu minulém. Automatické vkládání D obvodů do zpětné vazby 
+může přinést ale i nečekané problémy, pokud je tento zpětnovazební signál dále větven a přímo použit k výpočtu 
+"sama sebe". Vysvětlení a podrobnější zamyšlení je popsáno <A href="#ss">dále</a>. 
+D obvody je umožněno vkládat přímo v popisu obvodu pomocí operátoru "#". 
+Tak je také možné vytvářet zpožděné signály. 
+<UL>
+<LI>Příklad:<BR>
+Výstup obvodu Y bude odpovídat o dva takty opožděnému signálu A.<BR>
+X= #A<BR>
+Y= #X<BR>
+<IMG src="image2.gif">
+</UL>
+Jak je zřejmé z předešlého popisu, každý přeložený sekvenční obvod obsahuje alespoň jeden obvod D.  Takový D obvod ale při prvním provedení taktu obvodu "neví", jakou hodnotu má zapamatovanou z minulého taktu, protože žádný minulý takt ještě nikdy nebyl. Proto je nutné po přeložení obvodu ještě předtím, než bude použit pro připojení  k LZPR, zadat počáteční stavy všech signálů, které vstupují do D obvodů. (nemusí jít nutně jen o zpětnovazební signály)
+<UL>
+<LI>
+Příklad:<BR>
+X= #A<BR>
+Yb=/XZ + /ZX<BR>
+Z= #Yz<BR>
+Y=Yb<BR>
+Yz=Y<BR>
+<IMG src="image1.gif">
+</UL>
+V příkladu 2.4 bude třeba zadat počáteční hodnotu vstupního signálu A a signálu Yz. Při prvním taktu obvodu potom signál Z nabude počáteční hodnotu signálu Yz a signál X počáteční hodnotu signálu A.  Pro další takt bude "zapamatována" aktuální hodnota na vstupu a na signálu Yz. Těchto hodnot signály X a Z nabudou v dalším taktu a tak dále.  <BR>
+<hr>
+<P align="justify">
+<BIG>Příklady popisu kombinačních obvodů a odlišnosti jednotlivých způsobů popisu</BIG><BR>
+<UL>
+<LI><b>Použití negace a závorek</b><BR>
+Y=/AB není totéž co Y=/(AB) . V prvním případě bude negován pouze první signál, tedy A. V druhém případě jde o negaci celé závorky. Rovnice jsou vyhodnocovány zleva doprava.
+<UL>
+<LI>Y=/AB<BR><IMG src="i1.gif"><BR>.<BR>
+<LI>Y=/(AB)<BR><IMG src="i2.gif">
+</UL>
+<LI><b>Celý obvod popsaný jedinou rovnicí</b><BR>
+Funkce obou níže uvedených obvodů je zcela ekvivalentní. Rozdíl je pouze v tom, že u prvního obvodu je 
+jeho celá funkce definována jediným přiřazením a složitou rovnicí. V druhém případě popis odráží 
+skutečnou strukturu obvodu realizujícího takovou funkci. Jsou zde zavedeny vnitřní vodiče E a F. 
+Pokud se zvolí druhá forma popisu s vnitřními vodiči, lze např. injektovat poruchy na těchto vodičích a 
+obvod není chápán jako "krabička, do které nevidíme a známe jen funkci". 
+<UL>
+<LI>Y=/(A+/(CD))+B<BR><IMG src="image5.gif"><BR>.<BR>
+<LI>E=/(CD)<BR>
+F=/(E+A)<BR>
+Y=F+B<BR><IMG src="image6.gif"><BR>
+</UL>
+<LI><big>Větvení signálu</big><BR>
+Větvení signálu je možné popsat jednoduchým způsobem. 
+Díky pojmenování vnitřních signálů, větvení signálu a označení všech jeho větví lze popsat skutečnou strukturu testovaného obvodu a pomocí  HILDO nebo programu TEST pro výpočet testovacích vektorů tedy potom generovat strukturní test. Obrázek a odpovídající kód ukazuje popis rozvětvení signálu A na čtyři další signály.
+<UL>
+<LI>B=A<BR>C=A<BR>D=A<BR>E=A<BR><IMG src="image8.gif"><BR>
+</UL> 
+Problém může nastat s větvením výstupního signálu, pokud se větvený signál nerozdělí na dva další, ale pouze se "vezme jedna odnož". V tom případě není takový větvený signál nalezen jako výstupní signál, ale je brán jako signál vnitřní, protože na jeho hodnotě závisí hodnota jiného signálu. Výstupní signál se při větvení ocitá na pravé straně rovnice a tudíž nemůže být jako výstupní nalezen a identifikován. <BR>
+Následující příklad ukazuje , jak správně tak, aby byly nalezeny oba výstupní signály, a nesprávně popsat obvod, kde oba výstupní  signály nejsou záměrně pojmenovány
+<UL>
+<IMG src="image9.gif" align="top">
+<LI><i>Správně:</i><BR>
+Y1=AB<BR>
+Y2=Y1<BR>
+Y=Y1<BR>
+Yneg=/Y2<BR>
+<LI><i>Špatně:</i><BR>Y=AB<BR>Yneg = /Y
+<LI><i>Špatně:</i><BR>Y=AB<BR>Y2=Y<BR>Yneg=/Y2
+</UL>
+V obou špatných případech bude nalezen pouze jeden výstupní signál a to Yneg. Signál Y nebude považován za výstupní, ale pouze za vnitřní. Skutečnou strukturu obvodu popisuje pouze první správný popis, který výstupní signál z obvodu AND větví na dva další signály - Y2  a Y. <BR>
+</P>
+<LI><B>Další příklad větvení</b><BR>
+<table align="center" cellpadding="20">
+<tr>
+<TD valign="middle">
+<IMG src="image7.gif" align="top">
+</td>
+<td>
+<u>Popis 1:</u><BR>
+A1=A<BR>
+A2=A<BR>
+B1=B<BR>
+B2=B<BR>
+Aneg=/A1<BR>
+Bneg=/B1<BR>
+B3=B2<BR>
+B4=B2<BR>
+C=Aneg B3<BR>
+D=A2 Bneg<BR>
+D1=D<BR>
+D2=D<BR>
+X=C D1<BR>
+Y=B4 + D2<BR>
+</td>
+<td valign="top">
+<u>Popis 2:</u><BR>
+Aneg=/A<BR>Bneg=/B<BR>C=Aneg B<BR>D=Bneg A<BR>X=CD<BR>Y=B + D
+</td>
+</tr>
+</table>
+Obvod popsaný rovnicemi v popisu2 se bude chovat stejně jako obvod podle popisu1, 
+ale nebude možné simulovat poruchy na jednotlivých větvích signálů A,B a D. 
+Slovník poruch, vzniklý zjištěním příznaků po provedení N taktů, bude tedy řidší, protože nebude obsahovat příznaky pro poruchy A1/t0, A1/t1, D1/t0 ….
+<LI><B>Dvoubitová sčítačka</b><BR>
+<PRE>
+Vstupy:		A0,A1 (první sčítanec) 
+		B0,B1 (druhý sčítanec)
+		Q (přenos)
+Výstupy:	S0 (nižší bit součtu)
+		S1 (vyšší bit součtu)
+		P (přenos)
+
+</PRE>
+<table  align="center">
+<tr>
+<td valign="middle">
+<PRE>
+S01=A0 /B0 /Q
+S02=/A0 B0 /Q
+S03=/A0 /B0 Q
+S04=A0 B0 Q
+S0=S01 + S02 + S03 + S04
+P01=A0 B0
+P02=A0 Q
+P03=Q B0
+P0=P01 + P02 + P03 
+S11=A1 /B1 /P0
+S12=/A1 B1 /P0
+S13=/A1 /B1 P0
+S14=A1 B1 P0
+S1=S11 + S12 + S13 + S14
+P11=A1 B1
+P12=A1 P0
+P13=P0 B1
+P=P11 + P12 + P13
+</pre>
+</td>
+<td>
+<img src="scitacka.gif">
+</td>
+</tr>
+</table>
+
+</UL>
+.
+</P>
+<hr width="100%">
+<P align="justify"><big>Příklady popisu synchronních sekvenčních obvodů </big><BR>
+<UL>
+<LI>Výstup obvodu je nonekvivalence hodnoty výstupu v minulém taktu a hodnoty vstupu A<BR>
+Obvod má tuto funkci:  Y<sub>N</sub> = A xor Y<sub>N-1</sub><BR>
+<table cellpadding="20">
+<tr>
+<td>X=/A B + A /B<BR>Y=X<BR>B=X
+</td>
+<td><img src="image10.gif"></td>
+</tr>
+</table>
+
+Hodnota signálu X závisí na signálu B a ten závisí na signálu X. Při vyhodnocování by došlo k zacyklení, proto je mezi signál B a X automaticky vložen D obvod.<BR>
+<LI><P align="justify"><b>Vkládání D obvodů</b><BR>
+Vložení D-obvodu se provede pomocí unárního operátoru "#". 
+Za tímto operátorem musí následovat identifikátor signálu. 
+Není možné, aby za operátorem "#" následoval celý výraz. 
+V takovém případě oznámí překladač při analýze chybu. 
+Všechna tři přířazení v příkladu níže jsou tedy chybná. Proč jsou chybná a nebylo by možné použít takové zápisy ? 
+Problém je v tom, že před provedením prvního taktu musí už mít D obvod "zapamatovanou" nějakou hodnotu z taktu 
+předchozího. Žádný takový takt před prvním ale nebyl proveden, proto se program před zapojením obvodu k LZPR dotáže 
+na počáteční hodnoty všech signálů vstupujících do D-obvodů. Je zřejmé, že zadat počáteční hodnotu D-obvodů 
+vytvořených přiřazením v těchto příkladech není žádným způsobem možné, protože bychom se museli dotazovat na počáteční hodnotu celých výrazů.
+<UL><LI><P align="left">Příklady <b>chybných</b> přířazení:<BR>
+Y = #(A+B)<BR>
+Y=#/A<BR>
+Y=##A<BR> 
+Y=#(A+#C)<BR></P>
+<LI>Popis jednoduchého sekvenčního obvodu, přičemž D-obvod do zpětné vazby (signál Z) zde není vložen automaticky, ale přímo v kódu popisujícím obvod.<BR>
+<table cellpadding="20">
+<tr>
+<td>X=E+F<BR>
+E=/A + Z1<BR>
+F=Z2 B<BR>
+Z= #X<BR>
+Z1=Z<BR>
+Z2=Z<BR>
+Y=X<BR>
+</td>
+<td><img src="image12.gif"></td>
+</tr>
+</table>
+</UL>  
+<LI><b>Vytvoření posuvného registru </b><BR>
+Obvod v tomto příkladu je sekvenční, ačkoliv neobsahuje žádné zpětné vazby (v popisu, tedy mimo "vnitřek" D-obvodů). Tři D obvody zde tvoří krátký posuvný registr. Signál D odpovídá o tři takty zpožděnému vstupnímu signálu A. Výstup Y je ve stavu log. 1, pokud tři poslední hodnoty vstupního signálu A byly log. 1.<BR>
+Pro výstup Y platí rovnice Y<sub>N</sub> = A<sub>N-1</sub> A<sub>N-2</sub> A<sub>N-3</sub><BR>
+<table cellpadding="20">
+<tr>
+<td>B= #A<BR>
+C= #B<BR>
+D= #C<BR>
+C2=C<BR>
+B2=B<BR>
+Y=D C2 B2<BR>
+</td>
+<td><img src="image11.gif"></td>
+</tr>
+</table>
+<A name="#ss">
+<LI><p align="justify"><b>Problémy při větvení zpětnovazebního signálu.</b> Jak je vyřešit.<BR>
+Při hledání zpětných vazeb, které následuje po překladu, program postupuje od výstupu postupně ke vstupům hledáním DFS v grafu obvodu a pamatuje si signály, které dosud prošel. Narazí-li na signál, který už byl jednou nalezen, je zřejmé, že se ocitl v cyklu. Tento cyklus je přerušen automatickým vložením D-obvodu. Na správné vložení D-obvodu však nelze spoléhat. Příklad níže ukazuje nesprávný popis sekvenční sčítačky, která v každém taktu sečte dva vstupní bity A a B a k nim přičte  přenos P generovaný v minulém taktu. V čem je chyba ? Hledání zpětné vazby začne od signálu S. Jeho hodnota je získána výpočtem rovnice, která obsahuje signály A,B a P. Zde ještě nejsme v cyklu. Jde se dál a zkoumají se signály A a B. Ty jsou odhaleny jako vstupní signály. Pokračuje se signálem P. Jeho hodnota závisí na A, B a P. Tady byl nalezen cyklus. Do místa, kde v datové reprezentaci signál P závisí na své vlastní hodnotě, je vložen D-obvod .  A tady právě dochází k chybě, protože D-obvod měl být vložen už do datové struktury rovnice pro vyhodnocení signálu S. Zde tedy automatické vkládání D-obvodu programem při analýze selhává a je třeba obvod dokonale popsat včetně umístění D-obvodů. 
+Jak si program chybně popsaný obvod bude představovat, ukazuje levý obrázek. Chyba se projeví například při sčítání A=1 B=1 P<sub>N-1</sub>=0. Správný výsledek má být S=0, ale bude S=1.  Protože P=AB +…  a A=B=1, bude platit P=1. Do rovnice pro S se za P dosadí rovnou tato hodnota, tedy P=1, která se sem měla dostat až v příštím taktu. Správně, v příštím taktu, se přenese pouze do rovnice pro výpočet P. Z levého obrázku je to zřejmé.
+<table cellpadding="35">
+<tr>
+<td><img src="image13.gif"> 
+</td>
+<td><img src="image14.gif"></td>
+</tr>
+<tr>
+<td>
+<u>Nefunkční sekvenční sčítačka</u><BR>
+S = A B P + /A /B P + /A B /P + A /B /P<BR>
+P = A B + A P + P B
+</td>
+<td>
+<u>Funkční sekvenční sčítačka</u><BR>
+S = A B Z + /A /B Z + /A B /Z + A /B /Z<BR>
+P = A B + A Z + Z B<BR>
+Z = #P<BR>
+</td>
+</tr>
+</table>
+Logické funkce f a f2 odpovídají rovnicím pro výpočet S a P 
+</UL>
+</BODY>
+</HTML>

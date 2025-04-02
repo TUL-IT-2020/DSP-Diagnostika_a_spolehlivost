@@ -1,0 +1,285 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+<TITLE>HILDO</TITLE>
+</HEAD>
+<BODY>
+<P ALIGN="justify">
+<BIG>Program HILDO</BIG><BR>
+Program slouží k demonstraci principu diagnostické metody HILDO. 
+Účel programu však není pouze výukový, ale lze jej použít i k praktickým experimentům s různými testovanými obvody, 
+ať již kombinačními nebo synchronními sekvenčními. 
+Pomocí <A href="jazyk.htm">jednoduchého jazyka</a> je možné rovnicemi popsat funkci i strukturu obvodu, 
+který se následně připojí k lineárnímu zpětnovazebnímu posuvnému registru (dále jen LZPR). 
+Popsané obvody lze uložit nebo přečíst ze souboru.  LZPR může být tvořen buď obvody typu D anebo obvody typu T. 
+Jednoduše lze přepínat mezi dvěma <A href="#typ">typy zapojení</A>. LZPR je přehledně graficky zobrazen se všemi zpětnými vazbami dle zadaného polynomu a typu 
+zapojení. Připojování testovaného obvodu k LZPR se provádí jednoduše pomocí myši a zadaná spojení jsou rovněž 
+graficky znázorněna. 
+Po sestavení LZPR a připojení testovaného obvodu lze využít všech hlavních funkcí programu. Je možné provádět jeden takt,
+ N-taktů a nebo nechat zcela na programu provést několik taktů až do doby, než se stavy LZPR začnou opakovat a je tedy 
+nalezen cyklus. Cykly lze dále prodlužovat vnucováním jiných stavů, které se v nalezeném stavu nevyskytly. 
+V celém průběhu jsou registrovány všechny stavy, kterými LZPR prochází a také všechny vektory, které se objevují na 
+vstupech testovaného obvodu. Tyto stavy a vektory jsou zobrazeny ve výsledkových oknech, odkud je možné  je 
+pomocí operací Copy+Paste přenést do jiných programů (text. editoru, tabulky..). 
+Na kterémkoliv vodiči (včetně vnitřních, tedy nepřipojitelných k LZPR) 
+lze simulovat přítomnost poruchy t0 a t1, a tím pádem tedy i chování celého takového poruchového obvodu připojeného k LZPR. 
+Nakonec je možné nechat program automaticky postupně simulovat poruchu na všech vodičích obvodu a pro každou 
+takovou poruchu provést zadaný počet taktů LZPR a obvodu, přičemž jsou registrovány příznaky, které po provedení 
+tohoto počtu taktů odpovídají konečnému stavu LZPR. Z těchto příznaků potom program sestaví slovník poruch 
+obsahující všechny nalezené příznaky seřazené vzestupně (pro snadné hledání) a jím odpovídající poruchy 
+obvodu a dále také slovník inverzní, který obsahuje všechny signály obvodu a jejich poruchy, ke kterým 
+udává příslušný příznak. Z prvního slovníku je dobře patrné, které poruchy při daném zapojení LZPR, zvoleném 
+propojení s testovaným obvodem a zvoleném počtu taktů budou nerozlišitelné (budou mít stejný příznak) a zejména, které 
+poruchy budou podle příznaku nerozlišitelné s bezporuchovým stavem. 
+To vše je možné provést i pro synchronní sekvenční obvody.
+Program je vytvořen v jazyce Borland Delphi 3. Je spustitelný pod libovolnou verzí operačního systému Windows a 
+využívá objekty tohoto prostředí (okna, dialogy, tlačítka). 
+
+<P align="center"><IMG src="oknohildo.gif"><BR><i>Obrázek 1 -Hlavní okno programu HILDO</i></P>
+<UL><P ALIGN="justify">
+<LI><P ALIGN="justify"><BIG>Zapojení LZPR dle polynomu</BIG><BR>
+Provede se zapsáním výrazu polynomu do okénka pro vstup řetězce popisujícího polynom.Polynom se zadává ve tvaru
+např. x12+x10+x5+x2+x+1. Řetězec reprezentující polynom může obsahovat libovolné umístěné mezery, např. x 11+ x2 +1.
+V případě chybného (nesmyslného) řetězce nebude program na takovýto polynom reagovat a zůstane v předchozím nastavení.
+Vlastní nastavení zpětných vazeb odpovídající napsanému polynomu se provede po stisknutí tlačítka <B>Sestavit</B>.
+Je-li nastaveno zapojení LZPR typ2, musí polynom obsahovat člen x<sup>0</sup> - tedy jedničku. 
+<BR>Poznámka: Polynomy x5+x1+x0 a x5+x+1 jsou identické, zadání lze provést oběma způsoby zápisu.<BR>
+V levé části hlavního okna programu lze provést výběr jednoho z dvou možných typů zapojení LZPR. Jsou zde možnosti Typ1 a Typ2,
+jejichž význam vysvětluje obr. 2.<BR> 
+<A name="#typ"></A>
+<P align="center"><IMG src="image33.gif"><BR>
+<IMG src="image32.gif"><BR><i>Obrázek 2 -
+Dva možné způsoby zapojení zpětných vazeb LZPR.<BR> Zapojení dle polynomu x<sup>7</sup>+x<sup>2</sup>+x+1.
+ Nahoře zapojení odpovídající v programu volbě Typ1, dole Typ2. </i>
+</P>
+LZPR se chová zcela stejně, pokud je zapojen podle stejného polynomu a nezáleží na typu zapojení (Typ1, Typ2).
+To však platí pouze není-li k LZPR připojen testovaný obvod. Přes vstupy připojeného testovaného obvodu jsou 
+totiž vedeny další zpětné vazby do míst, kam jsou připojeny výstupy testovaného obvodu. Tyto připojením testovaného 
+obvodu vzniklé zpětné vazby jsou tedy navíc  vedeny přes tento kombinační nebo sekvenční obvod. Zde tedy záleží na 
+konkrétním typu zapojení (typ1,typ2) a pro stejný polynom se oba typy zapojení budou při připojeném testovaném obvodu 
+chovat odlišně.</P>
+<LI><P ALIGN="justify"><BIG>Změna stavu posuvného registru</BIG><BR>
+Změna hodnoty klopných obvodů posuvného registru se provádí kliknutím levého tlačítka myši uvnitř vybraného klopného obvodu.
+Je-li zde již hodnota 0, bude změněna na 1 a naopak.</P>
+<LI><P ALIGN="justify"><BIG>Nastavení testovaného obvodu</BIG><BR>
+K LZPR lze jako testovaný obvod připojit libovolný uživatelem popsaný kombinační obvod nebo synchronní sekvenční obvod s 
+D-obvody. Další možností je využít připravených jednoduchých kombinačních obvodů, které jsou integrovány přímo v programu 
+a umožňují tak nezkušenému uživateli obejít fázi popisu funkce a struktury testovaného programu a věnovat se přímo demonstraci
+funkce LZPR.
+<UL>
+<LI><b>Připravené kombinační obvody</b><BR>
+U těchto obvodů nelze provádět injekci poruch a tím pádem ani vytvoření slovníku poruch. Při použití připravených obvodů
+zůstává tlačítko <b>Porucha</b> neaktivní. Význam těchto obvodů je tedy pouze demonstrační a slouží k vysvětlení principu
+metody HILDO. Díky nim má uživatel možnost ihned připojovat jednoduché testované obvody bez nutnosti popisovat jejich funkci
+a strukturu. Například obvod sčítačka odpovídá přípravku používanému při laboratorních cvičeních. Chceme-li injektovat do tohoto
+obvodu nějaké poruchy a vytvářet slovník poruch, je třeba obvod popsat jazykem a vložit jako uživatelem definovaný.   
+<UL>
+<LI><U>Sčítačka</U><BR>
+Jde o sčítačku, která ma dva dvoubitové vstupy A,B a jednobitový vstup P (přenos z nižího řádu). A0 je nižší bit prvního sčítance, A1 je bit vyšší. Analogicky platí pro B0
+a B1. Sčítačka má tři výstupy S0,S1,G , kde S0 je nižší bit výsledku a G je přenos do vyššího řádu.
+<LI><U>And</U><BR>
+Jednoduchý obvod AND s dvěma vstupy A a B. Pro Výstup Y platí Y=A and B.
+<LI><U>Negátor</U><BR>
+Má jediný vstup A a výstup Y, který je negací A.
+<LI><U>Majorita ze tří</U><BR>
+Má tři vstupy A1,A2 a A3. Výstup Y je roven 1 v případě, že na vstupech je více jedniček než nul. To znamená, že
+alespoň dva ze tří vstupů mají mít log. hodnotu 1.
+<LI><U>Dekodér</U><BR>
+Vstupem dekodéru je dvoubitové binárně zakódované číslo. Výstupem je potom totéž číslo v kódu 1zN. Kód 1zN má aktivní vždy právě jeden vodič, odpovídající
+danému číslu. Vstupy dekodéru jsou A0 a A1. Výstupy potom jsou Y0,Y1,Y2 a Y3, kde jednička na Y0 odpovídá číslu 0 atd.
+</UL>
+<LI><P align="justify"><b>Uživatelem definované testované obvody</b><BR>
+Zadání obvodu se provede po přepnutí do režimu vlastního obvodu. Vlastní zadání nebo změna potom stiskem tlačítka 
+<b>Editor obvodů</b>. Otevře se okno pro vložení popisu obvodu. Jazyk pro popis funkce a struktury testovaného obvodu je popsán <a href="jazyk.htm">zde</a>,včetně příkladů
+a pravidel pro popis složitějších obvodů a sekvenčních obvodů. 
+Do horní části okna se napíše vlastní popis obvodu a v dolní části okna jsou zobrazovány výsledky analýzy popisu a případné oznámení
+o nalezení chyby. Stiskem tlačítka <b>Analyzuj</b> se provede analýza popsaného obvodu a překlad do vnitřní reprezentace. V dolním
+okénku jsou zobrazeny nalezené vstupní a výstupní signály a dále je zde seznam signálů, u nichž bude třeba zadat počáteční hodnotu, protože
+vstupují do D-Obvodů. Obsahuje-li  popis obvodu chybu, je v dolním okénku zobrazen celý chybný řádek.<BR>
+Po stisknutí tlačítka <b>Použít</b> (je aktivní pouze v případě předchozího úspěšného překladu) se zavře okno editoru obvodů a 
+je-li popsaný obvod sekvenční, následuje fáze zadání počátečních hodnot signálů vstupujících do D-obvodů. Těchto hodnot nabydou signály před provedením prvního
+taktu obvodu a po každém stisku tlačítka <b>Reset</b>. Toto tlačítko je aktivní pouze je-li zadán sekvenční testovaný obvod.<BR>
+Vytvořené obvody (jejich popis) lze uložit do souboru a opět načíst. K tomu slouží tlačítka  <b>Uložit</b> a <b>Otevřít</b> v okně editoru obvodů. Po jejich
+stisku se otevře standartní dialog pro výběr souboru. Pozor, otevřením souboru se nahradí (ztratí se) dosavadní popis, zadaný v editoru obvodů
+, obsahem souboru. Formátem výstupního souboru je běžný textový soubor, jehož obsah je identický
+s obsahem okna, v kterém je popis obvodu pomocí rovnic.<BR>
+Soubory s uloženým popisem různých obvodů naleznete <A href="obvody.htm">zde</A>.
+</UL>  
+</P>
+<P align="center"><IMG src="edit.gif"><BR>Obrázek 3 - Okno editoru testovaných obvodů</P>
+<LI><P ALIGN="justify"><BIG>Připojení výstupů testovaného obvodu</BIG><BR>
+Zařídí se kliknutím <B>levého tlačítka</B> myši na zobrazený XOR, do kterého má být výstup testovaného obvodu připojen.
+Poté se zobrazí okénko se seznamem, ze kterého vyberte požadovaný výstup testovaného obvodu, který se do tohoto místa připojí. V 
+nakresleném schématu přibyde popsaný vodič
+vedoucí do vybraného XORu. K jednomu XORu lze připojit nejvýše jeden výstup testovaného obvodu. 
+Byl-li ke XORu, vybranému myší, již předtím připojen
+nějaký spoj, tento spoj se zruší a bude sem připojen právě vybraný výstup zkoušeného obvodu. 
+Stejný výstup testovaného obvodu může být ale zaveden
+do více XORů. Například výstup S0 sčítačky lze přivést například před D0,D1,D4.</P>
+
+<LI><P ALIGN="justify"><BIG>Připojení vstupů testovaného obvodu</BIG><BR>
+Provádí se podobně jako připojení výstupů, tentokrát se ale použíje <B>pravé tlačítko</B> myši pro kliknutí k 
+výstupu klop. obvodu posuvného registru, z něhož povede spoj na vstup testovaného obvodu.
+Potom se opět otevřene okno se seznamem vstupů testovaného obvodu a vybírá se požadovaný vstup. 
+Ke každému vstupu testovaného obvodu lze pochopitelně připojit pouze jeden z výstupů posuvného registru. 
+Byl-li již například
+na vstup obvodu A0 připojen výstup LZPR D0 a nyní klikneme na D1 a opět vybereme vstup A0, 
+bude předchozí spoj zrušen a provedeno připojení D1->A0.</P>
+<LI><P ALIGN="justify"><BIG>Provedení jednoho taktu</BIG><BR>
+Po stisknutí tlačítka <B>Takt</B> se provede jeden takt posuvného registru. 
+Nejsou-li připojeny žádné vstupy a výstupy, lze pozorovat funkci lineární zpětného posuvného registru a procházet jeho stavy.</P>
+<LI><P ALIGN="justify"><BIG>Provedení N taktů</BIG><BR>
+Po stisknutí tlačítka <B>N taktů</B> se otevře malé okénko s dotazem, kolik taktů naráz se má provést. Po zadání čísla klikněte na <B>OK</B>. Bude provedeno N taktů a do <A HREF="#okna">výsledkového okna</A>  budou
+vypsány stavy, kterými registr projde, včetně stavu výchozího, který bude označen indexem 0. 
+Fukce provedení N taktů se například využije při simulaci poruchy a získání odpovídajího příznaku po provedení N taktů.</P> 
+ <LI><P align="justify"><BIG>Nalezení cyklu</BIG><BR>
+Po stisknutí tlačítka <B>Cyklus</B> budou automaticky prováděny takty registru až po dobu, než bude nalezen stav,
+ ve kterém již jednou předtím registr byl. Posloupnost stavů se tedy zacyklí a znovu by probíhala tak, jako již dříve.
+Při testování kombinačního obvodu se stavy LZPR neustále periodicky v cyklech opakují. 
+Vezme-li se jako počáteční stav LZPR libovolný stav tvořící posloupnost tohoto cyklu, potom 
+LZPR vždy po stejném počtu taktů dospěje opět k tomuto stavu. Počet těchto taktů bude shodný pro všechny tyto stavy 
+tvořící cykl, brali-li by se jako počáteční stav LZPR.<BR>
+V ideálním případě lze po připojení testovaného obvodu dosáhnout délky cyklu rovné 2<sup>N</sup>, kde N je délkou LZPR 
+(počtem bitů určujících stav LZPR).  Délka cyklu je obvykle kratší a závisí na polynomu, 
+podle kterého je LZPR zapojen, a dále na konkrétním propojení LZPR a testovaného obvodu. 
+Změnou propojení LZPR a testovaného obvodu při zachování polynomu se délka cyklu mění a neplatí tedy, 
+že dosažení maximální délky cyklu je pouze otázkou volby vhodného polynomu. 
+Stejných výsledků lze dosáhnout použitím jak primitivních polynomů, tak zcela libovolně zvolených polynomů. 
+Připojením testovaného obvodu k LZPR totiž vznikají další zpětné vazby, navíc vedené skrz testovaný obvod, 
+takže chování celku LZPR+testovaný obvod nelze dopředu odhadnout a stanovení délky cyklu není prakticky možné jinak 
+než experimentem. A právě  v tom může ideálně pomoci tento program.  Délku cyklu a jeho posloupnost stavů lze 
+tak zjistit bez časově náročného a nepřehledného přepojování reálného obvodu a navíc kontrola, zda se již stavy 
+LZPR zacyklily a jejich registrace, je zcela automatická.<BR>
+Hledání cyklu při testování sekvenčního obvodu nemá význam, protože stavy LZPR se kvůli existenci 
+vnitřních stavů testovaného obvodu nebudou opakovat tak, jako je tomu u obvodů kombinačních.<BR>
+Cyklus je možné hledat, i když není připojen žádný testovaný obvod. 
+V takovém případě jsou vlastně registrovány stavy, kterými bude procházet LZPR a tak je také možné ověřovat 
+vliv polynomu, dle kterého je LZPR zapojen, na délku cyklu a prakticky ověřit, zda polynom je primitivní. 
+Není-li připojen žádný testovaný obvod, je maximální dosažitelná délka cyklu rovna 2<sup>N-1</sup>. Této délky cyklu lze dosáhnout právě jen při zapojení dle některého z primitivních polynomů. 
+ 
+<BR>
+O nalezení cyklu je uživatel informován výpisem 
+jednotlivých stavů posuvného registru do zvláštního okna. 
+Po skončení hledání cyklu je registr v počátečním stavu tohoto cyklu. 
+V okně s výpisem jsou nebo nejsou, v závislosti na <A HREF="#nastav">nastavení</A>, registrovány stavy registru mimo cyklus, tedy stavy, v kterých se
+nacházel před tím než se dostal do počátečního stavu cyklu (ten může být různý od počátečního stavu, ve kterém bylo spuštěno hledání cyklu). 
+Hledání může případně skončit zobrazením hlášení o nenalezení cyklu. Doba hledání je omezena
+maximálním povoleným počtem taktů, který lze změnit v okně nastavení. Tato hodnota je po spuštění programu nastavena na 5000.
+Nebude-li nalezen cyklus, je třeba hranici povolených taktů zvýšit. 
+Doba potřebná pro vykonání N taktů při hledání cyklu roste kvadraticky s N, protože se provadí vyhledávání dřívější přitomnosti 
+stavu ve stále větším seznamu již nalezených stavů.<BR>
+Po nalezení cyklu jsou dále zobrazeny všechny testovací vektory, které LZPR vygeneroval. Pořadí signálů ve vektoru je dáno abecedním pořadím vstupních signálů testovaného obvodu, připojených k LZPR. Spolu s vektorem je vždy udán i počet, kolikrát byl během cyklu tento vektor generován (tzn. kolikrát se tato kombinace hodnot ocitla na vstupech testovaného obvodu připojených k LZPR). <BR>.<BR>
+<table align="center" border="1" cellspacing="0">
+<tr><td>
+<table align="center">
+<tr>
+<td colspan="2">
+<img src="priklad.gif">
+</td>
+<tr>
+<td colspan="2" align="center">
+<img src="sipkad.gif" align="middle">Hledání cyklu
+</td>
+</tr>
+<tr>
+<td>
+<img src="priklads.gif">
+</td>
+<td>
+<img src="prikladv.gif">
+</td>
+</table>
+<center><i>Obrázek 4 - Ukázka oken s výsledky. Nahoře LZPR a propojení s 2-bit sčítačkou.<BR>Vlevo dole výpis stavů cyklu a vpravo dole vektory vstupních signálů testovaného obvodu a jejich četnost.</i></center> 
+</tr></td></table>
+</P>
+
+<LI><P ALIGN="justify"><BIG>Vnucení Stavu</BIG><BR>
+Vnucení stavu se používá pro prodloužení cyklu. Tuto akci lze provést až po provedení jednoho cyklu, jinak je tlačítko neaktivní.
+Po provedení cyklu se registr nachází v počátečním stavu cyklu. Hodnoty D0-D15 jednotlivých klopných obvodů lze nyní změnit a zadat tak nový počáteční stav
+a tento stav vnutit a provést nové hledání cyklu. 
+
+Je-li vnucovaný stav již registrován mezi stavy, kterými LZPR dříve prošel, nelze tento stav vnutit (nemělo by to smysl) a uživatel je na to upozorněně varovným hlášením. 
+Nově nalezené stavy jsou přidány k těm dříve nalezeným a ve výsledkovém oknějsou odděleny linkou.
+Počet nalezených stavů je vypsán jako součet délek jednotlivých cyklů. Vnucení stavu lze provést několikrát opakovaně. Do okna testovacích vektorů jsou samozřejmě přidány vektory nově nalezené a u již nalezených
+je příslušně zvýšen jejich počet výskytů.</P>  
+<P align="center"><IMG src="image29.gif"><BR><i>Obrázek 5 - ukázka výsledkového okna s jednotlivými kroky cyklu.
+Nejprve byl nalezen cyklus o délce 18 kroků, poté vnucen stav 10001010, ale po prvním taktu se LZPR dostal opět do některého ze stavů, kde již byl. Dále vnucen stav 00000001 a provedlo se dalších 7 kroků, než se LZPR ocitl opět ve stavu, kde již byl. </i>
+</P>     
+
+<LI><P ALIGN="justify"><BIG>Injekce poruchy</BIG><BR>
+Další možností programu je simulace chování testovaného obvodu s poruchou na některém z jeho vodičů (včetně vnitřních). Po zvolení poruchy na příslušném vodiči lze provádět všechny akce, které program umožňuje s tím, že testovaný obvod se od této chvíle bude chovat jako kdyby byl porouchaný. Nastavení poruchy se provádí jednoduše výběrem signálu z nabídky všech signálů testovaného obvodu a volbou mezi poruchou t0/t1. 
+Injektovat nelze více poruch naráz.
+Pro každou poruchu lze například nechat provést počet taktů odpovídající délce cyklu a sledovat, jak se změnil stav, do kterého se  LZPR dostane. Takto je možné pro vybrané poruchy zjistit, jaký příznak (stav LZPR) jim odpovídá po provedení N taktů. Celou tuto činnost umožní program automatizovat - viz následující odstavec</P> 
+ <LI><P ALIGN="justify"><BIG>Slovník poruch</BIG><BR>
+Postupnou injekcí obou typů poruch na všech vodičích testovaného obvodu a zaznamenáním koncového stavu LZPR 
+po provedení zvoleného počtu taktů lze vyvtořit slovník poruch. 
+Příznakem nazveme koncový stav LZPR po provedení zvoleného počtu taktů po vložení počátečního stavu.  Po provedení zvoleného počtu taktů lze vytvořit slovník poruch. Slovníkem poruch se rozumí tabulka dvojic příznak - porucha. Jeden příznak může odpovídat více poruchám.
+Program umožňuje celý tento proces provést automaticky 
+a vygenerovat tak slovník poruchy, obsahující seznam všech poruch (obou typů poruch na všech vodičích testovaného obvodu) a jím odpovídajících příznaků (tj. stavů LZPR po provedení zvoleného počtu kroků). K tomuto slovníku je také vygenerován slovník inverzní, kde ke každému příznaku (obsaženému v prvním slovníku) jsou přiřazeny odpovídající poruchy. Z tohoto inverzního slovníku poruch se snadno zjistí, které poruchy jsou zvoleným testem (určeným počtem taktů, počátečním stavem a propojením LZPR-obvod a polynomem)  vzájemně podle příznaku nerozlišitelné. Obzvlášť nepříjemné je, pokud se příznak některé chyby shoduje s příznakem odpovídajícím bezporuchovému stavu. Takové poruchy jsou potom zvoleným testem nedetekovatelné.  Bezporuchový stav je mezi jinými pro snadné vyhledání zvýrazněn.
+Vytvoření slovníku poruch  tedy probíhá automaticky tak, že uživatel pouze  zadá počet taktů, které se mají pro každou uvažovanou poruchu provést a program postupně uvažuje všechny poruchy a pro každou před provedením příslušného počtu taktů ještě nastaví LZPR  a testovaný obvod (je-li sekvenční) do stavu, ve kterém se nacházel v okamžiku volání tvorby slvoníku poruch (pro všechny poruchy se musí vycházet se stejného počátečního stavu LZPR a stejných počátečních hodnot zpětnovazebních signálů). Během výpočtu je uživatel informován o jeho průběhu pomocí horizontálního grafu (tzv. ProgressBaru) vyjadřujícího poměr hotového výpočtu.<BR>
+Vytvoření slovníku poruch se provede stiskem tlačítka <b>Porucha</b>, načež se otevře okno pro zadání injektované poruchy. Zde se však nevybere žádná porucha, ale
+provede postupná injekce všech poruch tak, že do vstupního okénka se zapíše počet kroků, které se mají po injekci každé poruchy provést a po jejich
+provedení zaznamenat stav LZPR. Automatické vytvoření slovníku se potom spustí stiskem tlačítka <b>Proveď</b>.<BR>
+<P align="center"><IMG src="porucha.gif"><BR><i>Obrázek 6 - Ukázka okna pro injekci poruch a spuštění tvorby slovníku poruch.</i>
+</P>
+<LI><BIG>Příklad možností programu</big> - postupné fáze od popisu obvodu ke generování slovníku poruch<BR>
+V příkladu je použit obovd 2.2.9 ze skript Diagnostika a spolelivost cvičení. Obvod je nejprve popsán rovnicemi, přičemž
+je zanedbáno větvení a větve se nepojmenují. Obvod je připojen k LZPR a je zvoleno, že se bude provádět 126 taktů 
+při tvorbě slovníku poruch(to je délka nalezeného cyklu).
+
+<table border="0">
+
+<tr>
+<td align="center"><img src="image47.gif"><BR>Testovaný obvod</td>
+<td><img src="sipkal.gif"><BR>Popis funkce<BR> a struktury obvodu<BR> rovnicemi</td>
+<td><PRE><BIG>S10=/(S9 S8)
+S9=/S6 S1 + /S1 S6
+S8=S4+S7
+S7=/S6
+S6=S3 + S5
+S5=S2 S1</BIG></PRE>
+</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td colspan="2" align="center"><img src="sipkad.gif" align="right">
+Zapojení LZPR dle polynomu x<sup>7</sup>+x+1 a připojení testovaného obvodu.Nastavení počátečního stavu LZPR</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td colspan="2" align="center"><img src="image30.gif"></td>
+</tr>
+<tr>
+<td colspan="1"align="center"><img src="sipkad.gif" align="right">
+Postupná injekce všech poruch na jednotlivých signálech, provedení 126 taktů a zaznamenání příznaku.
+Vznik slovníku poruch
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="3" align="center"><img src="slovnik.gif"></td>
+</tr>
+</table>
+</UL>
+<A name="#nastav"></a>
+<LI><Big>Nastavení</Big><BR>
+Okno, ve kterém lze provádět nastavení parametrů se otevře kliknutím na nápis menu <I>Nastavení</I>. V tomto okně lze měnit následující hodnoty:
+<P align="center"><IMG src="nastaveni.gif"><BR><i>Obrázek 7 - okno nastavení</i></P>
+<UL>
+<A name="#nast"></a>
+<LI><b>Registrace stavů mimo cyklus</b>  umožňuje zobrazit ve výsledkovém okně všechny stavy, kterými LZPR prošel, než se zacyklil. To znamená, že máme-li počáteční stav 000 a registr prochází stavy 000-001-010-011-100-011, ve výsledkovém
+okně se zobrazí stavy 000-001-010-011-100 a stav 011 bude označen jako počátek cyklu. Není-li tato volba aktivována,
+zobrazí se ve výsledkovém okně pouze stavy uvnitř cyklu, tzn. 011-100 a stavy mezi počátečním stavem a prvním stavem cyklu nebudou uvedeny. Stejně tak testovací vektory generované LZP registrem se budou registrovat i vně nebo pouze uvnitř cyklu, v závislosti na  této volbě.
+<LI>Změna <b>typu klopných obvodů</b>, které tvoří posuvný registr<BR>
+Posuvný registr může být tvořen sériově řazenými obvody typu D nebo T. 
+<LI>Určení hodnoty, která bude při výpočtu výstupních signálů testovaného obvodu použita pro <b>nepřipojené vstupy</b> obvodu.
+Tzn. že zde lze nastavit, jestli vstupy, které "visí" ve vzduchu a nejsou připojeny k LZPR, jsou jakoby připojeny k logické jedničce nebo nule.
+<LI>Parametrem  <b>Maximální počet taktů při hledání cyklu</b>  lze prodloužit
+dobu hledání cyklu.
+Doba potřebná pro vykonání N taktů při hledání cyklu roste kvadraticky s N, protože se provadí vyhledávání dřívější přitomnosti stavu ve stále větším seznamu již nalezených stavů.
+</UL>
+</UL>
+</P> 
+</HTML>

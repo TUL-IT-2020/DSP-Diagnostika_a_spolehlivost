@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+<P align="justify"><big>Pojem SPOLEHLIVOST</big><BR>
+Chceme-li mít možnost hodnotit a srovnávat spolehlivost systémů, musíme především definovat veličiny, které  se budou měřit. Spolehlivost jako taková totiž není sama o sobě kvantifikovatelná, jak vyplývá z názvoslovné normy. Podle ní je spolehlivost "obecná vlastnost objektu, spočívající ve schopnosti plnit požadované funkce při zachování hodnot stanovených provozních ukazatelů v daných mezích a v čase podle stanovených technických podmínek".<BR>
+Tato definice je doplněna několika vysvětlujícími poznámkami: (1) Spolehlivost je komplexní vlastnost, která může zahrnovat např. bezporuchovost, životnost, udržovatelnost a skladovatelnost, buď jednotlivě nebo v kombinací. (2) Technickými podmínkami se rozumí souhrn specifikací technických vlastností, předepsaných pro požadovanou funkci objektu, dále způsoby jeho provozu, skladování, přepravy, údržby a opravy. (3) Provozní ukazatele jsou ukazatele produktivity, rychlosti, spotřeby elektrické energie, paliva, apod.<BR>
+V zájmu správné interpretace uvedené definice by bylo vhodné upřesnit, co rozumíme pod pojmem objekt. Je to zjevně velmi obecný pojem, jehož význam je možno chápat vždy podle toho, co právě zkoumáme. Do citované definice spolehlivosti lze za objekt dosadit libovolně malý nebo libovolně velký celek, který jsme schopni zkoumat najednou. V číslicové technice to tedy může být např. součástka, obvod, funkční blok, jednotka, systém, apod.<BR>
+
+Z citované definice lze vyvodit několik závěrů použitelných při studiu možností kvantitativního vyjádření spolehlivosti. Jako "komplexní vlastnost", zahrnující několik různorodých hledisek, lze spolehlivost zřejmě stěží vyjádřit jednou číselnou hodnotou, která by nám umožnila uspořádat všechny objekty podle spolehlivosti. Namísto toho zavádí norma tzv. ukazatele spolehlivosti, což jsou veličiny, které lze jednotlivě vyhodnocovat. Ty jsou kvantitativním vyjádřením dílčích vlastností  tvořících ve svém souhrnu spolehlivost.<BR>
+
+Pro výslednou spolehlivost objektu je podstatné, zda během jeho provozu provádíme obnovu bezporuchového stavu, nebo ne. Podle toho budeme rozlišovat objekty obnovované a neobnovované. Obnova je přitom chápána jako vlastní přechod z poruchového do bezporuchového stavu a činnost, která k tomu vedla, se označuje jako oprava. Ve stejném významu se proto též někdy používá označení opravovaný nebo neopravovaný objekt. Objekt může být neobnovovaný proto, že je neopravitelný (např. integrovaný obvod), proto, že je nepřístupný (kosmické sondy, přístroje umístěné na odlehlých místech Země), nebo proto, že oprava není prováděna z organizačních důvodů (např. není rentabilní). Tato hlediska hrají významnou roli zejména při specifikaci vlastností systémů odolných proti poruchám.<BR>
+
+<P align="justify"><big>Ukazatele spolehlivosti neobnovovaných systémů</big><BR>
+Všechny přímo měřitelně veličiny, používané při studiu a hodnocení spolehlivosti, mají náhodný charakter, a proto se při práci s nimi používá pravděpodobnostní počet. Při určování hodnot ukazatelů spolehlivosti se pak využívají metody matematické statistiky.<BR>
+Náhodná veličina je charakterizována svou distribuční funkcí, čili pravděpodobností, že bude nabývat hodnoty menší než je určitá zadaná hodnota.<BR>
+Máme-li náhodnou veličinu x nabývající nezáporných hodnot, pak její distribuční funkci F(t) lze vyjádřit vztahem<BR>
+<p align="center">F(t) = P(x&lt;t) <p>
+kde P(x) je pravděpodobnost jevu x a t je nezáporné reálné číslo. Distribuční funkce F(t) je neklesající a platí pro ni  pro všechna t
+<p align="center"><img src="r1.gif"><p>
+<P align="justify">V teorii spolehlivosti je základní sledovanou náhodnou veličinou t velikost časového intervalu od uvedení do provozu do poruchy objektu. Je-li t čas měřený od uvedení objektu do provozu, má distribuční funkce význam pravděpodobnosti poruchy objektu do času t a značí se Q(t).<BR>
+Další důležitou charakteristikou spolehlivosti je tzv. doplňková funkce, čili doplněk distribuční funkce do jedničky. V teorii spolehlivosti se značí R(t) a interpretuje se jako pravděpodobnost bezporuchového stavu (bezporuchového provozu) objektu v čase t. Platí tedy<BR>
+<table width="100%" cellspacing="10"><tr><td align="center">R (t) =1-Q (t)</td><td width="20">(1)</td></table>
+V této souvislosti je třeba upozornit na jedno zjednodušení, které stále ještě přežívá z dřívější terminologie spolehlivosti a vyskytuje se především v překladech z anglosaské literatury. Je to ztotožnění spolehlivosti s pravděpodobností bezporuchového provozu. Pokud se v nějakém textu bez dalšího upřesnění vyskytne číselný údaj o spolehlivosti, jedná se zpravidla o hodnotu pravděpodobnosti bezporuchového provozu. V tomto textu však budeme oba uvedené pojmy rozlišovat.<BR>
+Je-li náhodná veličina spojitá, lze odvodit její další důležitou charakteristiku, označovanou jako hustota pravděpodobnosti f(t). Je definována derivací distribuční funkce podle času, tedy<BR>
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r2.gif"></td><td width="20">(2)</td></table>
+Veličina f(t) se v teorii spolehlivosti nazývá hustota poruch. Součin f(t)dt udává, s jakou pravděpodobností nastane ve sledovaném objektu porucha ve velmi krátkém intervalu dt, následujícím za okamžikem t.<BR>
+Další charakteristikou je intenzita náhodné veličiny, definovaná vztahem<BR>
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r3.gif"></td><td width="20">(3)</td></table>
+V teorii spolehlivosti se tato veličina označuje jako intenzita poruch a patří k nejdůležitějším spolehlivostním ukazatelům používaným v praxi. Udává podmíněnou hustotu poruch v čase t za předpokladu, že k poruše dosud nedošlo. Pravděpodobnost, že se objekt neporouchaný v čase t porouchá v malém časovém intervalu dt následujícím za t, je <img src="lambda.gif" align="middle">(t)dt.</P>
+<P align="justify">
+Ze vztahů (1) až (3) vyplývá, že dosud zavedené ukazatele spolu těsně souvisejí. Chceme-li tuto závislost explicitně vyjádřit, musíme postupně dosadit (1) do (2) a odtud do (3), tedy 
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r4.gif"></td><td width="20"></td></table>
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r5.gif"></td><td width="20">(4)</td></table>
+Tuto diferenciální rovnici můžeme upravit do tvaru
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r6.gif"></td><td width="20"></td></table>
+a řešit integrací:
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r7.gif"></td><td width="20">(5)</td></table>
+Pokud neznáme průběh intenzity poruch lambda (t) v závislosti na čase, nemůžeme výraz (5) dále zjednodušit. Empiricky však bylo zjištěno, že průběh <img src="lambda.gif" align="middle">(t) obvykle odpovídá tzv. Vanové křivce, znázorněné na obrázku 1. 
+<a name="vana"></A>
+<p align="center"><img src="graf17.gif"><BR><i>Obrázek 1 - Vanová křívka</i><p>
+Pro elektronické součástky platí tp=6 až 10 týdnů a tk=10 let. V intervalu &lt;tp‚tk&gt; ,který označujeme jako období normálního provozu, platí přibližně, že <img src="lambda.gif" align="middle"> má konstantní hodnotu. V takovém případě dokážeme integrál v (5) vypočítat, takže dostaneme
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r9.gif"></td><td width="20">(6)</td></table>
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r10.gif"></td><td width="20">(7)</td></table>
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r11.gif"></td><td width="20">(8)</td></table>
+<P align="justify">
+Výrazy (6) až (8) popisují tzv. exponenciální rozdělení nebo exponenciální zákon poruch. Jeho grafickým vyjádřením je exponenciála (obr.2). 
+<p align="center"><img src="graf16.gif"><BR><I>Obrázek 2</I><p>
+<p align="justify">
+Pro t=0 má hodnotu R(0)=1, což odpovídá předpokladu, že na počátku měření je objekt v bezporuchovém stavu. Naproti tomu pro t rostoucí nade všechny meze klesá hodnota R(t) k nule. Exponenciálu na obrázku lze interpretovat ještě jinak: jestliže uvedeme v čase t0 do provozu n objektů s konstantní intenzitou poruch <img src="lambda.gif" align="middle">, počet bezporuchových objektů n<sub>b</sub>(t) se vlivem poruch bude v čase zmenšovat po exponenciální křivce <BR>
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r12.gif"></td><td width="20"> </td></table>
+Konstantní hodnotu <img src="lambda.gif" align="middle"> a tedy exponenciální průběh R(t) budeme nadále předpokládat u všech prvků a podsystémů, jimiž se budeme zabývat. Skutečná hodnota, na níž se <img src="lambda.gif" align="middle"> pro určitou součástku nebo podsystém ustálí, závisí na mnoha okolnostech, především na technologické úrovni výroby, na provozních podmínkách a v neposlední řadě i na velikostí a složitosti sledovaného objektu. Pro číslicové integrované obvody se pohybuje v rozmezí 10<sup>-8</sup> až 10<sup>-5</sup> h<sup>-1</sup>, přičemž pro paměťové obvody je obvykle o něco nižší, než pro obecné logické obvody srovnatelné složitosti.<BR>  
+Dalším důležitým ukazatelem je střední doba bezporuchového provozu T<sub>s</sub> (tj. střední hodnota sledované náhodné veličiny t). Jak sám název naznačuje, je to střední hodnota provozní doby objektu, během níž nenastala žádná porucha. Pro její výpočet platí vztah odvozený z výrazu pro střední hodnotu spojité náhodné veličiny:
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r14.gif"></td><td width="20">(9)</td></table>
+Pro neobnovované objekty se T<sub>s</sub> označuje též jako střední doba do (první) poruchy, v anglosaské literatuře se pro ni používá zkratka MTTF (mean time to failure).<BR>
+Známe-li průběh R(t), můžeme odvodit hodnotu T<sub>s</sub> integrací podle (9). Pro exponenciální rozdělení tak dostaneme
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="r15.gif"></td><td width="20">(10)</td></table>
+Tento výsledek je pro svou jednoduchost velmi oblíben, avšak při jeho použití si musíme stále být vědomi mezí jeho platnosti. Kdybychom totiž do (10) mechanicky dosadili např. intenzitu poruch integrovaného obvodu <img src="lambda.gif" align="middle">=10<sup>-6</sup> h<sup>-1</sup>,  dostali bychom střední dobu do poruchy jeden milion hodin, tj. asi 114 let. Po tak dlouhé době však již zdaleka nemáme právo předpokládat, že <img src="lambda.gif" align="middle"> má konstantní hodnotu , takže vzorec (10) již neplatí. Musíme tedy počítat s tím, že elektronické součástky selhávají podstatně dříve, než po době T<sub>s</sub> vypočtené podle (10).  
+
+
+
+
+ 
+</BODY>
+</HTML>

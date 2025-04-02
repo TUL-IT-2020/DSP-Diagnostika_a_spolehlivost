@@ -1,0 +1,17 @@
+A1=A
+A2=A
+A3=A2
+A4=A2
+B1=B
+B2=B
+H=/(A1 B1)
+I=/(N C)
+N=/A3
+J=/(A4 B2)
+K=I
+L=I
+F=/(HK)
+M=/(LJ)
+G=(M+D)
+
+

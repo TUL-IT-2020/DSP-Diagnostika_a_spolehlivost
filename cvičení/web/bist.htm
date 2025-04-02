@@ -1,0 +1,174 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+
+<A name="#1"></A>
+<P align="justify"><BIG>Autonomní testy generované v reálném čase </big><BR>
+Tyto druhy testů umožňují významně uspořit technické vybavení věnované vestavěným diagnostickým prostředkům a to tak, 
+že daný test se generuje podle předem zapsaného algoritmu, v reálném čase, až během testování. 
+V testované jednotce je pak místo testu samého uložen pouze algoritmus, podle kterého se daný test generuje. 
+Tyto metody generování testů se někdy označují jako algoritmické. 
+Generování testů se používá především v případech, jestliže má testovaná jednotka pravidelnou strukturu. 
+Používá se především pro paměti, obvody PLA a pro strukturovaně navržené sekvenční obvody. 
+Testy můžeme v reálném čase generovat programem nebo obvodově. Pomocí programu se generují především vzorky pro paměti 
+RAM. Tyto vzorky mohou být různého typu. Většinou se jedná o kombinaci zápisu a čtení ze všech buněk paměti 
+v různém pořadí. Nebo vzorky nazývané jako putující jednička, putující nula či posouvající se diagonála. 
+Pro ostatní typy obvodů se dává přednost jednoduchým generátorům vestavěným přímo do struktury testovaného obvodu. 
+V těchto případech se nejčastěji ke komprimaci odezvy na test používá posuvný registr s lineární zpětnou vazbou. 
+Ještě před tím, než začnu popisovat strukturu a princip činnosti registru s lineární zpětnou vazbou, je  
+třeba zmínit se o kódech a způsobu kódování, které se v těchto registrech a nejen v nich používá. 
+</P>
+
+
+
+
+<A name="#2"></A>
+<P align="justify"><big>Cyklické kódy</big><BR>
+Cyklické kódy   jsou lineární kódy, které mají tu vlastnost, že je–li </FONT><B>V</B> = 
+(v<SUB>n-1</SUB>, v<SUB>n-2</SUB>,..., v<SUB>0</SUB>) kódovým vektorem, je 
+kódovým vektorem i vektor <B>V’</B> = (v<SUB>n-2</SUB>, v<SUB>n-3</SUB>,..., 
+v<SUB>0</SUB>, v<SUB>n-1</SUB> ). Zkráceně hovoříme 
+o tzv. cyklické vlastnosti nebo o podmínce cykličnosti.Řadu vlastností cyklických kódů lze nejsnáze 
+pochopit při reprezentaci těchto kódů pomocí mnohočlenů. Proto se v této části 
+přidržím tohoto způsobu popisu cyklických kódů. Existuje jednoznačné přiřazení 
+mezi kódovými vektory cyklického kódu (n,k) se souřadnicemi z konečného tělesa 
+GF(q) a mnohočleny s koeficienty z GF(q) stupně nižšího než n. Těmto mnohočlenům 
+říkáme kódové mnohočleny. Je-li  <B>V</B> = (v<SUB>n-1</SUB>, 
+v<SUB>n-2</SUB>,..., v<SUB>0</SUB>) kódový vektor 
+cyklického kódu (n,k), má odpovídající mnohočlen tvar v(x) = 
+v <SUB>n-1</SUB>x<SUP>n-1 </SUP><FONT 
+face=Symbol>Ĺ</FONT><SUB>q</SUB>...<FONT face=Symbol>Ĺ</FONT><SUB>q 
+</SUB>v<SUB>1</SUB>x<SUP>1</SUP><FONT 
+face=Symbol>Ĺ</FONT><SUB>q</SUB>v<SUB>0</SUB>x<SUP>0</SUP>. Kde znak “<FONT 
+face=Symbol>Ĺ</FONT><SUB>q</SUB>” značí sčítání mod 
+q.  
+<P align="justify"><big>Těleso GF(2)</big></P>
+<P>U dvojkových cyklických kódu jsou souřadnice, 
+resp. koeficienty v</FONT><SUB>i</SUB> z tělesa 
+GF(2), tj. mohou nabývat jen hodnot 0 a 1, jejich sčítání se provádí mod 2 a 
+jejich součin je totožný s běžným algebraickým i logickým součinem.<BR> 
+ Ukážeme si na příkladu způsob počítání s prvky 
+lineární algebry zbytkových tříd mnohočlenů nad GF(2). Jde vlastně o stejný 
+princip sčítání a násobení prvků jako u konečných těles. Algebra obsahuje 
+všechny zbytkové třídy modulo x</FONT><SUP>n </SUP><FONT 
+face=Symbol>Ĺ</FONT>1. Sčítání zbytkových tříd 
+mnohočlenů se provádí stejně jako v běžné algebře prostřednictvím sčítání 
+koeficientů u stejných mocnin x, až na to, že se sčítá podle pravidel platných v 
+GF(2). Tedy např. </FONT>{x<SUP>2 </SUP>+x + 1}+ {x<SUP>3 </SUP>+x} = {x<SUP>3</SUP> + 
+x<SUP>2</SUP> + 1}. 
+Násobení se provádí stejně jako běžné algebraické násobení mnohočlenů nad 
+tělesem reálných čísel s tím, že pokud by součin byl stupně n nebo vyššího, 
+provede se ještě operace</FONT> modulo (x<SUP>n </SUP>+1).
+
+<LI>Příklad:<BR>
+Q(x) = x<sup>2</sup> + x + 1<BR>
+P (x) = x <sup>3</sup> + x <sup>2</sup> + 1<BR>
+P(x) + Q(x) = x <sup>3</sup> + 2x<sup> 2</sup> + x + 2 = x <sup>3</sup> + x<BR>
+P(x) - Q(x) = x <sup>3</sup> - x = x <sup>3</sup> + x<BR>
+P(x)* Q(x) = x <sup>5</sup> + x + 1. Je-li n=5, je ještě třeba provést operaci mod x<sup>5</sup>+1 a výsledek bude P(x)*Q(x)=x <BR>
+P(x) /Q(x) = x<BR>
+P(x) mod Q(x) = x + 1<BR>
+
+ 
+<P align="justify"><b>Nerozložítelný polynom v GF(2)</b><BR>
+Polynom P(x) stupně m je nerozložitelný, pokud není faktotizovatelný. To znamená, že
+ho nelze dělit beze zbytku žádným jiným polynomemem nižšího řádu.
+Příklady nerozložitelných polynomů:<BR>
+x<sup>4</sup> + x <sup>3</sup> + x <sup>2</sup> + x +1<BR>
+x<sup>4</sup> + x<sup>3</sup> + 1<BR>
+x<sup>4</sup> + x +1<BR>
+x<sup>2</sup> + x + 1<BR>
+x + 1<BR>
+<P>
+Ale pozor, x<sup>2</sup>+1 je rozložitelný<BR>
+x<sup>2</sup> + 1 je dělitelné x + 1 ......... x <sup>2</sup> + 1 = (x+1) (x+1)<BR>
+
+<A name="#primitiv"></A>
+<P align="justify"><b>Primitivní polynom</b><BR>
+Polynom stupně m je primitvní pokud dělí beze zbytku (1+x<sup>k</sup>) , kde k=2<sup>m</sup>-1<BR>
+a nedělí beze zbytku (1+x<sup>i</sup>), pro všechna i&lt;k<BR><P>
+Pro každé pozitivní k, existuje alepoň jeden primitivní polynom řádu k.<BR>
+Určení primitivních polynomů vyšších řádů není snadné. Běžně se používají tabulky.<BR>
+<table align="center" border="1" cellpadding="3" cellspacing="0">
+<tr><td>m</td><td>Příklad polynomu</td><td>Počet primitivních<BR>polynomů řádu m</td></tr>
+<tr><td>1</td><td>x+1</td><td>1</td></tr>
+<tr><td>2</td><td>x<sup>2</sup>+x+1</td><td>1</td></tr>
+<tr><td>3</td><td>x<sup>3</sup>+x+1</td><td>2</td></tr>
+<tr><td>4</td><td>x<sup>4</sup>+x+1</td><td>2</td></tr>
+<tr><td>5</td><td>x<sup>5</sup>+x<sup>2</sup>+1</td><td>6</td></tr>
+<tr><td>6</td><td>x<sup>5</sup>+x+1</td><td>6</td></tr>
+<tr><td>7</td><td>x<sup>7</sup>+x<sup>3</sup>+1</td><td>18</td></tr>
+<tr><td>8</td><td>x<sup>8</sup>+x<sup>4</sup>+x<sup>3</sup>+x<sup>2</sup>+1</td><td>16</td></tr>
+<tr><td>9</td><td>x<sup>9</sup>+x<sup>4</sup>+1</td><td>48</td></tr>
+<tr><td>..</td><td>...</td><td>...</td></tr>
+<tr><td>16</td><td>x<sup>16</sup>+x<sup>12</sup>+x<sup>3</sup>+x+1</td><td>2048</td></tr>
+</table>
+
+
+<P align="justify"><b>Realizace násobení a dělení v GF(2)</b><BR>
+Operace násobení a dělění polynomů lze snadno realizovat pomocí zapojení skládajícího
+se z řetězce D klopných obvodů, obvodů nonekvivalence  a vhodného propojení zpětných vazeb.
+
+Příklad<BR>
+Obvod <b>násobící</b> polynomem 1 + x<sup>3</sup> + x<sup>4</sup> + x<sup>5</sup> + x<sup>6</sup>.<BR>
+<P align="center">
+<IMG src="lsfr2.gif"><BR>1.možné řešení</P>
+
+<P align="center"><IMG src="lsfr3.gif"><BR>2.možné řešení</P>
+
+
+Příklad<BR>
+Obvod realizující <b>dělení</b> polynomem 1 + x + x<SUP>3</sup><BR>
+<P align="center"><IMG src="lsfr4.gif"><BR>1.možné řešení</P>
+<P align="center"><table><tr><td><IMG src="lsfr5.gif"><BR><BR>2.možné řešení</td><td><IMG src="lsfrtab.gif"></td></tr></table></P>
+
+
+ 
+
+<A name="#3"></A>
+<P align="justify"><big>LZPR</big><BR>
+Posuvné registry s lineární zpětnou vazbou, označované též lineární zpětnovazební posuvné registry (LZPR) se osvědčily 
+jako nejvhodnější generátory testovací posloupnosti. Protože se ve zpětné vazbě používá pouze nonekvivalence, což je 
+lineární logická funkce, označuje se tato zpětná vazba jako lineární. S podobnými vlastnostmi se můžeme setkat i u 
+binárních čítačů, ale LZPR jsou rychlejší a mají jednodušší strukturu. Příklad zapojení LZPR se čtyřmi stupni je na obrázku 1.
+<P align="center"><IMG src="lsfr.gif"><BR><i>Obr. 1 - LZPR</i></P>
+
+Zpětné vazby jsou zapojeny podle primitivního polynomu x<sup>4</sup>+x+1. Na začátku činnosti musí být do daného registru 
+vložen nenulový obsah, protože z nulového stavu by se LZPR nikdy nedostal. Maximální délka posloupnosti stavů je 2<sup>n</sup>-1, v tomto případě tedy 2<sup>4</sup>-1=15.
+(chybí nulový stav). Této maximální délky lze dosáhnout pouze je-li LZPR zapojen dle <A href="#primitiv">primitivního polynomu</A>. Tento obvod můžeme použít jako generátor testu tak,
+ že jej zabudujeme do testované jednotky a jeho paralelní výstupy připojíme trvale do míst, která chceme stimulovat. 
+Tento způsob testování lze použít prakticky pro všechny typy logických obvodů, avšak skutečně účinný je pro kombinační 
+obvody. 
+<P align="center"><IMG src="pri.gif"></P>
+Jako příznakový analyzátor se používá také LZPR a je synchronizován společnými hodinami s generátorem testů. 
+Výsledek testu je na konci provádění testu srovnán s příznakem uloženým v paměti správných příznaků. 
+V případě neshody signalizuje srovnávač poruchový stav (viz obr.2). Tento způsob realizace vnitřního testu používá např. 
+firma Intel ve svém mikroprocesoru 80386. Délka použitých LZPR se pohybuje od 12 do 37. 
+Dosažené diagnostické pokrytí udává výrobce lepší než 98% 
+<A name="#4"></A>
+<P align="justify"><big>HILDO</big><BR>
+Při návrhu vestavěných diagnostických prostředků je stále větší tlak na snižování nákladů na diagnostiku. 
+Z těchto důvodů vzniká spojení dvou oddělených diagnostických částí systému do jednoho celku. 
+Hlavním rysem metody HILDO je to, že v jediném řetězci LZPR se skrývá generátor testu a kompresor odezev zároveň.
+Toto zapojení bylo navrženo pro testování obvodů VLSI a označení HILDO má význam Highly Integrated Logic Design Observer.
+<P align="center"><IMG src="image17.gif"><BR><i>Obr. 3 - metoda HILDO</i></P>
+<P align="justify">
+Registr HILDO je ve své podstatě sériově paralelní příznakový analyzátor. 
+Mimo to, že v každém taktu vygeneruje jeden krok testu na svých výstupech, 
+tak také v každém taktu přijme na svých paralelních vstupech jednu odezvu na test. 
+Tato odezva na test se nejprve přičte modulo 2 ke stávajícímu obsahu registru a poté se celý obsah 
+posune o jedno místo vpravo. Lineární zpětnovazební registr tedy neprochází svým obvyklým cyklem, 
+protože přijaté odezvy do daného diagnostického registru vlastně vkládají v každém taktu nový počáteční stav. 
+<BR>
+<b>Hledáním cyklu</b> se rozumí provádění taktů LZPR a připojeného testovaného obvodu   až do chvíle, kdy stav LZPR bude shodný s některým ze stavů, ve kterém se již běhěm hledání cyklu nacházel. Při testování kombinačního obvodu se stavy LZPR neustále periodicky v cyklech opakují. Vezme-li se jako počáteční stav LZPR libovolný stav tvořící posloupnost tohoto cyklu, potom LZPR vždy po stejném počtu taktů dospěje opět k tomuto stavu. Počet těchto taktů bude shodný pro všechny tyto stavy tvořící cykl, brali-li by se jako počáteční stav LZPR. 
+V ideálním případě lze dosáhnout délky cyklu rovné 2<sup>N</sup>, kde N je délkou LZPR (počtem bitů určujících stav LZPR).  Délka cyklu je obvykle kratší a závisí na polynomu, podle kterého je LZPR zapojen, a dále na konkrétním propojení LZPR a testovaného obvodu. Změnou propojení LZPR a testovaného obvodu při zachování polynomu se délka cyklu mění a neplatí tedy, že dosažení maximální délky cyklu je pouze otázkou volby vhodného polynomu. Stejných výsledků lze dosáhnout použitím jak primitivních polynomů, tak zcela libovolně zvolených polynomů. Připojením testovaného obvodu k LZPR totiž vznikají další zpětné vazby, navíc vedené skrz testovaný obvod, takže chování celku LZPR+testovaný obvod nelze dopředu odhadnout a stanovení délky cyklu není prakticky možné jinak než experimentem<BR>
+Hledání cyklu při testování sekvenčního obvodu nemá význam, protože stavy LZPR se kvůli existenci vnitřních stavů testovaného obvodu nebudou opakovat tak, jako je tomu u obvodů kombinačních.<BR>
+Příznakem nazveme koncový stav LZPR po provedení zvoleného počtu taktů po vložení počátečního stavu.Postupnou injekcí obou typů poruch na všech vodičích testovaného obvodu, nastavením počátečního stavu,provedením zvoleného počtu taktů a zaznamenáním příznaku lze získat slovník poruch. Slovníkem poruch se rozumí tabulka dvojic příznak - porucha. Jeden příznak může odpovídat více poruchám.
+V takovém případě jsou tyto poruchy daným testem vzájemně nerozlišitelné. Obzvlášť nepříjemné je pokud se příznak některé poruchy shoduje s příznakem odpovídajícím bezporuchovému stavu.<BR>
+Problemem je, jak zjistit pokrytí testu a jak dosáhnout požadovaného pokrytí.
+Možné řešení je simulací chování HILDO a injekcí poruch. Právě za tímto účelem byl vytvořen program <a href="hildo.htm">HILDO</A>.
+</body> 
+</HTML>

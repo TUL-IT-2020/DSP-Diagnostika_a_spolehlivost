@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+<P align="justify"><BIG>Porucha</BIG><BR>
+Ve smyslu názvoslovné normy je <b>porucha</b> (ang. fault) jev, spočívající v ukončení schopnosti objektu plnit požadovanou funkci podle technických podmínek. Naproti tomu <b>chyba</b> (angl. error) je rozdíl mezi správnou a skutečnou hondnotou nějaké veličiny, zjištěný měřením nebo pozorováním.<BR>
+Podle toho, zda pozorovaná jednotka je nebo není schopna v daném okamžiku vykonávat předepsanou funkci rozlišujeme dva základní stavy, a to <b>bezporuchový</b> a <b>poruchový</b>. Jako poruchový se označuje stav, kdy se v dané jednotce vyskytne alespoň jedna chyba.<BR>
+Rozlišení poruchového a bezporuchového stavu je jednou ze základních úloh diagnostiky, zvanou detekce poruchy. Při detekci poruchy tedy nejde o žádné bližší určení poruchového stavu, o zjištění, o jakou poruchu se jedná, ani o to, kolik poruch se v testovaném objektu vyskytuje. Výsledkem <b>detekčního testu</b> je jednobitová informace, udávající, zda je objekt v poruchovém či bezporuchovém stavu.<BR>
+<b>Lokalizací poruchy</b> rozumíme nalezení místa (s blíže nespecifikovanou přesností), ve kterém se porucha vyskytuje. 
+</P>
+
+
+<P align="justify"><BIG>Poruchy typu t</BIG><BR>
+Přes značnou mnohotvárnost fyzikálních poruch vystačila dosud diagnostika číslicových obvodů s poměrně malým počtem logických poruch. Nejznámější a také nejstarší jsou tzv. trvalé poruchy, označované též jako poruchy typu t.  Jedná se o trvalou nulu (t0) a trvalou jedničku (t1)  (stuck-at-0, stuck-at-1). Trvalá nula je porucha, která se projevuje konstantní hodnotou "0" na určitém vodiči. Mohli bychom si ji představit také tak, že tento vodič připojíme na konstantní zdroj logické nuly. Prakticky takováto porucha může vzniknout např. zkratováním vodiče na zem. Podobně trvalá jednička je porucha, která se projevuje konstantní hodnotou "1"‚ takže ji lze modelovat připojením zdroje logické jedničky do sledovaného místa. Prakticky může vzniknout např. zkratováním vodiče na zdroj napájecího napětí. Kromě toho však lze trvalou jedničkou modelovat řadu dalších poruch.<BR>
+V logických obvodech vyrobených technologií TTL platí, že odpojený vstup se chová tak, jako kdyby na něj byl připojen zdroj logické jedničky. Přerušení vstupního signálního vodiče tedy lze modelovat poruchou t1 na odpojeném vstupu. Podobně při přerušení napájecího nebo zemnícího vývodu pro celé pouzdro se na všech výstupech z pouzdra ustálí logická jednička, protože v obou případech dolní tranzistor výstupní dvojice nemůže sepnout proud a zůstane otevřen.<BR> 
+Tyto poruchy tedy lze modelovat poruchou t1 na výstupech všech logických členů pouzdra. Podrobnější rozbor poruchových mechanismů integrovaných obvodů TTL potvrzuje, že ačkoli se poruchy typu t přiřazují zásadně vodičům, lze jimi modelovat velké množství různých fyzikálních poruch včetně poruch uvnitř logických členů, tedy přímo na čipu.<BR>
+Při popsaném způsobu modelování poruch předpokládáme, že všechny logické členy pracují správně, tedy že přesně plní funkci, kterou jim předepisuje pravdivostní tabulka. Porucha se projeví pouze v tom, že na tyto členy jsou v některých případech přiváděny chybné vstupní signály. 
+</P>
+<LI>Příklad chování obvodu s poruchami typu t
+<P align="justify"><IMG src="poruchy.gif"><BR>
+Sloupec U představuje výstup obvodu v případě správné funkce. Další sloupce obsahují hodnoty výstupu U v případě dané poruchy typu T.
+</P>
+<LI><b>Pozorujte:</b> Vektor vstupních signálů a,b detekuje ty poruchy typu t, v jejichž sloupci se pro kombinaci vstupních hodnot danou tímto vektorem liší výstupní hodnota od hodnoty U bez poruchy.<BR>
+<IMG src="poruchy2.gif"  hspace="20"><BR>
+Dále si všimněte, že jeden vektor může pokrývat (tzn. že v případě přivedení tohoto vektoru na vstupní vodiče obvodu se výskyt těchto poruch projeví chybnou hodnotu výstupního signálu) více poruch. A naopak porucha může být odhalena více různými vektory. 
+</P>
+<LI><b>Nerozlišitelné poruchy</b><BR>
+<IMG src="poruchy3.gif" hspace="20"><BR>
+Sloupce se stejnými hodnotami slučují poruchy, při jejichž výskytu má obvod shodné chování. Takové poruchy jsou nerozlišitelné neboli ekvivalentní a neexistuje test, který je dokáže vzájemně rozlišit.
+</P>
+<P align="justify"><BIG>Test</BIG><BR>
+Test je posloupnost vstupních vektorů a jím přiřazených výstupních vektorů sloužící k detekci či lokalizaci poruchy.
+Nejdůležitějším parametrem testu je jeho <b>diagnostické pokrytí</b>. To vyjadřuje počet poruch detekovatelných (tj. pokrytých) testem. Test, který pokrývá všechny detekovatelné poruchy, je <b>úplný</b>. Úplný test lze libovolně rozšiřovat o další vektory, aniž by se na jeho pokrytí něco změnilo, takže úplných testů pro jeden obvod je nekonečně mnoho. Pokud naopak chceme některé kroky testu vypustit, je třeba postupovat velmi opatrně, nechceme-li porušit úplnost testu<BR>
+Úplný test, který má nejmenší délku, se nazývá <b>minimální test</b>. Je to extrémní případ, který je pro praxi téměř nezajímavý, protože minimalizace testu je zdlouhavá a drahá a na ní vynaložené náklady se nevyplácejí. Běžně tedy pracujeme s testy, které obsahují redundantní kroky.<BR>
+Vyzkoušení všech možných funkcí, které má testovaný obvod realizovat, představuje opačný extrém z hlediska délky testu a je označováno jako <b>triviální test</b>. Triviální test je vždy úplný, protože detekuje všechny detekovatelné poruchy. Pro obvod s n vstupy má triviální test délku 2<sup>n</sup> a skládá se ze všech kombinací hodnot n proměnných. Pro obvody s větším počtem vstupů je nepoužitelný v důsledku velmi vysokého počtu kroků. Ke generování triviálního testu stačí čítač s n řády.</P>
+
+<P align="justify"><BIG>Metody generování testů</BIG><BR>
+Generování testů (tj. sestavení) je klíčovou úlohou diagnostiky, avšak je to též úloha nejtěžší  a lze říci, že doposud nebyla uspokojivě vyřešena. Při manuálním sestavování testu se obvykle postupuje metodou zcitlivění cesty.  Pro zdůraznění její obtížné algoritmizovatelnosti se někdy označuje též jako intuitivní zcitlivění cesty. Za nejúspěšnější  pokus o její algoritmizaci se považuje D-algoritmus. Ten zavádí novou logickou hodnotu D, která se používá pro vyznačení citlivé cesty v obvodu. Pro manipulaci se symbolem D byla odvozena přesná a jednoduchá pravidla, která lze snadno zapsat programem. D-algoritmus si získal značnou popularitu, ale brzy se také odhalily jeho slabiny. Především operace konzistence byla vylepšena v metodách odvozených z D-algoritmu, kterými jsou PODEM a FAN.<BR>
+Z metodického hlediska je nejdůležitější, zda jsou testy generovány jako strukturní nebo jako funkční. Při sestavování funkčních testů vycházíme pouze z popisu funkce testované jednotky, takže podrobná znalost není nutná. Je třeba vytvořit model poruch chování na stejné úrovni, na jaké je popsána funkce, protože bez znalosti struktury nelze vycházet z modelu fyzikálních poruch. Funkční testy se používají tam, kde neznáme skutečnou strukturu testované jednotky, což platí často např. o obvodech LSI a VLSI. 
+</P>
+
+
+</BODY>
+</HTML>

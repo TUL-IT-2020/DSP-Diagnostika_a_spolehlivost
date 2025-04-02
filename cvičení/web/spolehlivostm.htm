@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+<P align="justify"><big> Spolehlivostní modely</big><br>
+Způsob, jakým každý z prvků přispívá k nespolehlivosti systému jako celku, lze jednoduše znázornit blokovým spolehlivostním modelem. Každý prvek je v něm reprezentován jedním blokem, v němž jsou uvedeny základní údaje, jako název prvku, intenzita poruch, apod. Spojnice mezi bloky tvoří orientované cesty mezi vstupem a výstupem systému. Každá cesta popisuje jeden provozuschopný stav systému, takže systém je bezporuchový, jsou-li bezporuchové všechny prvky ležící alespoň na jedné cestě, spojující vstup s výstupem. Blokový model je jednoduchý, protože obsahuje poměrně malý počet bloků (pro n-prvkový systém je jich n), proto se jeho použití dává přednost všude, kde je to možné, tedy jsou-li prvky systému nezávislé. Při výpočtu ukazatelů spolehlivosti pak můžeme použít velmi jednoduché vztahy, které nám poskytuje počet pravděpodobnosti. Jedná se především o možnost určit pravděpodobnost současného výskytu několika navzájem nezávislých jevů jako součin pravděpodobností každého z nich. Navíc můžeme pravděpodobnost výskytu některého z navzájem se vylučujících jevů stanovit jako součet pravděpodobností výskytu každého z nich.<BR>
+Příklad jednoduchého blokového spolehlivostního modelu je uveden na obr. 1.<BR>
+<p align="center"><img src="sm.gif"><BR><i>Obrázek 1 - sériový spolehlivostní model</i><p>
+Tento model představuje systém, jehož provozuschopnost je zaručena, jsou-li bezporuchové alespoň dva prvky, a to A1 a A2 nebo A1 a A3.<BR>
+
+
+<P align="justify"><big>Sériový model</big><br>
+Pro systém je možno použít sériový spolehlivostní model, jestliže porucha kteréhokoli prvku způsobí poruchu celého systému. Takový systém budeme zkráceně označovat jako sériový. Blokový spolehlivostní model sériového systému tvořeného n prvky je na obrázku 2. 
+<p align="center"><img src="ssm.gif"><BR><i>Obrázek 2</i><p>
+Jestliže známe pravděpodobnost bezporuchového provozu R<sub>i</sub>(t) pro každý prvek A<sub>i</sub>, je výsledná pravděpodobnost bezporuchového provozu R(t) dána součinem
+<p align="center"><img src="r21.gif"><p>
+Má-li každý prvek konstantní intenzitu poruch <img src="lambda.gif" align="middle">‚ dostaneme
+<p align="center"><img src="r22.gif"><p> 
+kde <img src="lambda.gif" align="middle"> je výsledná intenzita poruch systému, získaná jako součet intenzit poruch  <img src="lambda.gif" align="middle"><sub>i</sub> všech prvků:
+<p align="center"><img src="r23.gif"><p>
+Z toho můžeme vyvodit závěr, že sériový systém tvořený prvky, pro něž platí exponenciální zákon, se jako celek řídí tímtéž zákonem. Pro střední dobu bezporuchového provozu pak musí platit
+<p align="center"><img src="r24.gif"><p>
+Průběh pravděpodobnosti bezporuchového provozu sériového systému v závislosti na čase je graficky znázorněn na obrázku 3. Je uvažován systém tvořený n stejnými prvky a parametrem <img src="lambda.gif" align="middle">=10<sup>-3</sup>h<sup>-1</sup>, přičemž n se mění od jedné do čtyř (černá barva n=1 až zelená barva n=4). Graf byl získán jako výstup programu <A href="spolehlivost.htm">SPOLEHLIVOST</A>. Soubor s tímto uloženým příkladem sériového systému si můžete stáhonout <A href="modely/seriovy">zde</A>.
+<p align="center"><img src="sn.gif"><BR><i>Obrázek 3</i><p>
+  
+Na závěr je třeba poznamenat, že skutečné (např. elektrické) zapojení systému nemusí být sériové. Sériovost ve spolehlivostním modelu vyjadřuje pouze to, jak prvky přispívají k nespolehlivosti systému. Sériový model je použitelný pro všechny systémy, které neobsahují redundancí (zálohu).
+<P align="justify"><big>Paralelní model</big><br>
+Pro sytém je možno použít paralelní spolehlivostní model, jestliže poruchu systému může způsobit pouze porucha všech jeho prvků současně. Takový systém budeme zkráceně označovat jako paralelní.Blokový spolehlivostní model paralelního systému tvořeného n prvky je na obrázku 4.
+<p align="center"><img src="pm.gif"><BR><i>Obrázek 4</i><p>
+Porucha paralelního systému nastává pouze v případě, že jsou poruchové všechny prvky, a proto lze pravděpodobnost poruchy systému vypočítat jako součin pravděpodobností poruch jednotlivých prvků:
+<p align="center"><img src="r25.gif"><p>	   
+Pravděpodobnost bezporuchového provozu paralelního systému odvodíme z tohoto výrazu tak,
+že využijeme, že platí Q(t)=1-R(t)
+<p align="center"><img src="r26.gif"><p> 
+a pro střední dobu bezporuchového provozu platí
+<p align="center"><img src="r27.gif"><p> 
+Průběh pravděpodobnosti bezporuchového provozu paralelního systému v závislosti na čase je graficky znázorněn na obrázku 5. Je opět uvažován systém tvořený stejnými prvky s parametrem <img src="lambda.gif" align="middle">=10<sup>-3</sup>h<sup>-1</sup>, přičemž n se mění od jedné do čtyř (černá barva n=1 až zelená barva n=4). Graf byl získán jako výstup programu <A href="spolehlivost.htm">SPOLEHLIVOST</A>. Soubor s tímto uloženým příkladem sériového systému si můžete stáhonout <A href="modely/paralelni">zde</A>.
+<p align="center"><img src="grafp.gif"><BR><i>Obrázek 5</i><p>  
+
+<P align="justify"><big>Kombinované modely</big><br>
+Se sériovými systémy se setkáváme velmi často, avšak čistě paralelní systémy jsou poměrně vzácné. V praxi jsou častější systémy, v nichž se vyskytují různé kombinace sériových a paralelních podsystémů. Nejpřehlednější jsou případy, kdy prvky systému vytvářejí pravidelné dvojrozměrné pole. Takové systémy označujeme jako paralelně sériové (tvořené paralelním spojením sériových podsystémů) nebo jako sériově paralelní (je-li systém uspořádán jako sériové spojení paralelních podsystémů).<BR>
+Obecná struktura <b>paralelně sériového systému</b> tvořeného m paralelními větvemi, z nichž každá obsahuje n prvků v sérii je na obrázku 6.
+<p align="center"><img src="parser.gif"><BR><BR><i>Obrázek 6 - Paralelně sériový model</i><p>
+Je-li pro každý prvek A dána pravděpodobnost jeho bezporuchového provozu R (pro jednoduchost zanedbáváme závislost na čase), můžeme pro pravděpodobnost bezporuchového provozu paralelně sériového systému odvodit výraz
+<p align="center"><img src="r29.gif"><p>
+
+Obecný tvar <b>sériově paralelního systému</b> je znázorněn na následujícím obrázku.
+<p align="center"><img src="serpar.gif"><BR><BR><i>Obrázek 7 - Sériově paralelní model</i><p>
+ Vyjádříme-li nejprve pravděpodobnost bezporuchového provozu j-tého paralelního podsystému a vzniklé výrazy pro všechna j mezi sebou znásobíme, dostaneme výsledný vzorec
+<p align="center"><img src="r210.gif"><p>
+<P align="justify">
+Lze dokázat, že při stejných hodnotách R<sub>ij</sub> a při stejných rozměrech systémů m, n je hodnota R<sub>sp</sub> vždy vyšší než R<sub>ps</sub>. Lze to snadno zdůvodnit tím, že v sériově paralelním modelu existuje vždy větší počet cest ze vstupu na výstup. Tento model totiž popisuje zálohování každého prvku samostatně, zatímco v paralelně sériovém modelu je zálohován vždy celý podsystém.</P>
+<P align="justify">
+Následující graf (obr. 8) vznikl jako výstup z programu <A href="spolehlivost.htm">spolehlivost</A> a ukazuje srovnání průběhu R(t) pro seriově paralelní a paralelně sériový model , přičemž i=j=3 a parametr <img src="lambda.gif" align="middle">=10<sup>-3</sup>h<sup>-1</sup> pro všechny prvky. Soubor s tímto uloženým příkladem sériového systému si můžete stáhonout <A href="modely/ps">zde</A>.
+<p align="center"><img src="pssp.gif"><BR>
+<BR><i>Obrázek 8 <BR>
+černě - paralelně sériový model<BR>červeně - sériově paralelní model</i><p>  
+<P align="justify">
+Pravidelné dvojrozměrné pole prvků není v praxi obvyklé, protože v zájmu úspor se většinou snažíme zálohovat jen ty prvky, které to vyžadují. Tím vznikají systémy, jejichž model má nepravidelnou strukturu, jako např model na obrázku 9. 
+<p align="center"><img src="kombi.gif"><BR>
+<I>Obrázek 9</I>
+<p>
+<P align="justify">
+Odvození výrazu pro pravděpodobnost bezporuchového provozu takového systémů není obtížné, zavedeme-li pomocné členění systému do podsystémů. Jestliže např. na obrázku 9 označíme dva prvky na pravé straně jako podsystém A23 ‚ můžeme na systém pohlížet jako na sériové spojení prvků A1 a A23 .Pro R systému pak platí R = R<sub>1</sub>.R<sub>23</sub>. Protože podsystém A23 je paralelní, platí pro něj R<sub>23</sub> = 1-(1-R<sub>2</sub>)(1-R<sub>3</sub>). Po dosazení dostaneme výsledný výraz R = R<sub>1</sub>R<sub>2</sub> + R<sub>1</sub>R<sub>3</sub> - R<sub>1</sub>R<sub>2</sub>R<sub>3</sub>.
+<P align="justify">
+K výpočtu spolehlivostních parametrů nepravidelných kombinovaných modelů lze použít program <A href="spolehlivost.htm">SPOLEHLIVOST</A>, který umožňuje jednoduše zadat spolehlivostní model a vypočte výraz pro jeho R(t), vypočte T<sub>s</sub> a zobrazí závislost R(t) na čase. V případě zadání více spolehlivostních modelů, které můžou být až 4, lze zobrazit srovnání průběhů R(t) jednotlivých modelů do jednoho grafu.
+</BODY>
+</HTML>

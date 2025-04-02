@@ -1,0 +1,3 @@
+S = A B Z + /A /B Z + /A B /Z + A /B /Z
+P = A B + A Z + Z B
+Z = #P

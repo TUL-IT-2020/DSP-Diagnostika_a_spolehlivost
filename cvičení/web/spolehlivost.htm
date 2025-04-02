@@ -1,0 +1,139 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+</HEAD>
+<BODY> 
+<P align="justify">
+<Font size="+1">Program SPOLEHLIVOST</font><BR>
+Chování neobnovovaného systému složeného z jednotlivých prvků lze popsat  různými modely.   Způsob, jakým každý z prvků  přispívá k nespolehlivosti systému jako celku, lze jednoduše znázornit blokovým spolehlivostním modelem. Každý prvek je v něm reprezentován jedním blokem s danými vlastnostmi (intenzita poruch apod. ).  
+Program spolehlivost slouží k výpočtu spolehlivostních parametrů  systému jako celku, přičemž vstupem programu je zadaný spolehlivostní model (sérioparalelní kombinace prvků a systémů NMR) s konkrétními hodnotami intenzity poruch (<img src="lambda.gif" align="middle">).  Vytvoření spolehlivostního modelu se provádí v grafickém prostředí pomocí myši přidáváním prvků systému paralelně čí sériově (ve smyslu spolehlivostního modelu)  k jiným prvkům. Jednotlivými prvky mohou být i celé systémy typu NMR. 
+Výstupem programu je potom vypočtená funkce R(t), udávající pravděpodobnost bezporuchového stavu v čase t,   a střední doba bezporuchového provozu Ts.  Průběh výsledné funkce R(t) v závislosti na čase je vyjádřen jednak rovnicí a dále také graficky. Je možné zadat až čtyři různé libovolné spolehlivostní modely současně a nechat zobrazit průběhy jejich výsledných funkcí R(t) do společného grafu, z kterého jsou pak dobře patrné rozdíly v chování jednotlivých modelů. Lze tak například snadno demonstrovat měnící se průběhy R(t) u systémů NMR pro různá N. 
+Vytvořené spolehlivostní modely je možné uložit do souboru a případně k nim přidat   i text, popisující o jaký systém se jedná, jaké závěry plynou ze srovnávacího grafu R(t) a další informace sloužící k pochopení problematiky.
+
+</P>
+
+<P align="justify">
+<Font size="+1">Ovládání programu</font>
+<UL>
+<LI><b>Okno programu</b><BR>
+Po spuštění programu se objeví hlavní okno programu, které vypadá takto:<BR>
+<BR>
+<P align="center"><A name="okno"></a>
+<img src="window.gif" width="473" height="421"><BR><i>Obrázek 1 - Hlavní okno programu</i><BR></P>
+<LI><p align="justify"><b>Zadání spolehlivostního modelu</b><BR>
+Spolehlivostní model se zadává pomocí připojování dalších prvků k již existujícím prvkům do 
+schematického grafického znázornění spolehlivostního modelu. Po spuštění programu se spolehlivostní 
+model skládá z prvního jediného prvku. 
+Kliknutím myši na čtvereček znázorňující prvek dojde k jeho vybrání. Vybraný prvek se pozná podle toho, 
+že je jeho obrys zvýrazněn. Stiskem tlačítka <b>Parametry</b> lze nastavit konkrétní hodnotu intenzity poruch 
+vybraného prvku.
+To lze provést i zrychleně kliknutím pravým tlačítkem myši na prvek. Intenzita poruch se zadává jako 
+reálné číslo a možný je i exponenciální tvar zadání, např. "5e-10".
+Program si zapamatovává posledně zadanou hodnotu intenzity poruch a automaticky ji nabízí při dalším zadávání 
+tohoto parametru u jiného prvku. Tak lze jednoduše zadat stejný parametr lambda například deseti 
+stejným prvkům pouze klikáním pravého tlačítka myši a potom tlačítka OK v dialogu pro zadání parametrů.
+Při vybrání prvku se jeho nastavená intenzita poruch objevuje dole v okénku s nápisem vybraný prvek.
+Vybranému prvku lze přidat další prvek sériově či paralelně. 
+Zadávání sérioparalelní kombinace neodpovídá klasickému kreslení schématu tak, jak je například běžné u 
+elektrických schémat. Není možné umísťovat libovolně prvky systému a propojovat je cestami. 
+Při zadání modelu takovým způsobem by bylo velmi komplikované nakreslený model analyzovat a převést na 
+nějakou jeho reprezentaci v paměti. Po vybrání prvku a stisku tlačítka <b>Přidat sériově</b> nebo 
+<b>Přidat paralelně</b> se obvod sám příslušným způsobem překreslí.
+Není-li vybrán žádný prvek, jsou další prvky sériově nebo paralelně připojovány k celému dosud zadanému modelu.  
+<BR>
+<UL>
+<LI>Příklad<BR>
+Jak zadat model na obrázku ?<BR>
+<table cellpadding="25">
+<tr>
+<td align="center" valign="bottom">
+<IMG src="image36.gif"><BR>
+Výchozí stav</td>
+<td align="center">
+<IMG src="image39.gif"><BR>
+Požadovaný model</td>
+</tr>
+</table> 
+<UL>
+<LI>Vyber prvek A, přídej sériově<BR>
+<IMG src="image37.gif"><BR>
+Vyber prvek A, přidej paralelně<BR>
+<IMG src="image38.gif"><BR>
+Vyber prvek C,přidej sériově<BR>
+<IMG src="image39.gif"><BR>
+<LI>Jiný postup je například takovýto: není vybraný žádný prvek, přidej sériově, přidej paralelně, přidej sériově
+<LI>Další možný postup: vyber první paralelně, vyber nově vzniklý prvek, přidej sériově, není vybrán žádný prvek, přidej sériově
+
+</UL>
+</UL></P>
+<LI><P align="justify"><b>Smazaní prvku a celého modelu</b><BR>
+Pomocí tlačítka <IMG src="smaz.gif"> lze smazat právě vybraný prvek. Tento prvek bude z aktuálního modelu odebrán a model se odpovídajícím způsobem překreslí. Není-li vybrán žádný prvek, smaže se po stisku tlačítka <b>celý</b> aktuální model. To znamená, že budou odstraněny všechny prvky modelu a model bude nahražen jediným  bezporuchovým prvkem s parametrem <img src="lambda.gif" align="middle">=0.</P>
+<LI><P align="justify"><b>Přepínaní mezi čtyřmi modely</b><BR>
+Tlačítka s číslicemi 1 až 4 ve spodní části okna slouží k přepínaní mezi čtyřmi modely, které mohou být zadány.
+Barva číslice na každém tlačítku je jiná a odpovídá barvě, kterou se zobrazí průběh funkce R(t)
+daného modelu ve srovnávacím grafu. Průběh funkce R(t) patřící modelu 1 se tak zobrazí černě, u modelu
+2 červeně atd. 
+Vedle tlačítek s číslicemi se nachází tlačítko pro smazání právě aktivního modelu.
+Po stisknutí tohoto tlačítka se model smaže - vznikne jeden prvek s paramatrem lambda=0 (ideální
+bezporuchový prvek). </p>
+<LI><P align="justify"><b>NMR</b><BR>
+Systém <A href="tmr.htm">NMR</A> vzniká spojením většího počtu stejných modulů, jejichž výstupy jsou vyhodnocovány majoritou.
+Číslo N udává, kolik modulů je použito. Systém NMR se zadáva jako jediný prvek s vlastnostmi NMR systému. 
+Vyberte prvek a potom klikněte na tlačitko <b>NMR</b>. 
+V dialogovém okně vyplňte prametry N a lambda. Prvek reprezentující systém NMR
+poznáte v nakresleném spolehlivostním modelu podle číslice udávající N, která je nalevo nahoře od čtverečku
+reprezentujícího NMR systém. (viz. <A HREF="#okno">obrázek okna programu</A>)</p>
+<LI><P align="justify"><b>Zkopíravání modelu pod jiné číslo</b><BR>
+Po stisknutí tlačítka   <img src="ruka.gif" width="21" height="21"> se objeví okno, ve kterém zvolte číslo modelu,
+ do kterého se má právě aktivní model přenést. Pomocí přenášení modelů lze složitější modely lehce zkopírovat a pak
+pouze upravit přenesený model, přičemž kreslení celého složitého modelu se provede jen jednou na začátku.
+Při přenášení modelu zůstane originální model pod svým číslem zachován, bývalý model pod číslem, kam se bude
+kopírovat, bude tímto modelem přepsán a tedy ztracen.
+<LI><P align="justify"><b>Výpočet R(t)  a  T<sub>S</SUB></b><BR>
+Funkce R(t) udává pravděpodobnost bezporuchového stavu v čase t. Výraz této funkce se vypíše do výsledkového
+okna po stisknutí tlačítka <img src="kalkul.gif" width="18" height="21">. Výsledek je zobrazen jako textový výstup, který lze kopírovat
+i upravovat. Spolu s vyjádřením výrazu funkce R(t) se vypočte i střední doba bezporuchového provozu T<SUB>s</SUB>. Výraz <i>Exp(n)</i> má význam e<sup>n</sup>.<BR> 
+<P align="center">
+<IMG src="image46.gif"><BR><i>Obázek 2 - Výsledky</i></P>
+<LI><P align="justify"><b>Zobrazení grafu</b><BR>
+Po stisknutí tlačítka <img src="graf.gif" width="25" height="25"> se zobrazí okno s grafem funkce
+R(t) pro právě aktivní model. Interval <i>t</i> tohoto grafu je zvolen automaticky tak, aby maximální hodnotě na ose t odpovídal čas 3*T<sub>s</sub>.
+Rozsah t lze změnit klinutím myši do prostoru grafu. Zobrazí se malé dialogové okénko, do kterého se zadá nová horní hranice t. Velikost okna s grafem se dá měnit obvyklým způsobem, jako každé jiné okno ve Windows, přičemž graf se vždy překreslí tak, aby zabíral celou plochu okna (změní tedy měřítko, ale interval <i>t</i> zůstane zachován).
+<BR> 
+Grafické zobrazení funkce R(t) konkrétního modelu je mnohem zajímavější, pokud je možné srovnat ho ve 
+stejném grafu s průběhem této funkce jiného modelu. Program proto umožňuje zadání více různých spolehlivostních 
+modelů, vyjádření jejich funkcí R(t) a zobrazení jejích průběhů do jediného grafu. To se provede stiskem tlačítka
+ <img src="grafy.gif" width="23" height="22">
+. Každý průběh je kreslen barvou odpovídající
+barvě čísla na tlačítku přepínajícím odpovídající model.<BR>
+<BR>
+<P align="center"><img src="image45.gif"><BR><i>Obzázek 3 - Ukázka srovnávacího grafu</i></P>
+</P>
+<LI><P align="justify"><b>Uložení a načtení modelů</b><BR>
+Všechny čtyři modely lze uložit pomocí tlačítka <img src="uloz.gif" width="20" height="19"> 
+a později načíst po stisku <img src="otevri.gif" width="18" height="17">. Při ukládání i čtení se vždy zobrazí
+dialog pro výběr souboru. V uloženém souboru jsou uložena data o modelech a jejich parametry. 
+Načtením souboru se provede změna všech čtyř dosud zadaných modelů, které budou nahrazeny modely ze čteného souboru.<BR>
+Několik ukázkových příkladů modelů i s popisy si stáhněte
+<A href="modely.htm">zde</a>.  
+</P>
+<LI><P align="justify"><b>Popisy modelů a poznámky</b><BR>
+K vytvořeným spolehlivostním modelům lze připojit delší text, který je možné napsat v poznámkovém bloku tohoto programu. Text může například obsahovat výukové informace, popis modelů nebo jiné údaje. 
+Text je možné zobrazit nebo editovat kliknutím na tlačítko poznámkového bloku <img src="poznamky.gif" width="20" height="20">. Tyto poznámky se ukládají spolu s modely.
+</P>
+<LI><P align="justify"><b>Omezení programu</b>
+<UL>
+<LI>Na nejdelší cestě modelem může být maximálně 13 prvků v sérii. Více jak 13 prvků nelze již na ploše pro kreslení modelu nezkresleně zobrazit.
+<LI>Model může obsahovat maximálně 12 paralelních cest. Větší počet nelze na ploše nezkresleně vykreslit.
+<LI>Veškeré výsledky mají platnost omezenou časovým intervalem, ve kterém je intenzita poruch všech prvků 
+konstantní a s časem neměnná. Průběh intenzity poruch <img src="lambda.gif" align="middle">(t) odpovídá tzv. <A href="spolehlivostt.htm#vana">Vanové křivce</A>. 
+Z ní je patrné, že konstantní hodnota intenzity poruch prvku je pouze v intervalu < tp , tk >, který označujeme 
+jako období normálního provozu.  Mimo tento interval průběh R(t) není exponenciální.
+<LI>Není možné zadat modely, které mají  paralelní větve "do trojůhleníku" (viz obr.4). Spolehlivostní parametry takových modelů totiž nelze řešit klasickým způsobem  jako sérioparalelní kombinace prvků.<BR>
+<P align="center">
+<img src="image34.gif"><BR><i>Obzázek 4 - Příklad modelu, který nelze zadat</i>
+</UL>
+</P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,231 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+<P><A name="2.4 Boundary Scan"></A><B> <FONT size=+1>Boundary Scan - Zápis 
+do rozhraní</FONT></B> 
+<P align="justify">Boundary Scan je vnitřní nadstavba VLSI 
+číslicových obvodů umožňující snadný diagnostický přístup k jednotlivým vývodům 
+pouzder obvodů na osazených deskách programovatelnými prostředky. Metoda 
+Boundary Scan (lze přeložit jako zápis do rozhraní, či hraniční test) je 
+jak po stránce vnitřní obvodové skladby, tak po stránce sériového protokolu pro 
+přenos dat pomocí řadiče TAP (Test Acces Port) mezinárodně standardizována pod 
+označením IEEE 1149.1. Uvedený standard není použitelný pro testování 
+analogových obvodů a pasivních součástek. Důvodem vypracování metodiky Boundary 
+Scan bylo to, zatímní diagnostické metody na úrovni desky plošných 
+spojů řešily především problém funkčnosti 
+integrovaných obvodů, jimiž byla deska osazena. Otázka plošných spojů, které 
+propojují jednotlivé integrované obvody, která je rovněž z hlediska funkčnosti 
+celé desky neméně důležitá, zatím stála stranou.</FONT> 
+<P  align="justify">Základní myšlenka metody Boundary Scan spočívá 
+ve vložení posuvného registru mezi funkční bloky integrovaného obvodu a jeho 
+vývody. Tento základní stavební prvek budeme nazývat Boundary Scan “buňkou”. Její struktura je na Obr.1.</FONT> 
+<CENTER><IMG height=162 hspace=9 src="image24.gif" 
+width=583></CENTER>
+<CENTER><I>Obr. 1 Uspořádání Boundary Scan 
+buňky</FONT></I></CENTER>
+<CENTER><I>&nbsp;</I></CENTER>
+<P>V závislosti na řídícím signálu vstupního 
+multiplexoru MX1 provádí buňka dvě funkce:</FONT> 
+<OL type=a>
+  <LI>vložení vstupních dat do klopného obvodu 
+  (posuvného registru)</FONT> 
+  <LI>přenos obsahu klopného obvodu (posuvného 
+  registru) na výstup</FONT> </LI></OL>Tento prvek je 
+natolik univerzální, že může být použit na vstupním i výstupním vývodu 
+integrovaného obvodu .</FONT> 
+<P  align="justify">V režimu F (funkce) prochází signál ze 
+signálového vstupu na signálový výstup (tzn. výstup funkční logiky se přenáší na 
+výstup integrovaného obvodu). Navíc je možno logickou hodnotu na signálovém 
+výstupu vložit do klopného obvodu. To je velice důležitá vlastnost, protože 
+umožňuje v určitém charakteristickém okamžiku získat “snímek” hodnoty na 
+výstupu. Tuto informaci lze využít při analýze přechodných poruchových 
+stavů.</FONT> 
+<P  align="justify">V režimu T (testování ) se odpojí signálový 
+vstup od signálového výstupu na MX1, čímž se oddělí primární kontakty pouzdra od 
+vlastního strukturovaného logického jádra testovaného obvodu. Na signálový 
+výstup je přenášena informace z klopného obvodu, která reprezentuje testovací vektor. To znamená, že aplikaci 
+testovacího vektoru musí předcházet jeho vložení do posuvného registru. Posuvný 
+registr se vytvoří tak, že se jednotlivé Boundary Scan buňky propojí do série a 
+vytvoří registr označovaný jako scanovací kanál. Propojení jednotlivých buněk do 
+posuvného registru je provedeno pomocí signálů sériový vstup a sériový výstup, 
+které se navzájem u jednotlivých buněk propojí. Průchodnost přenosových cest je 
+podmíněna generováním řídících signálů ovládajících multi</FONT>plexory MX1, 
+MX2. 
+<P> <BR><A name="2.4.1 Využití metody Boundary"></A><B><I><FONT size=+1>Využití metody Boundary Scan při 
+testu desky</I></B></font> 
+<P  align="justify">Jak bylo již zmíněno v předcházejícím odstavci 
+dají se pomocí Boundary Scan buněk testovat nejen samotné integrované obvody, 
+ale také propojení mezi nimi. Nutná podmínka samozřejmě je, že všechny logické 
+obvody, které se nacházejí na desce, budou vybaveny Boundary Scan buňkami. V 
+případě bezchybné funkce spoje mezi dvěma integrovanými obvody se obsah 
+výstupního registru předřazeného integrovaného obvodu musí shodovat s aktuálním 
+stavem klopného obvodu v Boundary Scan buňce následujícího obvodu. Toto je 
+základní metoda pro diagnostiku funkčnosti propojení jednotlivých prvků. Přímo 
+na desce můžeme realizovat tyto diagnostické funkce .</FONT> 
+<P> 
+<UL>
+  <LI>Vnější test </LI></UL>Při vnějším testu jsou přenosové cesty nastaveny tak, že 
+je možné na spoje mezi integrovanými obvody vkládat testovací vektory pomocí 
+vnějších propojek a odezvy ukládat do vstupních registrů. Průchodnost 
+přenosových cest je vyznačena tlustou čarou. (Obr.2) 
+<CENTER>
+<IMG   hspace=9 src="bound.gif">
+<IMG height=151 hspace=9 src="image25.gif" 
+width=554></CENTER>
+<CENTER><I>Obr.2 Vnější test</I></CENTER>
+<UL>
+  <LI><I>Vnitřní</I> test </LI></UL>Tento režim 
+umožňuje provést test vnitřní logiky všech integrovaných obvodů Testovací 
+vektory se vkládají do vstupních buněk, odezvy do výstupních buněk. Toto je však 
+velmi zjednodušený případ, který předpokládá, že vnitřní logiku tvoří pouze 
+kombinační obvody. Pokud jsou součástí vnitřní logiky i sekvenční obvody budou 
+se i ty podílet na aplikaci a vyhodnocení testu. Následující obrázek (Obr.3) 
+schematicky znázorňuje řešení zapojení s vyznačením průchodnosti přenosových 
+cest.</P> 
+
+<p align="CENTER"><IMG  height=135 hspace=9 src="image26.gif" 
+width=539><BR><I> Obr.3 Vnitřní test</I></P>
+
+<P align="justify">  
+<UL START="3">
+  <LI>Vzorkování </LI></UL>Toto je režim, který je 
+využíván v režimu F (funkce). Umožňuje vložit do vstupního registru vzorek dat 
+reprezentující informaci vkládanou na vstupy funkční logiky a do výstupního 
+registru vzorek dat reprezentující odezvu na vstupní informaci. (Obr. 4)</FONT> 
+
+<P> 
+<CENTER><IMG height=135 hspace=9 src="image27.gif" 
+width=539> <BR>
+ <I>Obr.4 Vzorkování</I></CENTER>
+<CENTER><I>&nbsp;</I></CENTER>
+<P  align="justify">Společenství výrobců integrovaných obvodů a 
+jejich prodejců označované JTAG (Joint Test Actoin Group) usilují o dosažení 
+dohody, která by stanovila princip konstrukce integrovaných obvodů. Mezi 
+nejznámější členy tohoto společenství jsou firmy Bull, DEC, Hewlwtt-Packard, 
+Honeywell, NCR, Philips, Siemens, Texas Instrument, Alcatel, AT&amp;T. Cílem 
+tohoto společenství je, aby metodika testování desek byla použitelná i v 
+případě, když jsou součástí jedné desky výrobky od různých firem. Současná verze 
+metodiky je výsledkem sjednocení názorů výrobců integrovaných obvodů a jejich 
+zákazníků. Je to kompromis mezi snahou o respektování požadavků diagnostiky a 
+snahou o co nejnižší  výrobní náklady. 
+Doporučení JTAG není striktní v tom smyslu, že by přesně určovalo, jak Boundary 
+Scan buňky konstruovat. Zaměřuje se spíše na definování rozhraní integrovaného 
+obvodu a způsob komunikace na tomto rozhraní.</FONT> 
+<P> 
+<P>&nbsp;<B><I><FONT size=+1>Konstrukce integrovaného obvodu s 
+Boundary Scan buňkami</I></B> </FONT>
+<P>&nbsp;Architektura 
+integrovaného obvodu s Boundary Scan buňkami a řadičem rozhraní TAP je na 
+Obr. 5. 
+<CENTER><IMG height=323 hspace=9 src="image28.gif" 
+width=571></CENTER>
+<CENTER><I>Obr. 5 Boundary Scan metoda</I></CENTER>
+<P></font> 
+<P  align="justify">Boundary Scan metoda využívá jednotlivé buňky 
+při stimulaci a čtení testovacích vektorů na vstupech a výstupech logického 
+jádra. Toto logické jádro může obsahovat i vlastní vnitřní diagnostické 
+prostředky. Vnitřní komunikace mezi buňkami, které jsou propojeny do scanovacího 
+kanálu je řešena pomocí řadiče rozhraní TAP.</FONT> 
+<P>Označení vodičů je:</FONT> 
+<P>TDI...Test Data In 
+<P>TDO...Test Data Out 
+<P>TMS...Test Data Select 
+<P>TCK...Test Clock 
+<P>RESET... Test Reset 
+<P  align="justify">Vodiče TDI a TDO jsou určeny pro přesun dat. TMS 
+a TCK jsou vodiče pro řízení scanovacího kanálu. RESET není povinný, ale používá 
+se pro inicializaci. V režimu testování TAP přepíná vstupující data na scanovací 
+kanál nebo na instrukční registr. Prostřednictvím instrukčního registru se 
+určuje výběr módu. Mód normální činnosti obvodu F (funkce), mód T (test) zapsání 
+a čtení testovacích dat do scanovacího kanálu, a zachycování událostí v reálném 
+čase (vzorkování). Instrukční registr umožňuje přemostění přemostění všech buněk 
+nebo může být využit pro snímání příznaků z logického jádra. Testovací mód 
+obsahuje test integrity vnitřních spojů, zkratů, přerušení a zachytí i občasné 
+poruchy, které mohou být způsobeny např. ohřevem obvodu. 
+<P  align="justify"> Je-li na desce více VLSI obvodů vybavených 
+Boundary Scan rozhraním, je možno zřetězit je sériově prostřednictvím řídících 
+signálů řadiče rozhraní (Obr. 6). Tímto uspořádáním je prováděna nejen 
+diagnostika jednotlivých obvodů, ale i jejich vzájemného propojení na tištěném 
+spoji.</FONT> 
+<CENTER><IMG height=232 hspace=9 src="image29b.gif" 
+width=540></CENTER>
+<CENTER><I><U><FONT size=+1>&nbsp;</FONT></U></I></CENTER>
+<CENTER><I>Obr.6 Uspořádání sériové komunikace na 
+desce</FONT></I></CENTER>
+<P> 
+<P  align="justify">Způsob generování řídících a synchronizačních 
+signálů je zřejmý z obr. 7. Obvod má dva výstupy - shift a load. Signálem 
+“load” se vkládá do posuvného registru paralelní informace, signál “shift” 
+indikuje sériový posuv informace. Činnost obvodu je řízena signálem TMS a má 
+tyto tři fáze(Obr. 8).</FONT> <BR>1) aplikace testu <BR>&nbsp;&nbsp;&nbsp; 
+TMS = 0 <FONT face=Symbol>Ţ</FONT> load = shift = 0 <BR>2) TMS = 0 <FONT 
+face=Symbol>Ţ</FONT> load = 1 <BR>3) sestupná hrana TMS <FONT 
+face=Symbol>Ţ</FONT> klopný obvod se vynuluje <FONT face=Symbol>Ţ</FONT> load = 
+0, shift = 1 <BR>&nbsp; 
+<CENTER><IMG height=124 hspace=9 src="image30b.gif" 
+width=310></CENTER>
+<CENTER><I>Obr. 7 Generování řídících 
+signálů</FONT></I></CENTER>
+<CENTER><IMG height=305 hspace=9 src="image31b.gif" 
+width=524></CENTER>
+<CENTER><I>Obr. 8 Časový diagram řízení posuvného 
+registru</FONT></I></CENTER>&nbsp; 
+<P><A name="2.4.3 Úprava Boundary Scan buňky"></A><B><I> <FONT size=+1>2.4.3 Úprava Boundary Scan 
+buňky</FONT></FONT> </I></B> <BR>&nbsp; 
+<P  align="justify">Pro některé aplikace je žádoucí úprava Boundary 
+Scan buňky . Na posuvný registr vytvořený propojením jednotlivých buněk 
+může totiž navazovat logika, která musí být po dobu posuvu informace v posuvném 
+registru od této informace procházející posuvným registrem odblokována. Tento 
+požadavek je ještě silnější u synchronizačních vývodů integrovaných obvodů. I na 
+tyto vývody musí být připojena Boundary Scan buňka a musíme zaručit, aby při 
+posuvu v posuvném registru nedocházelo ke změnám logických úrovní na 
+těch to synchronizačních vývodech. Změna 
+obsahu klopného obvodu by pro navazující integrované obvody znamenala generování 
+synchronizačního signálu. V některých aplikacích se proto doporučuje doplnit 
+Boundary Scan buňku o další klopný obvod, do něhož se informace přenese po 
+skončení posuvu (Obr. 9).</FONT> 
+<P> 
+<CENTER><IMG height=162 hspace=9 src="image32b.gif" 
+width=583></CENTER>
+<CENTER><I>Obr. 9 Úprava Boundary Scan 
+buňky</FONT></I></CENTER>
+<CENTER>&nbsp;</CENTER><A name="2.4.4 Boundary Scan"></A><B><I>
+<P  align="justify"><FONT 
+size=+1>Boundary Scan systémy</FONT></U></I></B> <BR>Systémy s Boundary Scan buňkami jsou řešeny na různých 
+úrovních. V dnešní době najdeme adaptéry k PC, karty do PC, testery řízené přes 
+sběrnici IEEE 488.2 a adaptéry k logickým analyzátorům. Minimálním 
+požadavkem pro řízení sériového styku dle standardu IEEE 1149.1 pro Boundary 
+Scan metodu je Test Bus Controller. Tento řadič řídí sériovou komunikaci 
+prostřednictvím 4 až 5 vodičového sériového kanálu (TDI, TDO, TMS, TCK, RESET) s 
+vnitřním řadičem TAP. Cenově přístupná varianta je použití adaptéru PM 3705 
+BST-Explorer společnosti JTAG Technologies. Adaptér PM 3705 je spojen se 
+sběrnicí přes paralelní port a je vybaven přepínačem pro eventuelní připojení tiskárny. Adaptér obsluhuje dvě paralelně 
+zapojená rozhraní TAP, což umožňuje využít jeden kanál pro řízení jednotky 
+SCANIO od stejného výrobce. Touto jednotkou lze řídit funkční testy přes 
+konektory obvodů, u nichž nelze aplikovat Boundary Scan metodu. Programové 
+vybavení obsahuje základní ovladače pro komunikaci.<BR>
+Společnost JTAG Technologies dále nabízí karty 
+do běžných PC, přičemž řízení sériového rozhraní je generováno přes standardní 
+sběrnici PC. Karta umožňuje měnit hodinový signál od 937,5 kHz do MHz nebo 
+využít externí hodiny. Kartu je možné aplikovat pro 6 kanálů TAP .<BR>
+Pro náročnější aplikace dodává společnost JTAG 
+Technologies tester PM 3720 Vector Blaster Tento tester je řízen přes rozhraní 
+IEEE-488.2/SCPI. Tester je řiditelný z jakéhokoliv zařízení (PC, logický 
+analyzátor, testovací systém) vybaveného stejným rozhraním. Tester je vybaven 
+dostatečně velkou pamětí testovacích vektorů s možností komprese a dekomprese v 
+reálném čase, pracuje v módu virtuální paměti, čímž vzniká “nekonečná” paměťová 
+kapacita s možností nepřetržitého generování testovacích vektorů s frekvencí 10 
+MHz bez komunikace s řídícím zařízením. Toto uspořádání umožňuje synchronizaci 
+testování s ostatními částmi diagnostikovaného systému, testování desek s 
+dynamickými paměťmi apod.Použitím adaptéru JTAG BA 1149.1 Bus Analyzer 
+lze pro HP 1650/16500 řadu logických analyzátorů vytvořit ¨výkonný logický 
+analyzátor komunikující ve standardu 1149.1. Adaptér je zařízení, které se jako 
+průchozí modul připojí přímo ke vstupům analyzátoru. Analyzátor pak dokáže 
+monitorovat všech 5 signálů TAP a zobrazuje jak časovou tak stavovou analýzu 
+aktivity TAP.</FONT> <BR>&nbsp; <BR>&nbsp; 
+
+</BODY>
+</HTML>

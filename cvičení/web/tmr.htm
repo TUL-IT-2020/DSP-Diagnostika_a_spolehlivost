@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+<P align="justify"><big>Záloha</big><br>
+Jako záloha (redundance) se označuje prostředek, jehož použití by bylo zbytečné, kdyby všechny ostatní části sytému pracovaly správně. Úkolem zálohy je obvykle detekce poruchy a její maskování. Maskování poruchy je dokonalý způsob využití zálohy pro zlepšení spolehlivosti systému, protože při něm se porucha vůbec nemůže navenek projevit. Nejčastěji a nejsnadněji se maskování provádí majoritní funkcí. Záloha tovřená přidáním dalšího (nebo více) stejného prku se nazývá statická.
+
+
+<P align="justify"><big>TMR</big><br>
+Nejjednodušší variantou statické zálohy je spojení tří prvků, označované jako třímodulová redundance nebo též systém TMR (z angl. Triple Modular Redundant). Zjednodušené schéma systému TMR je na obr. 1, kde F1,F2 a F3 jsou tři stejné funkční jednotky (moduly), které současně provádějí stejné operace se stejnými vstupními vektory. Očekává se tedy, že i výstupy všech tří funkčních jednotek budou shodné. Tyto výstupy jsou přivedeny na vstup majoritního logického členu M, který na svém výstupu vytváří funkci f=f1 f2 + f1 f3 + f2 f3. Má-li každý modul více výstupů, je třeba použít více třívstupových majoritních členů. Majoritní funkce dokáže zamaskovat pro každý bit samostatně jednu chybu. Objeví-li se tedy na výstupu jednoho modulu chybné hodnoty a na výstupech zbývajících dvou modulů správné hodnoty, "přehlasují" dva správné výstupy jeden chybný a na výstupu systému (za majoritou) se objeví správný vektor. Jestliže naopak dva nebo dokonce všechny tři moduly dávají na výstupu chybné vektory, vytvoří majoritní členy, které se mechanicky přidávají k většině v jednotlivých bitech, nový vektor, který je chybný.
+<P align="center"><IMG src="tmrr.gif"><BR><i>Obrázek 1</i></P>
+<P align="justify"></P>
+Pravděpodobnost bezporuchového provozu R<sub>TMR</sub> systému TMR se určí jako součet pravděpodobností všech bezporuchových stavů. Systém pracuje správně, jsou-li všechny moduly v bezporuchovém stavu nebo dva moduly bezporuchové a jeden poruchový. Má-li každý modul pravděpodobnost bezporuchového provozu R, pak je pravděpodobnost, že všecny tři moduly jsou bez poruchy rovna R<sub>1</sub>=R<sup>3</sup>.<BR>
+Pravděpodobnos, že <b>jeden konkrétní</b> modul je poruchový a zbylé dva v bezporuchovém stavu je R<sub>2</sub>=R<sup>2</sup>(1-R)<BR>
+TMR se skládá ze tří modulů, proto existují tři kombinace této varianty a pravděpodobnost, že <b>libovolný
+modul</b> ze tří je poruchový a ostatní v bezporuchovém stavu je potom R<sub>3</sub>=3 R<sup>2</sup>(1-R)<BR>. Pro výslednou pravděpodobnost celého systému TMR potom platí, že je rovna součtu  R<sub>1</sub> a R<sub>3</sub>.<BR>
+<table cellspacing="10" width="100%"><tr><td align="center">
+R<sub>TMR</sub>= R<sup>2</sup>(1-R)+R<sup>3</sup>=3R<sup>2</sup>+R<sup>3</sup></td><td width="20">(1)</td></tr>
+</table>
+<P align="justify">Platí-li pro všechny moduly exponenciální zákon s intenzitou poruch <img src="lambda.gif" align="middle">, nabývá výraz (1) tvaru:
+<table cellspacing="10" width="100%"><tr><td align="center">
+R(t)<sub>TMR</sub>= 3e<sup>-2<img src="lambda.gif" align="middle">t</sup>-2e<sup>-3<img src="lambda.gif" align="middle">t</sup></td><td width="20">(2)</td></tr>
+</table>
+<P align="center"><IMG src="tmr1.gif"><BR><i>Obrázek 2</i></P>
+<P align="justify">
+Průběh této funkce zobrazuje obr. 2 společně s exponenciálou, která popisuje hodnoty R(t) pro jeden nezálohovaný modul. Vidíme, že pro malé hodnoty t leží křivka R<sub>TMR</sub>(t) nad exponenciálou, což signalizuje, že důsledkem  použití třímodulové redundance je zvýšení pravděpodobnosti bezporuchového provozu na začátku činnosti systému. V okamžiku T=0,7T<sub>s</sub> se však obě křivky protínají a s rostoucím t klesá R<sub>TMR</sub>(t) rychleji než R(t). To znamená, že od jistého okamžiku je pravděpodobnost bezporuchového provozu systému TMR nižší, než pravděpodobnost bezporuchového provozu jednoho modulu. Je to způsobeno tím, že jakmile přestane být pravděpodobnost výskytu poruch ve dvou modulech současně zanedbatelná, roste nebezpečí poruchy systému, protože samoopravný mechanismus není dále použitelný.<BR>
+Integrací výrazu (2) můžeme odvodit hodnotu střední doby bezporuchového provozu systému TMR:<BR>
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="t1.gif"></td><td width="20">(3)</td></table><BR>
+Z rovnice (3) vyplývá, že střední doba bezporuchového provozu TMR je rovna pouze 83% hodnoty střední doby bezporuchového provozu jednoho modulu. Z toho můžeme odvodit závěr, že systém TMR je použitelný pouze pro krátkodobé úkoly, během nichž potřebujeme výrazně zvýšit pravděpodobnost bezporuchového porvozu. To ovšem platí pouze pro neobnovovaný systém, v němž poruchový modul stále dává na svém výstupu chybné hodnoty. Nepříjemnou vlastnost TMR lze odstranit tím, že každý modul, v němž se vyskytne porucha, co nejrychleji opravíme nebo nahradíme novým.<BR>
+Ve výrazech (1) až (3) se neuvažaovala pravděpodobnost bezporuchového porvozu majoritního členu. Je-li tento člen dostatečně jednoduchý ve srovnání s moduly, které zálohujeme, lze jeho poruchovost zanedbat a uvedené výrazy zůstávají v platnosti. Je-li však pravděpodobost R<sub>M</sub> příliš malá, je třeba jí vynásobit výraz pro R<sub>TMR</sub>, protože oba podsystémy jsou v sérii. Dostáváme tak upravený výraz:<BR>
+<table cellspacing="10" width="100%"><tr><td align="center">
+R<sub>TMR</sub>= R<sub>M</sub>(3R<sup>2</sup>+R<sup>3</sup>)</td><td width="20">(4)</td></tr>
+</table>
+Srovnání průběhu R(t) pro jeden modul (černě), systém TMR složený ze stejných modulů (červeně) a systém TMR, kde je uvažována i pravděpodobnost bezporuchového provozu majoritního členu (modře), je na obrázku 3. Graf byl získán jako výstup z programu <A href="spolehlivost.htm">SPOLEHLIVOST</A> a při zadání modelů byly zvoleny následující hodnoty:<BR>
+Pro moduly <img src="lambda.gif" align="middle">=1*10<sup>-6</sup><BR>
+Pro majoritní člen <img src="lambda.gif" align="middle"><sub>M</sub>=1*10<sup>-7</sup><BR>
+<center><IMG src="tmrg.gif"><BR><i>Obrázek 3</i></center>
+
+<P align="justify"><big>NMR</big><br>
+Spojením většího počtu stejných modulů, jejichž výstupy jsou vyhodnocovány majoritním členem, vznikne systém NMR, neboli N-modulová redundance. Je to vlastně sobecnění myšlenky sytému TMR. Všechny jednotky opět zpracovávají stejná vstupní data podle stejného programu a jejich výstupy jsou přivedeny na majoritní člen, jehož práh je M=(N+1)/2. Vzhledem k tomu, že logická funkce majorita je definována pouze pro lichý počet argumentů, používá se v systému NMR obvykle liché N.<BR>
+<P align="center"><IMG src="nmrr.gif"><BR><i>Obrázek 4</i></P>
+<P align="justify">
+Bezporuchový stav systému trvá i v tomto případě tak dlouho, dokud většina (nadprahový počet) modulů pracuje správně. To znamená, že maximální počet poruchových modul, při němž ještě nenastává porucha, může být N-M. Sečtením pravděpodobností stavů, které zahrnují M až N bezporuchových modulů, získáme výraz pro R<sub>NMR></sub>:
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="t2.gif"></td><td width="20">(5)</td></table><BR>
+Dosadíme-li do výrazu (5) hodnoty N=3 a M=2, dostaneme výraz pro TMR (1). V oblasti platnosti exponenciálního zákona poruch s parametrem <img src="lambda.gif" align="middle">, lze integrací (5) odvodit vztah pro střední dobu bezporuchového provozu systému NMR:
+<table width="100%" cellspacing="10"><tr><td align="center"><img src="t3.gif"></td><td width="20">(6)</td></table><BR>
+<P align="center"><IMG src="nmrg.gif"><BR><i>Obrázek 5 - Srovnání průběhu R(t) pro systémy NMR se stejnými moduly,<img src="lambda.gif" align="middle">=1*10<sup>-3</sup>  <BR>
+N=1 (černě), N=3, tj. TMR (červeně), N=5 (modře), N=7 (zeleně)</i></P>
+Průběh hodnot R<sub>NMR</sub>(t) je pro několik lichých N zakreslen na obr.5. Obrázek byl získán jako výstup z programu <A href="spolehlivost.htm">SPOLEHLIVOST</A> a soubor, který lze do programu načíst si můžete stáhnout <A href="modely.htm" target="_blank">zde</A>. Vidíme, že chování všech systému NMR se navzájem velmi podobá, takže se opět setkáváme se stejným jevem jako u TMR. Křivka pravděpodobnosti bezporuchového provozu se zpočátku přimyká k vodorovné tečně (tím více, čím vyšší je N), avšak pak následuje prudký pokles pod hodnotu jednoho modulu. Průsečík všech křivek je v místě, kde R(t)=0,5 a t=0,7 T<sub>s</sub>. Konvergence R<sub>NMR</sub>(t) k nule je pak tím rychlejší, čím vyšší je N. Také pro systém NMR platí, že pokud není obnovovaný, je použitelný pouze krátkodobě. Hlavní výhoda jeho použití spočívá v <b>dočasném zvýšení</b> hodnoty pravděpodobnosti bezporuchového provozu v důsledku schopnosti maskovat chyby N-M modulů<BR> Pro poměr mezi střední dobou bezporuchového provozu jednoho modulu a systému NMR platí:<BR>
+T<sub>s(TMR)</SUB>=0,83 T<sub>s</sub><BR> 
+T<sub>s(5MR)</SUB>=0,78 T<sub>s</sub><BR>
+T<sub>s(7MR)</SUB>=0,76 T<sub>s</sub><BR>
+T<sub>s(15MR)</SUB>=0,72 T<sub>s</sub><BR>
+</BODY>
+</HTML>

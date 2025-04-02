@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<TITLE>Spolehlivost</TITLE>
+ </HEAD>
+<BODY >
+<HR>
+<H1 ALIGN="center">Spolehlivostní modely</H1>
+<HR>
+<TABLE width="100%" BORDER=0>
+<TR>
+<TD align="left">
+Semestrální práce</TD>
+<TD align="right">
+Autor: Radek Jelínek</TD>
+</TR>
+</TABLE>
+<HR>
+<P align="justify">
+<Font size="+1">Úvod</font><BR>
+Program slouží pøedevším k výukovým úèelùm a umožòuje øešit pøíklady spolehlivostních modelù. u kterých
+vypoèítá jejich funkci R(t), která udává ... a její integrací dále snadno pøesnì vypoète Ts (støední dobu
+bezporuchového stavu). Výsledky lze zobrazit buï textovì, když do výsledkového okna se vypíše
+celá funkce R(t) a èíselné vyjádøení Ts, anebo i graficky jako závoslost R(t).
+Je možné zadat až ctyøi modely souèasnì a jejich funkce R(t) poté zobrazit do jednoho grafu,
+tak aby bylo jasnì možné porovnat jejich prùbìhy a spatøit pøípadné prùseèíky.
+Všechny ètyøi modely potom lze uložit na disk do souboru i s komentáøem, který mùže napøíklad obsahovat 
+didaktický popis toho co tyto modely pøedstavují a vysvìtlení ke grafu. Takto lze tedy vytváøet i
+rùzné výukové pøíklady , èi pouze ukládat výsledky øešení nìkterých jednotlivých složitých pøíkladù.
+</P>
+
+<P align="justify">
+<Font size="+1">Ovládání programu</font>
+<UL>
+<LI><b>Okno programu</b><BR>
+Po spuštìní programu se objeví hlavní okno programu, které vypadá takto:<BR>
+<BR>
+<img src="window.gif" width="473" height="421"><BR><BR>
+<LI><b>Pøepínaná mezi ètyømi modely</b><BR>
+Tlaèítka š šíslicemi 1 až 4 ve spodní èásti okna slouží k pøepínaní jednoho ze ètyø modelù.
+Barva èíslice na každém tlaèítku je jiná a odpovídá barvì, kterou se zobrazí prùbìh funkce R(t)
+daného modelu ve srovnávacím grafu. Prùbìh funkce R(t) patøící modelu 1 se tak zobrazí èernì, u modelu
+2 èervenì atd. 
+Vedle tlaèítek s èíslicemi se nachází tlaèítko pro smazání právì aktivního modelu.
+Po stisknutí tohoto tlaèítka se model smaže - vznikne jeden prvek s paramatrem lambda=0 (ideální
+bezporuchový prvek). 
+
+
+<LI><b>Jak nakreslit spolehlivostní model</b><BR>
+Vytváøení spolehlivostního modelu je možné pouze pøidáváním dalších prvkù paralelnì nabo sériovì 
+k právì vybranému prvku. Vybraný prvek se pozná tak, že jeho obrys je zvýraznìn. Výbìr prvku se provede
+stiknutím levého tlaèítka myši vnì ètvereèku symbolizujícího tento prvek. Je-li vybrán nìkterý
+z prvkù, potom se po stisknutí tlaèítka Pøidat sériovì nebo pøidat paralelnì provede vybrané pøidání 
+a celý model se pøekreslí. Postupným pøidáváním lze zadat libovolný spolehlivostní model.
+<BR>
+Možné úskalí:<BR>
+Z prvního modelu již nelze žádným pøidáním vytvoøit druhý model:<BR>
+<img src="levy.gif" width="319" height="176">
+<img src="pravy.gif" width="260" height="168"><BR><BR>
+Postup jak druhý model nakreslit ja takvýto:<BR>
+1.<img src="1.gif" width="129" height="101" align="top"><BR>
+2.<img src="2.gif" width="244" height="99" align="top"><BR>
+3.<img src="3.gif" width="265" height="201" align="top"><BR><BR>
+
+<LI><b>Parametry prvkù</b><BR>
+U každého prvku, lze zadat jeho parametr lambda (tj. intenzitu poruch). To se provede buï vybráním
+prvku (kliknutím levým tlaèítkem myši) a následným stiskem tlaèítka <I>Parametry</I> nebo 
+pouze stisknutím pravého tlaèítka myši uvnitø ètvereèku reprezentujícícho prvek. Program si zapamatovává
+poslednì zadanou hodnotu intenzity poruch a automaticky ji nabízí pøi dalším zadávání tohoto parametru
+u jiného prvku. Tak lze jednoduše zadat stejný parametr lambda napøíklad deseti stejným prvkùm pouze
+kliáním pravého tlaèítka myši a potom tlaèítka <I>OK</I> v dialogu pro zadání parametrù.Pøi vybrání prvku
+se parametr lambda objevuje dole v okénku s nápisem vybraný prvek.
+<LI><b>NMR</b><BR>
+Systém NMR vzniká spojením vìtšího poètu stejných modulù, jejichž výstupy jsou vyhodnocovány majoritou.
+Èíslo N udává kolik modulù je použito. Systém NMR se zadáva jeko jediný prvek. Vyberte prvek a potom kliknìte
+na tlaèitko <I>NMR</I>. V dialogovém oknì vyplòte prametry N a lambda. Prvek reprezentující systém NMR
+poznáte v nakresleném spolehlivostním modelu podle èíslice udávající N, která je nalevo nahoøe od ètvereèku
+reprezentujícího NMR systém.
+<LI><b>Zkopíravání modelu pod jiné èíslo</b><BR>
+Po stisknutí tlaèítka   <img src="ruka.gif" width="21" height="21"> se objeví dialog, ve kterém zvolte èíslo modela, do kterého
+se má právì aktivní model pøenést. Pomocí pøenášení modelù lze složitìjší modely lehce zkopírovat a pak
+pouze upravit pøenesený model, pøièemž kreslení celého složitého modelu se provede jen jednou na zaèátku.
+Pøi pøenášení modelu zùstane originální model pod svým èíslem zachován, bývalý model pod èíslem, kam se bude
+kopírovat, bude tímto modelem pøepsán a tedy ztracen.
+<LI><b>Výpoèet R(t)  a  T<sub>S</SUB></b><BR>
+Funkce R(t) udává pravdìpodobnost bezporuchového stavu v èase t. Tvar této funkce se vypíše do výsledkového
+okna po stisknutí tlaèítka <img src="kalkul.gif" width="18" height="21">. Výsledek je zobrazen jako textový výstup, který lze kopírovat
+i upravovat. Spolu s funkcí R(t) se vypoète i støední doba bezporuchového provozu T<SUB>S</SUB>.
+<LI><b>Zobrazení grafu</b><BR>
+Po stisknutí tlaèítka <img src="graf.gif" width="25" height="25"> se zobrazí okno s grafem funkce
+R(t) pro právì aktivní model. Mìøítko tohoto grafu je zvoleno automaticky, tak aby Ts ležel pøipližnì
+v jedné tøetinì grafu. Mìøítko lze manuálnì mìnit klinutím levého tlaèítka myši kamkoliv do grafu.
+Poté se zobrazí okénko, do kterého vepište po jaký èas t, se má graf zobrazovat. Zobrazit lze i srovnávací graf,
+ve kterém jsou grafy R(t) pro všechny ètyøi zadané modely. To provedete stiskem tlaèítka <img src="grafy.gif" width="23" height="22">
+Každý prùbìh je kreslen barvou odpovídající
+barvì èísla na tlaèítku pøepínajícím odpovídající model. Okna grafu lze libovolnì pøesouvat a mìnit jeho velikost.<BR>
+<i>Ukázka grafu</i>:<BR>
+<img src="grafukazka.gif" width="527" height="343"><BR><BR>
+<LI><b>Uložení a naètení modelù</b><BR>
+Všechny ètyøi modely lze uložit pomocí tlaèítka <img src="uloz.gif" width="20" height="19"> 
+a pozdìji naèíst po stisku <img src="otevri.gif" width="18" height="17">. Pøi ukládání i ètení se vždy zobrazí
+dialog pro výbìr souboru. V uloženém souboru jsou uložena data o modelech a jejich parametry.
+<LI><b>Popisy modelù a poznámky</b><BR>
+Modely je možné odokumentovat a opatøit struèným popisem. Okno s popisem a poznámkami otevøete stisknutím
+tlaèítka <img src="poznamky.gif" width="20" height="20">. Tyto poznámky se ukládají spolu s modely.
+</UL>
+</P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,128 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080">
+<P align="justify"><big>Metoda zcitlivění cesty</big><br>
+Generování testů je klíčovou úlohou diagnostiky, avšak je to též úloha nejtěžší  a lze říci, že doposud nebyla uspokojivě vyřešena. Při manuálním sestavování testu se obvykle postupuje metodou zcitlivění cesty.  Pro zdůraznění její obtížné algoritmizovatelnosti se někdy označuje též jako intuitivní zcitlivění cesty.<BR>
+Pro svou jednoduchost patří metoda stále k nejpoužívanějším, zejména pokud je třeba generovat test ručně.
+Základem této metody je sestavení přenosové cesty z místa výskytu poruchy na některý z výstupů testované jednotky.<BR>
+</P>
+<P align="justify"><big>Princip citlivé cesty</big><br>
+Jako cestu v logickém obvodu označíme sled vodičů a logických členů, které jsou navzájem propojeny. Cesta je citlivá, je-li schopna přenášet změny signálu ze svého začátku na jeho konec. Citlivou cestu sestavujeme vždy tak, aby přenášela signál o poruše z místa jejího výskytu na výstup. Toto sestavení je založeno na znalosti pravidel průchodu citlivé cesty jednotlivými typy logických členů. <BR>
+<table width="60%" border="0" align="center" cellspacing="10">
+<tr><td align="center"><IMG src="cesta1.gif"></td><td align="center"><IMG src="cesta2.gif"></td></tr>
+<tr><td colspan="2" align="center"><i>Obrázek 1 - Průchod citlivé cesty přes člen AND a OR</i><BR>&nbsp;</td></tr>
+</table>
+Má-li citlivá cesta procházet ze vstupu na výstup členu součinového typu (AND,NAND), musíme na všechny ostatní vstupy přivést hodnotu 1. Podobně pro zajištění průchodu citlivé cesty ze vstupu na výstup součtového typu (OR,NOR) musíme na všechny ostatní vstupy přivést hodnotu 0. Invertorem prochází citlivá cesta vždy. Podobně prochází citlivá cesta vždy ze vstupu na výstup členu nonekvivalence. Cílem zcitlivění je přenést změnu, přičemž není vůbec důležité, zda je její polarita zachována nebo ne.
+</P>
+<P align="center"><IMG src="cesta3.gif"><BR><i>Obrázek 2 - Citlivá cesta v logickém obvodu <BR>(polarita změny není zachována)</i></P>
+<P align="justify"><big>Generování jednoho kroku testu</big><br>
+Postup nalezení jednoho kroku testu lze popsat takto:
+<OL type="1">
+<LI>Volba poruchy, která má být detekována
+<LI>Do místa výskytu poruchy se přivede opačná hodnota (1 v případě poruchy t0 a naopak 0 při t1)
+<LI>Z místa poruchy sestavíme citlivou cestu na primární výstup
+<LI>Odvodíme chybějící hodnoty proměnných na primárních vstupech
+<LI>Nalezneme poruchy pokryté tímto sestaveným krokem testu
+</OL>
+Při generování úplného testu se popsaných pět bodů cyklicky opakuje, dokud není nalezen úplný test, tj. dokud nejsou pokryty všechny poruchy t0 a t1 na všech vodičích. Před zahájením  generování testu proto musíme sestavit seznam poruch, které má test detekovat. Vyčerpání tohoto seznamu, tj. pokrytí všech poruch v něm uvedených, budeme pak považovat za důkaz úplnosti testu.<BR>
+Po sestavení testu je účelné najít všechny poruchy, které tento krok testu detekuje, protože jinak bychom později vytvářeli nadbytečné kroky testu. Za pokryté můžeme považovat poruchy na citlivých cestách, které v daném kroku vedou na primární výstupy obvodu. Na každém vodiči v citlivé cestě je ale pokryta vždy jen ta porucha, která je opačná k přenášené hodnotě.</P> 
+<UL>
+<LI><i>Příklad</i><BR>
+Sestavený úplný detekční test pro obvod z obrázku 3 (tentýž obvod jako na obr.2, s pojmenovanými vodiči)<BR>
+<center><IMG src="cesta4.gif"><BR><i>Obrázek 3</i></center>
+<center><IMG src="cesta5.gif"></center>
+Jednotlivé řádky tabulky odpovídají krokům testu. V pravé části tabulky je uvedeno, které poruchy tento krok pokrývá.
+Všimněte si, že v každém sloupci se nachází značka t0 i t1. To znamená, že uvedený test je úplný a pokrývá všechny poruchy.<BR> 
+Generování testu ručně ani pro takovýto jednoduchý obvod není příjemné a lze se snadno splést. Zde uvedený test je výstupem programu <A href="test.htm">TEST</A>, který generuje úplné testy pro kombinační obvody. Vyzkoušejte si, jak snadno lze vygenerovat test pro uvedený obvod tímto programem. Popis obvodu je: 
+<PRE>
+	Y=/(BCE)
+	E=A+B</pre>
+</UL>
+<P align="justify"><big>Podmínky úplnosti testu</big><br>
+Pro obvod bez větvení vodičů (exituje ale vůbec takový v praxi ?) platí, že stačí testovat pouze primární vstupy, protože nehrozí riziko konfliktu nebo neřešitelné situace. To je způsobeno tím, že obvod má stromovou strukturu a nedochází k větvení a opětovnému sbíhání signálových cest. Naproti tomu existence větvení vodičů komplikuje postup zcitlivění cesty hned ze dvou důvodů. Jednak nás nutí volit mezi několika cestami z místa výskytu poruchy na primární výstup(y), za druhé může způsobit konflikty mezi požadavky na vstupní hodnoty logických členů, připojených na tentýž větvící se vodič.
+Test budeme považovat za úplný vůči všem poruchám typu t, pokrývá-li poruchy t0 a t1 na nevětvících se primárních vstupech a na všech větvích za body větvení. 
+<UL>
+<LI><i>Příklad</i><BR>
+Úplný test pro obvod na obrázku 4.
+<center><IMG src="cesta6.gif"><BR><i>Obrázek 4</i></center>
+<center><IMG src="cesta7.gif"></center><BR>
+Test je úplný, protože pokrývá poruchy na všech primárních vstupech a větvích za body větvení. Zobrazený test je opět získán jako výstup programu <A href="test.htm">TEST</A>. Porovnejte čas strávený generováním testu ručně a programem. Popis obvodu je: 
+<PRE>
+	Y=FG
+	F=A+D
+	G=E+C
+	D=B
+	E=B</pre>
+</UL>
+<P align="justify"><big>Testování redundantních obvodů</big><br>
+Jako redundantní označujeme součástku, kterou lze ze správně fungujícího obvodu vyjmout a  nahradit zdrojem konstantního signálu 0 nebo 1, aniž by se tím změnila výstupní funkce obvodu. Test redundantního obvodu nemůže být nikdy úplný, tzn. nemůže nám poskytnout informaci o technickém stavu všech součástek použitých v obvodu. Výskyt redundance v praxi zdaleka není vzácností a její odstranění není vždy možné. Redundantní implikanty se používají obvykle pro odstranění statického hazardu. V případě redundantního obvodu považujeme test za úplný, pokud detekuje všechny detekovatelné poruchy v neredundantní části. Dále je třeba vyjmenovat poruchy, které jsou nedetekovatelné. 
+<UL>
+<LI><i>Příklad</i><BR>
+Úplný test pro obvod na obrázku 5.
+<center><IMG src="cesta9.gif"><BR><i>Obrázek 5</i></center>
+<center><IMG src="cesta8.gif"><BR>
+<b>Nedetekovatelné poruchy</b>: B/t1 B/t0 B1/t1 B2/t1 </center><BR>
+Obvod na obr. 5 je redundantní. Funkci obvodu lze popsat rovnicí F=A, takže redundance je zřejmá (signál B nemá vliv na výstupní hodnotu). Program <A href="test.htm">TEST</A> v případě redundantních obvodů vygenereju test pokrývající všechny detekovatelné poruchy a zobrazí výčet nedetekovatelných poruch. Chcete-li si to vyzkoušet, zde je popis obvodu z obr. 5:<BR>
+<pre>
+	Y=C+D
+	C=A1 B1
+	D=B2 A2
+	B1=/B
+	B2=B
+	A1=A
+	A2=A
+</pre>
+</UL>
+<P align="justify"><big>Rekonvergentní cesty</big><br>
+Cesty, které se rozbíhají v jednom bodě větvení a sbíhají na vstupu jednoho logického členu se označují jako rekonvergentní. Pokud bychom zcitlivili současně obě cesty, které mají různou paritu inverze (tj. počet inverujících členů na citlivé cestě modulo 2), přenášela by jedna cesta signál s nezměněnou polaritou a druhá s opačnou, takže by se změny vykompenzovaly na vstupu společného logického členu. Kvůli tomu by nebylo možné detekovat poruchy společné části obou cest před bodem větvení.
+<UL>
+<LI><i>Příklad</i><BR>
+Snažíme se nalést test detekující poruchu A/t0 pro obvod na obr.6 .<BR>
+Signál A se větví na větve B a C. Obě větve se spojují v součinovém členu, jde tedy o rekonveregentní větve. Parita inverze ve větvích je různá. Zatímco větev C přenáší signál s nezměněnou polaritou, tak větev B-D ho invertuje. Tyto změny se vykompenzují na vstupu společného logického členu, takže poruchy na společné části obou cest před bodem větvení nelze detekovat. Neexistuje tedy test, který detekuje poruchu t0 nebo t1 na vstupu A. (poznámka: lze ale detekovat určité poruchy v rozvětvené části na signálech B, C, D)<BR>
+Následující test je vygenerován programem <A href="test.htm">TEST</A> (kopie z výstupního okna programu) a detekuje všechny detekovatelné poruchy:<BR>
+<PRE>
+A:0  - Vystupy Y:0  - C/t1 Y/t1 
+A:1  - Vystupy Y:0  - B/t0 D/t1 Y/t1 
+ 
+Nedetekovatelné poruchy: A/t1 A/t0 B/t1 C/t0 D/t0 Y/t0</PRE>    
+<center><IMG src="image16.gif"><BR><i>Obrázek 6</i></center>
+</UL>
+<P align="justify"><big>Problematické obvody</big><br>
+Metoda zcitlivění cesty není dokonalá a v některých případech nedokáže nalézt testovací vektor, ačkoliv existuje.
+<UL>
+<LI><i>Příklad</i><BR>
+<center><IMG src="problem.gif"><BR><i>Obrázek 7</i><BR></center>
+Cílem je nalézt testovací vektor detekující poruchu t1 na výstupu členu G1<BR>
+<OL type="a">
+<LI>Nejprve to zkusíme cestou G3-G6
+<OL type="1">
+<LI> Nastavení vstupů, buzení poruchy: A=B=1
+<LI> Zcitlivění cesty přes G3: C=1
+<LI> Šíření poruchy přes G3. G3=0
+<LI> Zcitlivění cesty přes G6: musí platit G2=G4=G5=1
+<LI> Platí že G2=1 v důsledku volby A,C
+<LI> Aby platilo, že G4=1, musí E=0
+<LI> Nelze nastavit G5=1, protože E=0, B=1
+</OL>
+<LI>Ještě to zkusíme cestou G4-G6
+<OL type="1">
+<LI> Nastavení vstupu, buzení poruchy: A=B=1
+<LI> Zcitlivění cesty přes G4: E=1
+<LI> Šíření poruchy přes G4. G4=0
+<LI> Zcitlivění cesty přes G6: musí platit G2=G3=G5=1
+<LI> Platí že G5=1 v důsledku volby A,E
+<LI> Aby platilo, že G3=1, musí C=0
+<LI> Nelze nastavit G2=1, protože C=0, A=1
+</OL>
+</OL>
+Řešení ale existuje a je jím vektor A=B=C=E=1. Tento vektor ovšem klasickou metodou zcitlivění cesty nelze nalézt. 
+Problém spočívá v rekonvergentních větvích s různou paritou negace. Tento vektor dále kromě G1/t1 detekuje i následující poruchy:
+A/t0 G3/t0 G6/t1 G4/t0 B/t0 C/t0 G2/t0 E/t0 G5/t0. Vytvořený program <A href="test.htm">TEST</a> spolehlivě nalezne všechny testovací
+vektory detekující všechny detekovatelné chyby, včetně těch, na které metoda zcitlivění cesty nestačí. Soubor s popisem tohoto problematického obvodu si můžete stáhnout <A href="obvody.htm">zde</A>.
+</UL>
+ 
+</BODY>
+</HTML>

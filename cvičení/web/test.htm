@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1250"> 
+<TITLE>HILDO</TITLE>
+</HEAD>
+<BODY>
+<P ALIGN="justify">
+<BIG>Program TEST</BIG><BR>
+Program umožňuje pro kombinační obvod popsaný jednoduchým <A href="jazyk.htm">jazykem</A> vygenerovat úplný strukturní test detekující všechny detekovatelné poruchy typu t0 a t1.  Výstupem programu je seznam testovacích vektorů a jejich pokrytí. V případě redundantního obvodu je k tomuto seznamu připojen výčet nedetekovatelných poruch. Použití programu je možné pro generování testů pro jednoduché obvody nebo kontrolu výsledků "ručního" řešení sestavování testu pro kombinační obvody, což je jedna z nejčastějších úloh, s kterou se student během studia předmětu diagnostika a spolehlivost setká.  
+</P> 
+<IMG src="obrt.gif"><BR>
+<P align="justify">
+<big>Ovládání</big><BR>
+Převážnou část okna programu tvoří oblast, ve které lze jednoduchým jazykem popsat funkci a strukturu testovaného obvodu. Zadaný popis je možné uložit do souboru po stisku tlačítka <b>Uložit</b>. Uložený soubor s daty popisu obvodu lze opět načíst po stisku tlačítka <b>Otevřít</b>. Při otevření souboru se ztratí aktuální obsah okna pro vstup popisu a bude nahrazen obsahem otevíraného souboru. Místo tlačítek umístěných v okně lze použít i příkazy z menu okna<BR>
+Po zadání popisu obvodu nabo načtení tohoto popisu ze souboru je nutné provést jeho analýzu. Analýza spočívá v kontrole syntaktické správnosti popisu obvodu a překladu rovnic do jejich vnitřní reprezentace pomocí datové struktury, která je dále využita při vlastním generování testu. Zadaný obvod nesmí obsahovat zpětné vazby nebo zpožděné signály (operátor # v popisu obvodu). Není-li analýza úspěšná a vyskytne se chyba, je o tom podána informace v dolní části okna programu, kde je okénko nazvané <i>Výsledky analýzy</i>.<BR>
+Po úspěšné analýze se v tomto okénku zobrazí nalezené vstupní a výstupní signály zadaného obvodu. Nalezení úplného detekčního testu pro zadaný obvod lze nyní spustit stiskem tlačítka <b>Generuj test</b>. Toto tlačítko je neaktivní (nelze ho stisknout) až do doby úspěšné analýzy.<BR>
+Během generování testu, které může v závislosti na složitosti obvodu trvat i velmi dlouho, je zobrazena informace o provedené části výpočtu pomocí horizontálního grafu (tzv. ProgressBar). Výsledný test je potom zobrazen v novém okně, odkud ho lze pomocí označení a zkopírování (CTRL+C,CTRL+V) přenést i do jiných programů. Test je zobrazen ve formě vektorů vstupních signálů, hodnoty výstupních signálů a pokrytí daného kroku testu. Nakonec je přidána informace o nedetekovatelných poruchách.
+</P>
+<IMG src="testokno.gif" hspace="25"><BR>
+</HTML>
