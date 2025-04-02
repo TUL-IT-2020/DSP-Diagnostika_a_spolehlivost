@@ -55,20 +55,7 @@ Testování na různé úrovni:
 | **Circuit** | Differential Equations | Transistors    | Masks          |
 
 ### Design pro snadnou testovatelnost
-Přidáme: 
-- Testovací body do obvodu (sledovací).
-- Nastavovací body (pro nastavení citlivé cesty)
-
-Potřeba přístupu do všech registrů!
-Problém -> příliš mnoho pinů.
-
-Nahradilo se to posuvnými registry (máme přístup ke všem registrům).
-
-Příliš mnoho registrů, dlouhá doba nahrávání do obvodu!
-Přidání generátoru testů přímo do čipu.
-
-BIST -> Build-in Self-Test
-LSFR nám vygeneruje náhodné vstupu pro otestování.
+![[Design pro snadnou testovatelnost]]
 
 ### Redundance
 Všechny redundantní obvody musí mít možnost otestování!

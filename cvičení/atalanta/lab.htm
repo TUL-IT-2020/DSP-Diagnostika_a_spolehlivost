@@ -1,0 +1,419 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!-- Created from PDF via Acrobat SaveAsXML -->
+<!-- Mapping table version: 28-February-2003 -->
+<HTML>
+<HEAD>
+<META
+ name="DC.Title"
+ content="Microsoft Word - lab.rtf" >
+<META
+ name="DC.Contributor"
+ content="Ondrej_Novak" >
+<META
+ name="DC.Creator"
+ content="PScript5.dll Version 5.2" >
+<META
+ name="DC.Date"
+ content="2006-11-24T17:26:17+01:00" >
+<META
+ name="DC.Date.Modified"
+ content="2006-11-24T17:26:17+01:00" >
+</HEAD>
+<BODY bgcolor=white text=black link=blue vlink=purple alink=fushia >
+<P 
+ align="center"
+><FONT size="+1" color="#000000"></B>Zad&aacute;n&iacute; laboratorn&iacute;ho cvi&#269;en&iacute; z p&#345;edm&#283;tu Diagnostika a spolehlivost - &uacute;loha </P
+><P 
+ align="center"
+>&#269;. 1 </P
+><DIV class="Part" 
+
+><H1 
+ align="center"
+><FONT size="+2"><B>Detekce a lokalizace poruch v kombina&#269;n&iacute;ch obvodech </H1
+><DIV class="Sect" 
+
+><H2 
+
+><U><FONT size="+1">Zad&aacute;n&iacute;: </U></H2
+><P 
+
+></B>1.P&#345;i cvi&#269;en&iacute; bude pou&#382;&iacute;v&aacute;n ATPG ATALANTA (Mo&#382;no st&aacute;hnout na <FONT color="#0000FF">http://cs.felk.cvut.cz/~fiserp/<FONT color="#000000">  ) a poruchov&yacute; simul&aacute;tor HOPE.  </P
+><OL 
+ type="1"
+><LI 
+
+> Analyzujte zapojen&iacute; obvodu popsan&eacute;ho v souboru c17.bench. Nakreslete jeho logick&eacute; sch&eacute;ma. </P
+></LI
+><LI 
+
+> Vygenerujte jeho &uacute;pln&yacute; test p&#345;&iacute;kazem atalanta -l c17.lst c17.bench Ov&#283;&#345;te v&yacute;sledek testu t&iacute;m, &#382;e zkontrolujete v&scaron;echny vygenerovan&eacute; soubory Spus&#357;te poruchov&yacute; simul&aacute;tor HOPE p&#345;&iacute;kazem: hope.exe -l hope.log -t c17.test c17.bench &ndash;u Zkontrolujte v&yacute;pis HOPE.log, ov&#283;&#345;te pokryt&iacute; poruch jednotliv&yacute;mi vektory. Vygenerovan&yacute; test pova&#382;ujte za minim&aacute;ln&iacute; detek&#269;n&iacute; test. Prove&#271;te p&#345;&iacute;kaz: atalanta -l c17.lst -N c17.bench Z&iacute;sk&aacute;te soubor c17.test kter&yacute; obsahuje vy&scaron;&scaron;&iacute; po&#269;et vektor&#367; (nebyla provedena kompakce vektor&#367;), kter&yacute; je l&eacute;pe vyu&#382;iteln&yacute; pro sestaven&iacute; slovn&iacute;ku poruch. </P
+></LI
+><LI 
+
+> Sestavte komprimovan&yacute; slovn&iacute;k poruch metodou z&aacute;znamu prvn&iacute; chybn&eacute; odezvy. Slovn&iacute;k z&iacute;sk&aacute;me tak, &#382;e ze seznamu vygenerovan&yacute;ch testovac&iacute;ch vektor&#367; odstran&iacute;me postupn&#283; posledn&iacute; vektory a postupn&#283; spou&scaron;t&iacute;me simul&aacute;tor HOPE. Seznam nedetekovan&yacute;ch poruch bude odpov&iacute;dat poruch&aacute;m detekovateln&yacute;m v kroc&iacute;ch testu, odpov&iacute;daj&iacute;c&iacute;ch odstran&#283;n&yacute;m vektor&#367;m. </P
+></LI
+><LI 
+
+> Obvod realizujte na p&#345;&iacute;pravku LABORO-2 s pou&#382;it&iacute;m IO &#345;ady TTL 7400, 7402, 7404, 7408, 7410, 7420, 7430, 7432. </P
+></LI
+><LI 
+
+> Ov&#283;&#345;te spr&aacute;vnou funkci realizovan&eacute;ho obvodu s pou&#382;it&iacute;m &uacute;pln&eacute;ho detek&#269;n&iacute;ho testu a slovn&iacute;ku poruch. </P
+></LI
+><LI 
+
+> Ov&#283;&#345;te mo&#382;nost detekce a lokalizace poruch typu t0 a t1 fyzik&aacute;ln&#283; injektovan&yacute;ch v libovoln&eacute;m m&iacute;st&#283; obvodu s pou&#382;it&iacute;m slovn&iacute;ku poruch (n&#283;kter&eacute; poruchy vlo&#382;&iacute; asistent). </P
+></LI
+><OL 
+
+><LI 
+
+> Zjist&#283;te pou&#382;itelnost slovn&iacute;ku pro v&iacute;cen&aacute;sobn&eacute; poruchy &ndash; zapi&scaron;te odezvy a vyvo&#271;te z&aacute;v&#283;r. </P
+></LI
+><LI 
+
+><B>POZOR!</B> P&#345;i prov&aacute;d&#283;n&iacute; fyzik&aacute;ln&iacute; injekce poruch v obvodu je t&#345;eba vych&aacute;zet z vlastnost&iacute; IO &#345;ady TTL. Injekci poruchy t0 m&#367;&#382;eme realizovat zkratov&aacute;n&iacute;m p&#345;&iacute;slu&scaron;n&eacute;ho sign&aacute;lu na zem bez rizika po&scaron;kozen&iacute; IO (aby nedo&scaron;lo k tepeln&eacute;mu  p&#345;et&iacute;&#382;en&iacute; obvodu, m&#367;&#382;eme zkratovat u ka&#382;d&eacute;ho IO max. 1 v&yacute;stup). Naproti tomu p&#345;i injekci poruchy t1 mus&iacute;me v&#382;dy p&#367;vodn&iacute; zdroj logick&eacute;ho sign&aacute;lu odpojit. Zkratov&aacute;n&iacute; v&yacute;stupu hradla ve stavu '0' na zdroj nap&aacute;jec&iacute;ho nap&#283;t&iacute; by zp&#367;sobilo zni&#269;en&iacute; obvodu. </LI
+></OL
+><LI 
+
+> Vygenerujte test pro n&#283;kter&yacute; z v&#283;t&scaron;&iacute;ch benchmarkov&yacute;ch obvod&#367; a prove&#271;te rozbor v&yacute;sledk&#367; testu. </P
+></LI
+></OL
+><P 
+ align="center"
+><FONT size="+1">Zad&aacute;n&iacute; laboratorn&iacute;ho cvi&#269;en&iacute; z p&#345;edm&#283;tu Diagnostika a spolehlivost - &uacute;loha </P
+><P 
+ align="center"
+>&#269;. 2 </P
+></DIV
+></DIV
+><DIV class="Part" 
+
+><H1 
+ align="center"
+><FONT size="+2"><B>Synt&eacute;za BIST </H1
+><P 
+ align="justify"
+><U><FONT size="+1">Zad&aacute;n&iacute;</U></B>: Seznamte se s apletem pro synt&eacute;zu obvod&#367; BIST na adrese </P
+><P 
+ align="justify"
+><U><FONT color="#0000FF">http://www.ui.savba.sk/diag/tools/bist/index.html </U></P
+><P 
+ align="justify"
+><FONT color="#000000">Navrhn&#283;te vlastn&iacute; vestav&#283;n&eacute; diagnostick&eacute; prost&#345;edky pro zadan&yacute; testovan&yacute; obvod a odsimilujte chov&aacute;n&iacute; obvodu s BIST pomoc&iacute; Modelsimu. </P
+><DIV class="Sect" 
+
+><H2 
+ align="justify"
+><U><B>Postup: </U></H2
+><OL 
+ type="1"
+><LI 
+ align="justify"
+></B>Nastavte &bdquo;learning module&ldquo;, v men<FONT size="+1" color="#000000"></B>u 	&bdquo;Option&ldquo; je mo&#382;n&eacute; nastavit jazyk na anglicky nebo slovensky. </P
+></LI
+><LI 
+ align="justify"
+> Projd&#283;te jednotliv&eacute; kroky v re&#382;imu &bdquo;cvi&#269;enie&ldquo;. Zvolte gener&aacute;tor testovac&iacute;ch vzork&#367; podle pokyn&#367; cvi&#269;&iacute;c&iacute;ho. Vygenerujte VHDL k&oacute;d jednotliv&yacute;ch komponent a cel&eacute;ho BIST modulu. </P
+></LI
+><LI 
+ align="justify"
+> P&#345;elo&#382;te jednotliv&eacute; moduly v Modelsimu. Jako posledn&iacute; p&#345;ekl&aacute;dejte modul BIST. Soubor bud&iacute;c&iacute;ch funkc&iacute; je mo&#382;n&eacute; z&iacute;skat <FONT color="#0000FF">zde<FONT color="#000000">. </P
+></LI
+><LI 
+ align="justify"
+>Odsimulujte test cel&eacute;ho obvodu pomoc&iacute; p&#345;ipraven&yacute;ch bud&iacute;c&iacute;ch sign&aacute;l&#367;. </P
+></LI
+><LI 
+ align="justify"
+> Ov&#283;&#345;te schopnost detekovat poruchu t&iacute;m, &#382;e v modulu CUT zm&#283;n&iacute;te funkci a odsimulujete znovu cel&yacute; test. </P
+></LI
+></OL
+><P 
+ align="center"
+><FONT size="+1">&#269;. 3 </P
+></DIV
+></DIV
+><DIV class="Part" 
+
+><H1 
+ align="center"
+><FONT size="+2"><B>Diagnostick&eacute; prost&#345;edky pro autonomn&iacute; testov&aacute;n&iacute; </H1
+><DIV class="Sect" 
+
+><H2 
+ align="justify"
+><U><FONT size="+1">Zad&aacute;n&iacute;: </U></H2
+><OL 
+ type="1"
+><LI 
+ align="justify"
+></B> S pou&#382;it&iacute;m IO 7483 navrhn&#283;te zapojen&iacute; paraleln&iacute; dvoubitov&eacute; s&#269;&iacute;ta&#269;ky. </P
+></LI
+><LI 
+ align="justify"
+> Navrhn&#283;te obvod pro autonomn&iacute; test t&eacute;to s&#269;&iacute;ta&#269;ky metodou HILDO (Highly Integrated Logic Device Observer). P&#345;i realizaci LZPR pou&#382;ijte polynom: </P
+></LI
+></OL
+><P 
+ align="center"
+><FONT size="+1">zde si dopln&iacute;te zadan&yacute; polynom </P
+><OL 
+ type="1"
+><LI 
+ align="justify"
+><FONT size="+1"> Zvolte m&iacute;sta pro p&#345;ipojen&iacute; vstup&#367; a v&yacute;stup&#367; s&#269;&iacute;ta&#269;ky do LZPR. </P
+></LI
+><LI 
+ align="justify"
+> Obvod podle bod&#367; 1 a&#382; 3 simulujte pomoc&iacute; simula&#269;n&iacute;ho programu SIMULATE </P
+></LI
+></OL
+><P 
+ align="justify"
+>(Y:\VYUKA\DSP\LZPR\ nebo <I>http://cs.felk.cvut.cz/~kubatova/dsp.htm) </I></P
+><OL 
+ type="1"
+><LI 
+ align="justify"
+> Sestavte experiment&aacute;ln&#283; slovn&iacute;k poruch pro v&scaron;echny poruchy typu t0 a t1 na prim&aacute;rn&iacute;ch vstupech s&#269;&iacute;ta&#269;ky. </P
+></LI
+><LI 
+ align="justify"
+> Dojde-li k jevu zvan&eacute;mu &ldquo;aliasing" (p&#345;&iacute;znak bezporuchov&eacute;ho stavu v registru HILDO je shodn&yacute; s p&#345;&iacute;znakem n&#283;kter&eacute;ho z poruchov&yacute;ch stav&#367;), obm&#283;&#328;te zapojen&iacute; vstup&#367; a v&yacute;stup&#367; s&#269;&iacute;ta&#269;ky a opakujte body 4 a&#382; 6. </P
+></LI
+><LI 
+ align="justify"
+> V&yacute;sledky z&iacute;skan&eacute; ze simulace experiment&aacute;ln&#283; ov&#283;&#345;te na p&#345;&iacute;pravku, tzn. sestavte zapojen&iacute; podle bod&#367; 1 a&#382; 3 a sestavte slovn&iacute;k poruch podle bodu 6. Srovnejte v&yacute;sledky z&iacute;skan&eacute; simulac&iacute; a experiment&aacute;ln&#283; na p&#345;&iacute;pravku. </P
+></LI
+></OL
+><P 
+ align="justify"
+><FONT size="+1">Upozorn&#283;n&iacute;: Body 1 a&#382; 6 je t&#345;eba m&iacute;t ov&#283;&#345;eny na simul&aacute;toru p&#345;ed za&#269;&aacute;tkem laboratorn&iacute;ho cvi&#269;en&iacute; v r&aacute;mci dom&aacute;c&iacute; p&#345;&iacute;pravy. </P
+><P 
+ align="center"
+><FONT size="+1">Na p&#345;&iacute;pravku pro experimenty s LZPR m&aacute;te k dispozici: </P
+><DL 
+
+><DT 
+
+><FONT size="+1">-</DT
+><DD 
+
+>8 KLOPN&Yacute;CH OBVOD&#366; TYPU D &#345;&iacute;zen&yacute;ch hranou s centr&aacute;ln&iacute;m asynchronn&iacute;m nulov&aacute;n&iacute;m (tla&#269;&iacute;tko RESET), individu&aacute;ln&iacute;m asynchronn&iacute;m nastaven&iacute;m (tla&#269;&iacute;tko S) a indikac&iacute; &uacute;rovn&#283; v&yacute;stupu </DD
+></P
+><DT 
+
+>-</DT
+><DD 
+
+>8 &#268;LEN&#366; NONEKVIVALENCE s indikac&iacute; &uacute;rovn&#283; jednoho ze vstup&#367; (doporu&#269;ujeme vyu&#382;&iacute;t pro kontrolu vstupn&iacute;ch dat paraleln&iacute;ho p&#345;&iacute;znakov&eacute;ho analyz&aacute;toru) </DD
+></P
+></DL
+><P 
+ align="justify"
+>-VODI&#268; S 8 SVORKAMI (nap&#345;. pro rozvod zp&#283;tn&eacute; vazby do jednotliv&yacute;ch &#269;len&#367; nonekvivalence) </P
+><DL 
+
+><DT 
+
+>-</DT
+><DD 
+
+> 8-VSTUPOV&Yacute; PARITN&Iacute; GENER&Aacute;TOR (kask&aacute;da &#269;len&#367; nonekvivalence) </DD
+></P
+><DT 
+
+>-</DT
+><DD 
+
+> PROGRAMOVATELN&Yacute; GENER&Aacute;TOR HODINOV&Yacute;CH IMPULS&#366;, vstupy ozna&#269;en&eacute; '1', '2', ... '128' umo&#382;&#328;uj&iacute; p&#345;ipojen&iacute;m na &uacute;rove&#328; log. 0 nastavit po&#269;et hodinov&yacute;ch puls&#367; generovan&yacute;ch p&#345;i jednom stisknut&iacute; tla&#269;&iacute;tka RUN. Tento po&#269;et je d&aacute;n sou&#269;tem vah uzemn&#283;n&yacute;ch vstup&#367; + 1. (Prvn&iacute; impuls se generuje p&#345;i stisknut&iacute; a dal&scaron;&iacute;ch N p&#345;i uvoln&#283;n&iacute; tla&#269;&iacute;tka) </DD
+></P
+><DT 
+
+>-</DT
+><DD 
+
+> OBJ&Iacute;MKU PRO TESTOVANOU S&#268;&Iacute;TA&#268;KU s v&yacute;vody vyveden&yacute;mi na svorky (p&#345;i zapojov&aacute;n&iacute; s&#269;&iacute;ta&#269;ky nezapome&#328;te na nap&aacute;jec&iacute; v&yacute;vody!) </DD
+></P
+><DT 
+
+>-</DT
+><DD 
+
+> SVORKY NAP&Aacute;JEN&Iacute; A ZEM<FONT size="+1">&#282; </DD
+></P
+></DL
+><P 
+ align="justify"
+>-ZDROJ HODINOV&Eacute;HO SIGN&Aacute;LU v p&#345;&iacute;m&eacute; a negovan&eacute; form&#283; pro aplikace vyu&#382;&iacute;vaj&iacute;c&iacute; extern&iacute; gener&aacute;tor stimul&#367; </P
+><P 
+ align="center"
+><FONT size="+1"> Zad&aacute;n&iacute; laboratorn&iacute;ho cvi&#269;en&iacute; z p&#345;edm&#283;tu Diagnostika a spolehlivost - &uacute;loha </P
+></DIV
+></DIV
+><DIV class="Part" 
+
+><H1 
+ align="center"
+>&#269;. 4 <FONT size="+2"><B>P&#345;&iacute;znakov&aacute; anal&yacute;za</B> -<B>pracovi&scaron;t&#283; A </H1
+><P 
+
+><U><FONT size="+1">Zad&aacute;n&iacute;</U>:</B> Zkontrolujte spr&aacute;vnou funkci mikroprocesoru p&#345;i b&#283;hu napr&aacute;zdno. Datov&aacute; sb&#283;rnice je uzemn&#283;na, tak&#382;e procesor trvale prov&aacute;d&iacute; instrukci NOP. </P
+><DIV class="Sect" 
+
+><H2 
+
+><U><B>Pokyny: </U></H2
+><OL 
+ type="1"
+><LI 
+
+></B> P&#345;ed zah&aacute;jen&iacute;m m&#283;&#345;en&iacute; prov&#283;&#345;te podle p&#345;ilo&#382;en&eacute;ho n&aacute;vodu (str. 13) spr&aacute;vnou funkci p&#345;&iacute;znakov&eacute;ho analyz&aacute;toru BM 578. </P
+></LI
+><LI 
+
+> Zapn&#283;te mikropo&#269;&iacute;ta&#269; A a voltmetrem ov&#283;&#345;te, zda v&scaron;echna nap&aacute;jec&iacute; nap&#283;t&iacute; mikroprocesoru jsou v dan&yacute;ch toleranc&iacute;ch. </P
+></LI
+><LI 
+
+> P&#345;ipojte kle&scaron;&#357;ov&eacute; sondy analyz&aacute;toru na dr&aacute;tov&eacute; smy&#269;ky na desce po&#269;&iacute;ta&#269;e takto<FONT size="+1">: 
+^ .................... zem 
+CLOCK .................. DBIN (sestupn&aacute; hrana) 
+START ................... A15 (sestupn&aacute; hrana) 
+STOP ..................&hellip;A15 (sestupn&aacute; hrana) 
+</P
+></LI
+><LI 
+
+> Sejm&#283;te hrotovou sondou p&#345;&iacute;znak ze zem&#283; a +5V. </P
+></LI
+><LI 
+
+> Sejm&#283;te hrotovou sondou p&#345;&iacute;znaky na v&scaron;ech vodi&#269;&iacute;ch adresov&eacute; sb&#283;rnice a porovnejte je s tabulkou dod&aacute;vanou v&yacute;robcem analyz&aacute;toru </P
+></LI
+><LI 
+
+> P&#345;ipojte vstupy START i STOP na sign&aacute;l A14. Opakujte m&#283;&#345;en&iacute; z kroku 5, porovnejte v&yacute;sledky. </P
+></LI
+><LI 
+
+> P&#345;ipojte vstup START na sign&aacute;l A15 a STOP na A14. Opakujte m&#283;&#345;en&iacute; z kroku 5, porovnejte v&yacute;sledky a vyvo&#271;te z&aacute;v&#283;r. </P
+></LI
+></OL
+><P 
+ align="center"
+><FONT size="+1">Tabulka p&#345;&iacute;znak&#367; pro 16-bitov&eacute; adresy </P
+><P 
+ align="center"
+><FONT size="+1">(CLOCK=DBIN, STOP=A15, START=A15) </P
+><TABLE 
+ align="center" border=0 cellspacing=0 cellpadding=2
+><TR  
+
+><TD  
+ align="left" width="105"  valign="top" height="22" 
+><FONT size="+1">A0 .... UUUU </TD
+><TD  
+ align="center" width="118"  valign="top" height="22" 
+>A4 .... 5H21 </TD
+><TD  
+ align="center" width="122"  valign="top" height="22" 
+>A8 .... HC89 </TD
+><TD  
+ align="left" width="279"  valign="top" height="22" 
+>A12 ... HAP7 </TD
+></TR
+><TR  
+
+><TD  
+ align="left" width="105"  valign="middle" height="32" 
+>A1 .... 5555 </TD
+><TD  
+ align="center" width="118"  valign="middle" height="32" 
+>A5 .... 0AFA       </TD
+><TD  
+ align="center" width="122"  valign="middle" height="32" 
+>A9 .... 2H70 </TD
+><TD  
+ align="left" width="279"  valign="middle" height="32" 
+>A13 ... 3C96 </TD
+></TR
+><TR  
+
+><TD  
+ align="left" width="105"  valign="middle" height="32" 
+>A2 .... CCCC </TD
+><TD  
+ align="left" width="118"  valign="middle" height="32" 
+>A6 .... UPFH </TD
+><TD  
+ align="left" width="122"  valign="middle" height="32" 
+>   A10 ... HPP0  </TD
+><TD  
+ align="left" width="279"  valign="middle" height="32" 
+>A14 ... 3827 </TD
+></TR
+><TR  
+
+><TD  
+ align="left" width="105"  valign="bottom" height="22" 
+>A3 .... 7F7F </TD
+><TD  
+ align="center" width="118"  valign="bottom" height="22" 
+>A7 .... 52F8  </TD
+><TD  
+ align="center" width="122"  valign="bottom" height="22" 
+>A11 ... 1293  </TD
+><TD  
+ align="left" width="279"  valign="bottom" height="22" 
+>A15 ... 755U </TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV class="Part" 
+
+><H1 
+ align="justify"
+><FONT size="+2"><B>P&#345;&iacute;znakov&aacute; anal&yacute;za</B> -<B>pracovi&scaron;t&#283; B a C </H1
+><P 
+ align="justify"
+><FONT size="+1">Zad&aacute;n&iacute;:</B> Lokalizujte poruchu mikropo&#269;&iacute;ta&#269;e PMI-80 porovn&aacute;n&iacute;m p&#345;&iacute;znak&#367; poruchov&eacute;ho a bezporuchov&eacute;ho mikropo&#269;&iacute;ta&#269;e. </P
+><DIV class="Sect" 
+
+><H2 
+ align="justify"
+><U><B>Pokyny: </U></H2
+><P 
+ align="justify"
+></B>P&#345;i testov&aacute;n&iacute; mikropo&#269;&iacute;ta&#269;&#367; B a C metodou p&#345;&iacute;znakov&eacute; anal&yacute;zy m&#367;&#382;ete s v&yacute;hodou vyu&#382;&iacute;t diagnostick&eacute; pam&#283;ti EPROM. Tato pam&#283;&#357; obsahuje program pro generov&aacute;n&iacute; stimul&#367; vhodn&yacute;ch pro p&#345;&iacute;znakovou anal&yacute;zu. Diagnostick&yacute; program postupn&#283; generuje posloupnosti stav&#367; 00000001,00000010, 00000100... 10000000 na datov&eacute; a adresov&eacute; sb&#283;rnici a na br&aacute;n&aacute;ch (portech A, B a C) obvodu 8255. T&iacute;m je zaji&scaron;t&#283;na detekce v&scaron;ech poruch t0, t1 jako&#382; i zkrat&#367; na t&#283;chto sb&#283;rnic&iacute;ch. </P
+><P 
+ align="justify"
+>P&#345;i pou&#382;it&iacute; diagnostick&eacute; pam&#283;ti EPROM doporu&#269;ujeme p&#345;ipojit hodinov&yacute; vstup analyz&aacute;toru na sign&aacute;l WR procesoru a vstupy START a STOP na sign&aacute;l A15. M&#367;&#382;ete samoz&#345;ejm&#283; zvolit i jin&eacute; zdroje hodinov&eacute;ho sign&aacute;lu a sign&aacute;l&#367; START a STOP tak, abyste dostali stabiln&iacute; a reprodukovateln&eacute; p&#345;&iacute;znaky (viz t&eacute;&#382; n&aacute;vod p&#345;&iacute;znakov&eacute;ho analyz&aacute;toru a dokumentace PMI-80). </P
+></DIV
+><DIV class="Sect" 
+
+><H2 
+ align="justify"
+><U><B>Postup: </U></H2
+><OL 
+ type="1"
+><LI 
+ align="justify"
+></B> Zapn&#283;te mikropo&#269;&iacute;ta&#269; B a sejm&#283;te p&#345;&iacute;znaky na jeho adresov&eacute; a datov&eacute; sb&#283;rnici a na v&scaron;ech portech - br&aacute;n&aacute;ch. </P
+></LI
+><LI 
+ align="justify"
+> Zapn&#283;te mikropo&#269;&iacute;ta&#269; C a stejn&yacute;m zp&#367;sobem sejm&#283;te p&#345;&iacute;znaky na jeho sb&#283;rnic&iacute;ch a portech. Porovn&aacute;n&iacute;m p&#345;&iacute;znak&#367; nam&#283;&#345;en&yacute;ch v obou mikropo&#269;&iacute;ta&#269;&iacute;ch lokalizujte jeho poruchu. </P
+></LI
+><LI 
+ align="justify"
+> Lokalizujte fyzik&aacute;ln&iacute; poruchu (s pou&#382;it&iacute;m ohmmetru nebo vizu&aacute;ln&#283;). Bez pokynu cvi&#269;&iacute;c&iacute;ho poruchu neodstra&#328;ujte! </P
+></LI
+></OL
+></DIV
+></DIV
+></BODY>
+</HTML>

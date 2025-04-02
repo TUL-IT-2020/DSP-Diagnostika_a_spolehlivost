@@ -1,0 +1,1 @@
+hope.exe -l hope.log -t c17.test c17.bench -u

@@ -30,6 +30,8 @@ Doma, projít si skripta:
 - [[Defekty a poruchy]]
 - [[Testování a verifikace]]
 	- [[D-algoritmus]]
+	- [[Boolovská diference]]
+	- [[IDDQ]]
 	- [[Testování sekvenčních obvodů]]
 
 ## Další 
@@ -41,3 +43,5 @@ SS - strukturně syntetizovaný
 
 ![[s_AMD_80386DX_die.jpg]]
 
+Simulace - v software
+Emulace - v HW (fpga)
