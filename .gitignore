@@ -2,3 +2,5 @@
 *.test
 *.lst
 *.log
+*.warning
+*.ufaults
