@@ -16,6 +16,8 @@ Doma, projít si skripta:
 		- [ ] F, F' tabulku (důležitější)
 - [ ] 3
 	- [ ] Minimalizace testů
+- [ ] [[atalanta.md|Atalanta]]
+
 ## Poznámky:
 
 - [ ] Dopsat poznámky k automatům
