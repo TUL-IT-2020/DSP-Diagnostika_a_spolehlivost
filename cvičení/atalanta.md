@@ -4,6 +4,8 @@
 - [[lab.pdf]]
 
 ## Podklady
+- [Atalanta manuál](https://ddd.fit.cvut.cz/www/prj/Atalanta-M/index.php?page=manual)
+
 ```c17.bench
 # c17
 # 5 inputs
@@ -115,3 +117,45 @@ Slovník poruch:
 Soubor `c17.circ` otevřete v programu Logisim.
 
 ![[c17.png]]
+
+### Generování testu pro větší obvod
+```bash
+.\atalanta.exe -l c7552.lst -N c7552.bench
+```
+
+```text
+1. Circuit structure
+   Name of the circuit                       : c7552
+   Number of primary inputs                  : 207
+   Number of primary outputs                 : 108
+   Number of gates                           : 3512
+   Level of the circuit                      : 43
+
+2. ATPG parameters
+   Test pattern generation mode              : RPT + DTPG + TC
+   Limit of random patterns (packets)        : 16
+   Backtrack limit                           : 10
+   Initial random number generator seed      : 1744807243
+
+3. Test pattern generation results
+   Number of test patterns                   : 380
+   Fault coverage                            : 98.252 %
+   Number of collapsed faults                : 7550
+   Number of identified redundant faults     : 71
+   Number of aborted faults                  : 61
+   Total number of backtrackings             : 816
+
+4. Memory used                               : 19800 Kbytes
+
+5. CPU time
+   Total                                     : 1.567 secs
+```
+
+| Obvod | Počet testů | Pokrytí | Čas na CPU |
+|-------|-------------|---------|------------|
+| c17   | 8           | 100%    | 0.001 sec  |
+| c432  | 81          | 99%    | 0.001 sec   |
+| c1908 | 168         | 99%    | 0.001 sec   |
+| c5315 | 216         | 98.897% | 0.001 sec  |
+| c6288 | 59          | 98.5%   | 0.267 sec  |
+| c7552 | 380         | 98.252% | 1.567 sec  |
