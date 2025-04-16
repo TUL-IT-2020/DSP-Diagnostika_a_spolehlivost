@@ -4,7 +4,7 @@
 - [[lab.pdf]]
 
 ## Podklady
-```c17.bnech
+```c17.bench
 # c17
 # 5 inputs
 # 2 outputs

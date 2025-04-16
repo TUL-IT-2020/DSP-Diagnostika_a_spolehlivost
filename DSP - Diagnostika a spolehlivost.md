@@ -16,7 +16,13 @@ Doma, projít si skripta:
 		- [ ] F, F' tabulku (důležitější)
 - [ ] 3
 	- [ ] Minimalizace testů
-- [ ] [[atalanta.md|Atalanta]]
+- [x] [[atalanta.md|Atalanta]]
+- [ ] [[atalanta.md|Atalanta]] Složité obvody
+
+## Zkouška
+Ústní zkoušení. 
+- Vypracovat cvičení, 
+- projít přednášky.
 
 ## Poznámky:
 
@@ -36,6 +42,8 @@ Doma, projít si skripta:
 	- [[IDDQ]]
 	- [[Testování sekvenčních obvodů]]
 
+[[Boundry Scan - JTAG]]
+[[BIST]]
 ## Další 
 
 ### SSBDD
@@ -47,3 +55,4 @@ SS - strukturně syntetizovaný
 
 Simulace - v software
 Emulace - v HW (fpga)
+
