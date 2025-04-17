@@ -61,6 +61,8 @@ Střední doba do "první" poruchy.
 - Pak užitečná životnost.
 - Pak opět vzrůstá, končí se životnost.
 
+## Modely systému
 Seriový model
 
 Paralelní model
+
