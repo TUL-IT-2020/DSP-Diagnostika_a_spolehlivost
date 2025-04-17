@@ -159,3 +159,5 @@ Soubor `c17.circ` otevřete v programu Logisim.
 | c5315 | 216         | 98.897% | 0.001 sec  |
 | c6288 | 59          | 98.5%   | 0.267 sec  |
 | c7552 | 380         | 98.252% | 1.567 sec  |
+
+Přidat větší množství opakování pro navýšení pokrytí.

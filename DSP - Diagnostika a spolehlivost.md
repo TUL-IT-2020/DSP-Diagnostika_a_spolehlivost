@@ -16,8 +16,12 @@ Doma, projít si skripta:
 		- [ ] F, F' tabulku (důležitější)
 - [ ] 3
 	- [ ] Minimalizace testů
+- [ ] 6
+  - [ ] návrh snadnotestovatelných obvodů
+- [ ] Spolehlivost
 - [x] [[atalanta.md|Atalanta]]
-- [ ] [[atalanta.md|Atalanta]] Složité obvody
+  - [x] Jednoduchý obvod
+  - [x] Složité obvody
 
 ## Zkouška
 Ústní zkoušení. 
@@ -41,6 +45,7 @@ Doma, projít si skripta:
 	- [[Boolovská diference]]
 	- [[IDDQ]]
 	- [[Testování sekvenčních obvodů]]
+- [[Spolehlivost]]
 
 [[Boundry Scan - JTAG]]
 [[BIST]]
@@ -55,4 +60,3 @@ SS - strukturně syntetizovaný
 
 Simulace - v software
 Emulace - v HW (fpga)
-
