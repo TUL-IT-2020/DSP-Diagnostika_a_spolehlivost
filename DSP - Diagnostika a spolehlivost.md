@@ -17,11 +17,12 @@ Doma, projít si skripta:
 - [ ] 3
 	- [ ] Minimalizace testů
 - [ ] 6
-  - [ ] návrh snadnotestovatelných obvodů
+  - [ ] návrh snadno testovatelných obvodů
 - [ ] Spolehlivost
 - [x] [[atalanta.md|Atalanta]]
   - [x] Jednoduchý obvod
   - [x] Složité obvody
+  - [x] Přidat větší množství opakování pro navýšení pokrytí.
 
 ## Zkouška
 Ústní zkoušení. 

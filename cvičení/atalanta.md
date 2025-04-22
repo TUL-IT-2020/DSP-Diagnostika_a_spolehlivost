@@ -160,4 +160,13 @@ Soubor `c17.circ` otevřete v programu Logisim.
 | c6288 | 59          | 98.5%   | 0.267 sec  |
 | c7552 | 380         | 98.252% | 1.567 sec  |
 
-Přidat větší množství opakování pro navýšení pokrytí.
+```bash
+.\atalanta.exe -r 1280 -N -b 50 -B 50 c7552.bench
+```
+
+| Obvod | Počet opakování | Pokrytí | Čas na CPU |
+|-------|-------------|---------|------------|
+| c6288 | 1280        | 99.5%   | 0.5 sec  |
+| c7552 | 1280        | 98.285% | 8.8 sec  |
+
+Ani po upravení počtu opakování se nepodařilo dosáhnout 100% pokrytí.

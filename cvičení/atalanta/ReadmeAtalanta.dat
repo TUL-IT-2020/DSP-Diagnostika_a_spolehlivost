@@ -242,14 +242,14 @@ EXAMPLES:
 	       c432.test and the summary of the test pattern
 	       is reported to the standard output (CRT terminal).
 
-        atalanta -A -f c432.flt c432.bench
-           --- Diagnostic mode run
-               reads the fault list from the file c432.flt, and
-               generates all test patterns for each fault.
+   atalanta -A -f c432.flt c432.bench
+      --- Diagnostic mode run
+         reads the fault list from the file c432.flt, and
+         generates all test patterns for each fault.
 
-        atalanta -D 2 c432.bench
-           --- Diagnostic mode run
-               Generates n test patterns for each fault.
+   atalanta -D 2 c432.bench
+      --- Diagnostic mode run
+         Generates n test patterns for each fault.
 
 
 
