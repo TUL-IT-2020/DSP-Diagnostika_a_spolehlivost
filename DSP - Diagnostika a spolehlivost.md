@@ -20,19 +20,19 @@ Doma, projít si skripta:
 - [x] Kapitola 2. do vypracovat úlohy 
 - [x] 2.2
 	- [x] D-krychle přes XOR
-- [ ] 2.3
-	- [ ] Boolovská diference (vyzkoušet si)
-		- [ ] Z definice
-		- [ ] F, F' tabulku (důležitější)
-- [ ] 3
-	- [ ] Minimalizace testů
-- [ ] 6
-  - [ ] návrh snadno testovatelných obvodů
-- [ ] Spolehlivost
+- [x] 2.3
+	- [x] Boolovská diference (vyzkoušet si)
+		- [x] Z definice
+		- [x] F, F' tabulku (důležitější)
+- [x] 3
+	- [x] Minimalizace testů
+- [x] 6
+	- [x] návrh snadno testovatelných obvodů
+- [x] [[DSI-spolehlivost|Spolehlivost]]
 - [x] [[atalanta.md|Atalanta]]
-  - [x] Jednoduchý obvod
-  - [x] Složité obvody
-  - [x] Přidat větší množství opakování pro navýšení pokrytí.
+	- [x] Jednoduchý obvod
+	- [x] Složité obvody
+	- [x] Přidat větší množství opakování pro navýšení pokrytí.
 
 ## Zkouška
 Ústní zkoušení. 
@@ -40,20 +40,16 @@ Doma, projít si skripta:
 - projít přednášky.
 ## Poznámky:
 
-- [ ] Dopsat poznámky k automatům
-
 - [[Defekty a poruchy]]
 - [[Testování a verifikace]]
 	- [[D-algoritmus]]
 	- [[Boolovská diference]]
 	- [[IDDQ]]
 	- [[Testování sekvenčních obvodů]]
+	- [[BIST]]
+	- [[Boundry Scan - JTAG]]
 - [[Obvody bezpečné proti poruchám]]
 - [[CIT_Spolehlivost|Spolehlivost]]
-
-[[Boundry Scan - JTAG]]
-[[BIST]]
-
 
 ### Zkratky
 - VLSI - very large system integration
@@ -67,10 +63,5 @@ Doma, projít si skripta:
 Simulace - v software
 Emulace - v HW (fpga)
 
-## Další 
-
-### SSBDD
-BDD - binární rozhodovací strom (diagram)
-SS - strukturně syntetizovaný
 
 
